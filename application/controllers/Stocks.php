@@ -7,6 +7,11 @@ class Stocks extends CI_Controller {
 	{
 		$this->load->view('ViewStocks');
 	}
-    
+
+    public function addStock()
+	{
+		$this->load->view('ViewStocks');
+	}
+        
 
 }
