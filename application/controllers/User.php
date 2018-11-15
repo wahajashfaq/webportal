@@ -7,6 +7,7 @@ class User extends CI_Controller
 	public function index()
 	{
 		$this->load->view('AddUser');
+		
 	}
      
 	public function addsupplier()
@@ -16,6 +17,12 @@ class User extends CI_Controller
 	public function register()
 	{
 		$this->load->view('register');
+	}
+	public function getusers()
+	{
+		$this->load->model('test');
+		$users=$this->test->getUsers();
+        $this->load->view('ViewUsers',['users'=>$users]);
 	}
 
 }
