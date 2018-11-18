@@ -76,12 +76,12 @@ $query_builder = TRUE;
 $db['default'] = array(
 	'dsn'	=> '',
 	'hostname' => 'localhost',
-	'username' => '',
+	'username' => 'root',
 	'password' => '',
-	'database' => 'portalDb',
-	'dbdriver' => 'sqlsrv',
+	'database' => 'webportal',
+	'dbdriver' => 'mysqli',   //sqlsrv
 	'dbprefix' => '',
-	'pconnect' => TRUE,
+	'pconnect' => FALSE,
 	'db_debug' => (ENVIRONMENT !== 'production'),
 	'cache_on' => FALSE,
 	'cachedir' => '',
@@ -90,8 +90,7 @@ $db['default'] = array(
 	'swap_pre' => '',
 	'encrypt' => FALSE,
 	'compress' => FALSE,
-	'stricton' => FALSE,
-	'dbport' => '3306',
+	'stricton' => FALSE,   //'dbport' => '3306',
 	'failover' => array(),
 	'save_queries' => TRUE
 );

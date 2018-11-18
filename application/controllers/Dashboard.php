@@ -20,5 +20,6 @@ class Dashboard extends CI_Controller
 	{
 		$this->load->view('register');
 	}
+	
 
 }

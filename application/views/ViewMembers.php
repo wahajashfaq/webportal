@@ -1,6 +1,6 @@
 <?php include_once('Templates/Admin_header.php');?>   
-   
-    <title>View Users</title>
+   <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <title>Portal Members</title>
 
 <?php include_once('Templates/Admin_NavBar_SidePanel.php');?>   
 
@@ -16,7 +16,7 @@
             <li class="breadcrumb-item">
               <a href="Dashboard" class="MyBreadCrumps">Dashboard</a>
             </li>
-            <li class="breadcrumb-item active">Registered Users</li>
+            <li class="breadcrumb-item active">Registered Members</li>
           </ol>
 
            
@@ -25,7 +25,7 @@
           <div class="card mb-3">
             <div class="card-header">
               <i class="fas fa-table"></i>
-              <b style ='text-align:center'>Registered Users</b>
+              <b style ='text-align:center'>Registered Members</b>
             </div>
             <div class="card-body">
               <div class="table-responsive">
@@ -34,7 +34,6 @@
                     <tr >
                       <th>First Name</th>
                       <th>Last Name</th>
-                      <th>Password</th>
                       <th>Email</th>
                       <th>Number</th>
                       <th>Type</th>
@@ -48,7 +47,7 @@
                     <tbody>
                       <?php if(count($users)):
                          foreach ($users as $user):
-                          if($user->Utype == "Admin"){
+                          if($user->Utype == "Supplier"){
                         ?>
                     <tr class ="table-danger"> <!--  -->
                       <?php 
@@ -57,14 +56,13 @@
                         <?php }?>
                       <td><?=$user->Name?></td>
                       <td><?=$user->Lname?></td>
-                      <td><?=$user->mem_pass?></td>
                       <td><?=$user->Email?></td>
                       <td><?=$user->ContactNumber?></td>
                       <td><?=$user->Utype?></td>
                       <td><?=$user->uaddress?></td>
                       <td><?=$user->EntryDate?></td>
-                      <td><button  data-placement="top" data-toggle="tooltip" title="Edit" class="btn btn-primary"><i class="fa fa-pencil-square-o"></i> Edit</button></td>
-                      <td><button  data-placement="top" data-toggle="tooltip" title="Delete" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</button></td>
+                      <td><a  data-placement="top" data-toggle="tooltip" id="Editbtn" title="Edit" class="btn btn-primary"><i class="fa fa-pencil-square-o"></i> Edit</a></td>
+                      <td><a  data-placement="top" data-toggle="tooltip" id="Deletebtn" title="Delete" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</a></td>
                     </tr>
                           <?php
                           endforeach;
@@ -84,5 +82,13 @@
             </div>
     <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
           </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<script type="text/javascript">
+      $(function(){$('#Deletebtn').click(function(){
+        alert("Husnain Ajmal");
+      });
 
+      });
+</script>
 <?php include_once('Templates/Admin_footer.php');?>   
