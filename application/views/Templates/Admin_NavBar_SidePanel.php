@@ -5,7 +5,7 @@
 
     <nav class="navbar navbar-expand navbar-dark bg-dark">
 
-      <a class="navbar-brand mr-1" href="Dashboard">WebPortal</a>
+      <a class="navbar-brand mr-1" href="<?php echo base_url().'Dashboard'?>">WebPortal</a>
 
       <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
         <i class="fas fa-bars"></i>
@@ -67,7 +67,7 @@
       <!-- Sidebar -->
       <ul class="sidebar navbar-nav">
         <li class="nav-item active">
-          <a class="nav-link" href="Dashboard">
+          <a class="nav-link" href="<?php echo base_url().'Dashboard'?>">
             <h6 class="text-center">
              <i class="fas fa-fw fa-tachometer-alt"></i>
               <span>Dashboard</span></h6>
@@ -75,65 +75,55 @@
         </li>
 
         <li class="nav-item">
-        <a class="nav-link" href="User">
+        <a class="nav-link" href="<?php echo base_url().'User'?>">
         <h6 class="text-center"><span>Add Users</span></h6>
         </a>
         </li>
 
         <li class="nav-item">
-        <a class="nav-link" href="User/getusers">
+        <a class="nav-link" href="<?php echo base_url().'User/getusers'?>">
         <h6 class="text-center"><span>View Users</span></h6>
         </a>
         </li>
 
         <li class="nav-item">
-        <a class="nav-link" href="Members">
+        <a class="nav-link" href="<?php echo base_url().'Members'?>">
         <h6 class="text-center"><span>Add Member</span></h6>
         </a>
         </li>
 
         <li class="nav-item">
-        <a class="nav-link" href="Members/getmembers">
+        <a class="nav-link" href="<?php echo base_url().'Members/getmembers'?>">
         <h6 class="text-center"><span>View Members</span></h6>
         </a>
         </li>
 
         <li class="nav-item">
-        <a class="nav-link" href="charts.html">
+        <a class="nav-link" href="<?php echo base_url().'Dashboard'?>">
         <h6 class="text-center"><span>Add Stocks</span></h6>
         </a> 
         </li>
         
        
        <li class="nav-item">
-        <a class="nav-link" href="Stocks">
+        <a class="nav-link" href="<?php echo base_url().'Stocks'?>">
         <h6 class="text-center"><span>View Stocks</span></h6>
         </a> 
         </li>
         
 
          <li class="nav-item">
-        <a class="nav-link" href="Stocks">
+        <a class="nav-link" href="<?php echo base_url().'Stocks'?>">
             <!-- <i class="fas fa-fw fa-chart-area"></i> -->
-        <h6 class="text-center"><span>View Products</span></h6>
+        <h6 class="text-center"><span>Add Products</span></h6>
         </a> 
         </li>
         
        <li class="nav-item">
-        <a class="nav-link" href="charts.html">
+        <a class="nav-link" href="<?php echo base_url().'Stocks'?>">
             <!-- <i class="fas fa-fw fa-chart-area"></i> -->
-        <h6 class="text-center"><span>Add Products</span></h6>
+        <h6 class="text-center"><span>View Products</span></h6>
         </a> 
-        
         </li>
-          
-        <li class="nav-item text-center" style="text-align:center;  ">
-        <a class="nav-link" href="charts.html">
-            <!-- <i class="fas fa-fw fa-chart-area"></i> -->    
-        <h6 class="text-center"><span>View Supplier</span></h6>
-        </a>
-        </li>
-        
-
-        </ul>
+    </ul>
 <!-- End of Side panel and header -->

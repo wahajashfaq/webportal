@@ -57,14 +57,15 @@
                         <?php }?>
                       <td><?=$user->Name?></td>
                       <td><?=$user->Lname?></td>
-                      <td><?=$user->mem_pass?></td>
+                      <td><?=$user->u_pass?></td>
                       <td><?=$user->Email?></td>
                       <td><?=$user->ContactNumber?></td>
                       <td><?=$user->Utype?></td>
                       <td><?=$user->uaddress?></td>
                       <td><?=$user->EntryDate?></td>
-                      <td><button  data-placement="top" data-toggle="tooltip" title="Edit" class="btn btn-primary"><i class="fa fa-pencil-square-o"></i> Edit</button></td>
-                      <td><button  data-placement="top" data-toggle="tooltip" title="Delete" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</button></td>
+                      <td><a href="<?php echo base_url()?>User/editUser?DataID=<?php echo $user->u_ID?>" data-placement="top" data-toggle="tooltip" title="Edit"style="color:White" class="btn btn-primary"><i class="fa fa-pencil-square-o"></i> Edit</a></td>
+                      <td><a href="<?php echo base_url().'User'?>" data-placement="top" data-toggle="tooltip" title="Delete" style="color:White" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</a></td>
+                      
                     </tr>
                           <?php
                           endforeach;

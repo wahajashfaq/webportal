@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class User extends CI_Controller 
 {
-
+     
     public function index()
 	{
 		$this->load->view('AddUser');	
@@ -25,6 +25,37 @@ class User extends CI_Controller
 
         $this->user_model->addUser($name,$lname,$pass,$mail, $Utype,$contact,$Address,$date);
         $this->viewusers();
+	}
+	public function editUser()
+	{
+		if(isset($_GET['DataID']))
+		{
+         $this->load->model('user_model');
+         $uid = $_GET['DataID'];
+         $user = $this->user_model->getUserData($uid);
+          // print_r($user[0]->u_ID); exit;
+	     $this->load->view('editUser',['user'=>$user]);	
+		} 
+       //echo $u_id;
+	}
+
+	public function updateUser()
+	{
+       $this->load->model('user_model');
+		
+
+        $name = $this->input->post("name");
+        $lname = $this->input->post("lname");
+        $pass = $this->input->post("password");
+        $mail = $this->input->post("emailaddress");
+        $Utype = $this->input->post("UserType");
+        $contact = $this->input->post("contact"); 
+        $Address = $this->input->post("Address");   
+        $date = $this->input->post("date");
+        $uid= $this->input->post("info_id");
+       
+        $this->user_model->UpdateUser($uid,$name,$lname,$pass,$mail, $Utype,$contact,$Address,$date);
+       $this->viewusers();
 	}
 	public function register()
 	{

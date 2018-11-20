@@ -54,11 +54,20 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 $route['(:any)/Stocks'] = 'Stocks/index';
 $route['User/Dashboard'] = 'dashboard';
-$route['User/User'] = 'user';
-$route['User/User/getusers'] = 'User/viewusers';
+$route['(:any)/getusers'] = 'User/viewusers';
+$route['(:any)/(:any)/getusers']='User/viewusers';
+$route['(:any)/(:any)/User/getusers'] = 'User/viewusers';
+$route['(:any)/(:any)/User']='User';
+$route['(:any)/(:any)/Dashboard']='Dashboard';
+$route['(:any)/Dashboard']='Dashboard';
+$route['User/User'] = 'User';
 $route['User/User/Dashboard'] = 'Dashboard';
 $route['User/User/User'] = 'User';
 $route['User/User/addUser'] = 'User/addUser';
+$route['(:any)/User']='User';
+
+
+
 
 
 
