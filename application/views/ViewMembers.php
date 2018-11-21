@@ -1,7 +1,14 @@
 <?php include_once('Templates/Admin_header.php');?>   
    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
     <title>Portal Members</title>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+    $('#Deletebtn').click(function(){
+        alert("Hi Husnain");
+    });
+});
+</script>
 <?php include_once('Templates/Admin_NavBar_SidePanel.php');?>   
 
 <!-- End of Side panel and header -->
@@ -29,7 +36,7 @@
             </div>
             <div class="card-body">
               <div class="table-responsive">
-                <table class="table table-bordered table-sm table-hover table-responsive" id="dataTable" width="100%" cellspacing="0">
+                <table class="table table-bordered  table-hover table-responsive" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                     <tr >
                       <th>First Name</th>
@@ -59,10 +66,11 @@
                       <td><?=$user->Email?></td>
                       <td><?=$user->ContactNumber?></td>
                       <td><?=$user->Utype?></td>
-                      <td><?=$user->uaddress?></td>
-                      <td><?=$user->EntryDate?></td>
-                      <td><a  data-placement="top" data-toggle="tooltip" id="Editbtn" title="Edit" class="btn btn-primary"><i class="fa fa-pencil-square-o"></i> Edit</a></td>
-                      <td><a  data-placement="top" data-toggle="tooltip" id="Deletebtn" title="Delete" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</a></td>
+                      <td><?=substr($user->uaddress,0,10)?></td> 
+                      <td style="width:15%"><?=date("Y-m-d", strtotime($user->EntryDate));?></td> 
+                      <td><a href="<?php echo base_url()?>Members/editMember?DataID=<?php echo $user->ID?>" data-placement="top" data-toggle="tooltip" id="Editbtn" title="Edit" style="color:White" class="btn btn-sm btn-primary"><i class="fa fa-pencil-square-o"></i> Edit</a></td>
+                      <td><a href="" data-placement="top" data-toggle="tooltip" id="Deletebtn" title="Delete" style="color:White" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> Delete</a></td>
+                    
                     </tr>
                           <?php
                           endforeach;
@@ -84,11 +92,5 @@
           </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-<script type="text/javascript">
-      $(function(){$('#Deletebtn').click(function(){
-        alert("Husnain Ajmal");
-      });
 
-      });
-</script>
 <?php include_once('Templates/Admin_footer.php');?>   

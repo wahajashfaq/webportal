@@ -29,8 +29,8 @@
             </div>
             <div class="card-body">
               <div class="table-responsive">
-                <table class="table table-bordered table-sm table-hover table-responsive" id="dataTable" width="100%" cellspacing="0">
-                    <thead>
+                <table class="table table-bordered table-striped table-hover table-responsive " id="dataTable"  `>
+                    <thead style="Background:silver">
                     <tr >
                       <th>First Name</th>
                       <th>Last Name</th>
@@ -39,7 +39,7 @@
                       <th>Number</th>
                       <th>Type</th>
                       <th>Address</th>
-                      <th>Entry Date</th>
+                      <th style="width:15%">EntryDate</th>
                       <th>Edit</th>
                       <th>Delete</th>
                     </tr>
@@ -50,10 +50,10 @@
                          foreach ($users as $user):
                           if($user->Utype == "Admin"){
                         ?>
-                    <tr class ="table-danger"> <!--  -->
+                    <tr class =""> <!-- table-danger -->
                       <?php 
                       }else{ ?>
-                      <tr class ="table-primary"> <!--  -->
+                      <tr class =""> <!-- table-primary -->
                         <?php }?>
                       <td><?=$user->Name?></td>
                       <td><?=$user->Lname?></td>
@@ -61,10 +61,10 @@
                       <td><?=$user->Email?></td>
                       <td><?=$user->ContactNumber?></td>
                       <td><?=$user->Utype?></td>
-                      <td><?=$user->uaddress?></td>
-                      <td><?=$user->EntryDate?></td>
-                      <td><a href="<?php echo base_url()?>User/editUser?DataID=<?php echo $user->u_ID?>" data-placement="top" data-toggle="tooltip" title="Edit"style="color:White" class="btn btn-primary"><i class="fa fa-pencil-square-o"></i> Edit</a></td>
-                      <td><a href="<?php echo base_url().'User'?>" data-placement="top" data-toggle="tooltip" title="Delete" style="color:White" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</a></td>
+                      <td><?=substr($user->uaddress,0,10)?></td> 
+                      <td style="width:15%"><?=date("Y-m-d", strtotime($user->EntryDate));?></td> 
+                      <td><a href="<?php echo base_url()?>User/editUser?DataID=<?php echo $user->u_ID?>" data-placement="top" data-toggle="tooltip" title="Edit"style="color:White" class="btn btn-sm btn-primary"><i class="fa fa-pencil-square-o"></i> Edit</a></td>
+                      <td><a href="<?php echo base_url().'User'?>" data-placement="top" data-toggle="tooltip" title="Delete" style="color:White" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> Delete</a></td>
                       
                     </tr>
                           <?php
