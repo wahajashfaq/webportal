@@ -2,13 +2,7 @@
    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
     <title>Portal Members</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script>
-$(document).ready(function(){
-    $('#Deletebtn').click(function(){
-        alert("Hi Husnain");
-    });
-});
-</script>
+
 <?php include_once('Templates/Admin_NavBar_SidePanel.php');?>   
 
 <!-- End of Side panel and header -->
@@ -26,8 +20,6 @@ $(document).ready(function(){
             <li class="breadcrumb-item active">Registered Members</li>
           </ol>
 
-           
-
           <!-- DataTables Example -->
           <div class="card mb-3">
             <div class="card-header">
@@ -36,7 +28,7 @@ $(document).ready(function(){
             </div>
             <div class="card-body">
               <div class="table-responsive">
-                <table class="table table-bordered  table-hover table-responsive" id="dataTable" width="100%" cellspacing="0">
+                <table class="table table-hover table-responsive" id="MemberdataTable" width="100%" cellspacing="0">
                     <thead>
                     <tr >
                       <th>First Name</th>
@@ -45,7 +37,7 @@ $(document).ready(function(){
                       <th>Number</th>
                       <th>Type</th>
                       <th>Address</th>
-                      <th>Entry Date</th>
+                      <th style="width:15%">Entry Date</th>
                       <th>Edit</th>
                       <th>Delete</th>
                     </tr>
@@ -61,7 +53,7 @@ $(document).ready(function(){
                       }else{ ?>
                       <tr class ="table-primary"> <!--  -->
                         <?php }?>
-                      <td><?=$user->Name?></td>
+                      <td><?=$user->Name ?></td>
                       <td><?=$user->Lname?></td>
                       <td><?=$user->Email?></td>
                       <td><?=$user->ContactNumber?></td>
@@ -69,8 +61,7 @@ $(document).ready(function(){
                       <td><?=substr($user->uaddress,0,10)?></td> 
                       <td style="width:15%"><?=date("Y-m-d", strtotime($user->EntryDate));?></td> 
                       <td><a href="<?php echo base_url()?>Members/editMember?DataID=<?php echo $user->ID?>" data-placement="top" data-toggle="tooltip" id="Editbtn" title="Edit" style="color:White" class="btn btn-sm btn-primary"><i class="fa fa-pencil-square-o"></i> Edit</a></td>
-                      <td><a href="" data-placement="top" data-toggle="tooltip" id="Deletebtn" title="Delete" style="color:White" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> Delete</a></td>
-                    
+                      <td><button data-placement="top"  id="<?php echo $user->ID?>" title="Delete" style="color:White" class=" Delete btn btn-sm btn-danger"><i class="fa fa-trash"></i> Delete</button></td>
                     </tr>
                           <?php
                           endforeach;
@@ -92,5 +83,5 @@ $(document).ready(function(){
           </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-
+<script src="<?php echo base_url().'assets/js/demo/Main.js';?>" type="text/javascript"></script>
 <?php include_once('Templates/Admin_footer.php');?>   

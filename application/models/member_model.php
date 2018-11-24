@@ -19,4 +19,19 @@ class member_model extends CI_Model
         $query = $this->db->query("Select * from member where ID ='$uid'");
         return $query->row();  
     }
+  public function DeleteMemberData($uid)
+    {
+         $this->load->database();
+       $this->db->where("ID",$uid);
+        $this->db->delete("member");
+    }
+    public function UpdateUser($uid,$data)
+    {
+        $this->load->database();
+        $this->db->where("ID",$uid);
+        $this->db->update('member', $data);     
+
+ 
+    }
+      
 } 

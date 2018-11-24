@@ -36,26 +36,33 @@ class Members extends CI_Controller
 	public function updateMember()
 	{
        $this->load->model('member_model');
-       $post = $this->input->post();
-       echo "<pre>";
-       print_r($post);exit;
-        $name = $this->input->post("name");
-        $lname = $this->input->post("lname");
-        $pass = $this->input->post("password");
-        $mail = $this->input->post("emailaddress");
-        $Utype = $this->input->post("UserType");
-        $contact = $this->input->post("contact"); 
-        $Address = $this->input->post("Address");   
-        $date = $this->input->post("date");
-        $uid= $this->input->post("info_id");
        
-        $this->user_model->UpdateUser($uid,$name,$lname,$pass,$mail, $Utype,$contact,$Address,$date);
-       $this->viewusers();
+       //Getting the POST data In variables. If the post attributes names are same as fields in DB.
+       //Than we can pass whole post array after unsetting Submit and Hidden field reducing the effort
+        //Making an array of Variable name same as member table fields name
+        //We will pass this array of data and id to model where active records will generate and run query
+       $uid= $this->input->post("info_id");
+       $data = array(
+               'Name' => $this->input->post("name"),
+               'lname' => $this->input->post("lname"),
+               'Email' => $this->input->post("emailaddress"),
+               'ContactNumber' => $this->input->post("contact"),
+               'Utype' =>$this->input->post("UserType"),
+               'uaddress' => $this->input->post("Address"),
+               'EntryDate' => $this->input->post("date"),
+               'comments' => $this->input->post("comments")
+            );
+        $this->member_model->UpdateUser($uid,$data);
+       $this->getmembers();
 	}
 
-	public function register()
+	public function deleteMember()
 	{
-		$this->load->view('register');
+		$this->load->model('member_model');
+		$uid = $this->input->post('uid');
+		$this->member_model->DeleteMemberData($uid);
+		// return "Record Deleted Successfully";
+		return true;
 	}
     public function getmembers()
 	{
@@ -64,5 +71,10 @@ class Members extends CI_Controller
         $this->load->view('ViewMembers',['users'=>$users]);
 	}
 
+	public function foo()
+	{
+    $this->load->view('response');
+
+	}
 
 }

@@ -29,7 +29,7 @@
             </div>
             <div class="card-body">
               <div class="table-responsive">
-                <table class="table table-bordered table-striped table-hover table-responsive " id="dataTable"  `>
+                <table class="table table-striped table-hover table-responsive " id="UserdataTable"  `>
                     <thead style="Background:silver">
                     <tr >
                       <th>First Name</th>
@@ -64,7 +64,7 @@
                       <td><?=substr($user->uaddress,0,10)?></td> 
                       <td style="width:15%"><?=date("Y-m-d", strtotime($user->EntryDate));?></td> 
                       <td><a href="<?php echo base_url()?>User/editUser?DataID=<?php echo $user->u_ID?>" data-placement="top" data-toggle="tooltip" title="Edit"style="color:White" class="btn btn-sm btn-primary"><i class="fa fa-pencil-square-o"></i> Edit</a></td>
-                      <td><a href="<?php echo base_url().'User'?>" data-placement="top" data-toggle="tooltip" title="Delete" style="color:White" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> Delete</a></td>
+                      <td><button data-placement="top" data-toggle="tooltip" title="Delete" style="color:White" class="UserDelete btn btn-sm btn-danger"><i class="fa fa-trash"></i> Delete</button></td>
                       
                     </tr>
                           <?php

@@ -18,6 +18,13 @@ class User_model extends CI_Model
     	 
     }
 
+    public function DeleteUserData($uid)
+    {
+         $this->load->database();
+       $this->db->where("u_ID",$uid);
+        $this->db->delete("user");
+    }
+
     public function getUserData($uid)
     {
         $this->load->database();

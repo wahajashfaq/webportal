@@ -57,6 +57,16 @@ class User extends CI_Controller
         $this->user_model->UpdateUser($uid,$name,$lname,$pass,$mail, $Utype,$contact,$Address,$date);
        $this->viewusers();
 	}
+
+    public function deleteUser()
+    {
+        $this->load->model('user_model');
+        $uid = $this->input->post('uid');
+        $this->user_model->DeleteUserData($uid);
+        // return "Record Deleted Successfully";
+        return true;
+    }
+
 	public function register()
 	{
 		$this->load->view('register');
