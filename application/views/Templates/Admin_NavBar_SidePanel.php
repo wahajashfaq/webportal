@@ -48,7 +48,12 @@
         </li>
         <li class="nav-item dropdown no-arrow">
           <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <h7>Husnain Ajmal</h7>
+            <h7>
+              <?php
+              if (isset($_SESSION['FullName'])) 
+               {  echo $_SESSION['FullName']; } 
+              ?>
+           </h7>
             <i class="fas fa-user-circle fa-fw"></i>
           </a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
@@ -99,7 +104,7 @@
         </li>
 
         <li class="nav-item">
-        <a class="nav-link" href="<?php echo base_url().'Dashboard'?>">
+        <a class="nav-link" href="<?php echo base_url().'Stocks/addStockView'?>">
         <h6 class="text-center"><span>Add Stocks</span></h6>
         </a> 
         </li>

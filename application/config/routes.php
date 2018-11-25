@@ -65,9 +65,10 @@ $route['User/User/Dashboard'] = 'Dashboard';
 $route['User/User/User'] = 'User';
 $route['User/User/addUser'] = 'User/addUser';
 $route['(:any)/User']='User';
+$route['User/LoginService']='User/Login';
 
-
-
+$route['Stocks/AddStockEntry']='Stocks/addStock';
+$route['Stocks/UpdateStockService']='Stocks/updateStock';
 
 
 

@@ -60,8 +60,9 @@ class Members extends CI_Controller
 	{
 		$this->load->model('member_model');
 		$uid = $this->input->post('uid');
+		
 		$this->member_model->DeleteMemberData($uid);
-		// return "Record Deleted Successfully";
+		 //return "Record Deleted Successfully";
 		return true;
 	}
     public function getmembers()

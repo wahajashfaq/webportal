@@ -8,12 +8,44 @@ class User extends CI_Controller
 	{
 		$this->load->view('AddUser');	
 	}
-     
+    
+    public function Login()
+    {
+        $this->load->model('user_model');
+        
+
+        $pass = $this->input->post("inputPassword");
+        $mail = $this->input->post("inputEmail");
+       $result =$this->user_model->AuthenticateUser($mail,$pass); 
+       if (!$result) 
+       { 
+         $error = "Invalid Username or Password";
+           $this->load->view('login',['error'=>$error]); 
+        }
+        else
+        {
+            $this->session->set_userData('userid',$result->u_ID);
+            $this->session->set_userData('FullName',$result->Name ." ". $result->Lname);
+            $this->session->set_userData('userName',$mail );
+            $this->session->set_userData('Utype',$result->Utype);
+
+            $this->PrepareDashBoard();
+        }
+        /*
+         // 
+        echo "<pre>";
+        print_r($result);exit;
+        */
+         }
+  
+    public function PrepareDashBoard()
+    {
+         $this->load->view('Dashboard');
+    }
 	public function addUser()
 	{
 		$this->load->model('user_model');
 		
-
         $name = $this->input->post("name");
         $lname = $this->input->post("lname");
         $pass = $this->input->post("password");
@@ -63,7 +95,6 @@ class User extends CI_Controller
         $this->load->model('user_model');
         $uid = $this->input->post('uid');
         $this->user_model->DeleteUserData($uid);
-        // return "Record Deleted Successfully";
         return true;
     }
 

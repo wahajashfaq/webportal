@@ -18,7 +18,7 @@
             <li class="breadcrumb-item active">Add User</li>
           </ol>
 
-<form class="form-horizontal" action="User/addUser" method="post">
+<form class="form-horizontal" action="<?php echo base_url()?>User/addUser" method="post">
 <fieldset>
 
 
@@ -100,7 +100,7 @@
    <div class="col-md-4 ">
       <div class="form-group"> <!-- Date input -->
         <label class="control-label" for="date">Date</label>
-        <input class="form-control" id="date" name="date" placeholder="MM/DD/YYY" type="date" required=""s/>
+        <input class="form-control" id="date" name="date" placeholder="MM/DD/YYY" type="date" required="">
       </div>
    </div>
 </div>

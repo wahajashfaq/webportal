@@ -68,7 +68,7 @@
                           else:
                           ?>
                         <tr>
-                          <td colspan="3">
+                          <td colspan="8">
                             No Records Found..!!
                           </td>
                         </tr>

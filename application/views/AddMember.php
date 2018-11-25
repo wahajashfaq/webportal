@@ -18,7 +18,7 @@
             <li class="breadcrumb-item active">Add Member</li>
           </ol>
 
-<form class="form-horizontal" action="Members/addMember" method="post">
+<form class="form-horizontal" action="<?php echo base_url()?>Members/addMember" method="post">
 <fieldset>
 
 
