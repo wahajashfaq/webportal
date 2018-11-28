@@ -69,7 +69,7 @@ $route['User/LoginService']='User/Login';
 
 $route['Stocks/AddStockEntry']='Stocks/addStock';
 $route['Stocks/UpdateStockService']='Stocks/updateStock';
-
+//$route['Products']='Products/index';
 
 
 
