@@ -30,8 +30,7 @@ class stock_model extends CI_Model
                                 from member as m,stocks as s 
                                 where m.ID = s.SupplierID and  s.StockID ='$sid'
                                 ");
-        // echo "<pre>";
-        //  print_r($query->row());exit;
+        
        return $query->row();  
     }
     public function UpdateStock($sid,$data)

@@ -60,10 +60,10 @@ public function editStock()
 		 unset($post['submit']);
 		 if (!isset($post['QuantityIssued']) or empty($post['QuantityIssued']) ) {	$post['QuantityIssued'] = 0; }
 		 if (!isset($post['comments']) or empty($post['comments'])) { $post['comments'] = "No Comments"; }
-		 $post['TotalPrice'] = $post['QuantityPurchased'] * $post['PriceperKG'];
 		 
-		    // echo "<pre>";
-		    // print_r($post);exit;
+		 $post['TotalPrice'] = $post['QuantityPurchased'] * $post['PriceperKG'];		 
+		 $post['QuantityAvailable'] = $post['QuantityPurchased'] - $post['QuantityIssued'];
+
 		 $this->st->addStock($post);
 		 $this->viewStock();
 	}

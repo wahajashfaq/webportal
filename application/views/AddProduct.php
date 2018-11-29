@@ -73,7 +73,7 @@
         <select id="StockID" name="StockID" class="form-control" >
          <option value="0" selected>Select one</option>
           <?php foreach ($Stocks as $Stock):?>
-          <option value="<?php echo $Stock->s_ID."/".$Stock->s_Name;?>"><?php echo $Stock->s_Name?></option>
+          <option  value="<?php echo $Stock->quantity."/".$Stock->s_Name;?>" class="StockOption <?php echo str_replace(' ','', $Stock->s_Name);?>"><?php echo $Stock->s_Name?></option>
           <?php endforeach;?>
         </select>    
      </div>
@@ -87,8 +87,8 @@
       
        <div class="col-md-6">
        <div class="form-group">
-       <label class="control-label" for="QuantityAvailable">Available(KG)</label>  
-       <input id="QuantityAvailable" name="QuantityAvailable" type="number" placeholder="000" class="form-control input-md" >
+       <label class="control-label"  for="QuantityAvailable">Available(KG)</label>  
+       <input id="QuantityAvailable" disabled name="QuantityAvailable" type="number" placeholder="000" class="form-control input-md" >
        </div>
        </div>
      

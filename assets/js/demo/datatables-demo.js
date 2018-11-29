@@ -13,7 +13,7 @@ $(document).ready(function() {
 // $(document).load(function(){
 // $('.text-danger').hide();
 // });
-
+var option=[];
    $('.UserDelete').click(function()
    {
 	    if (confirm("Do you want to delete this record?")) 
@@ -127,98 +127,105 @@ $(document).ready(function() {
 	    
     });
 
+
  $('.AddItem').click(function()
    {
-   var Input= document.getElementById('InputAmount').value;
-   	var available= document.getElementById('QuantityAvailable').value;
-   	var Stock= document.getElementById('StockID').value;
-   	var item = Stock.split('/');
+    var Input= document.getElementById('InputAmount').value;
+   	var	Stock= document.getElementById('StockID').value;
+   	item = Stock.split('/');
    	var item_id=item[0];
-  // 	alert(item_id);
+    var available = item_id;
    	if (+item_id!=0)
    	 {
-         // alert("Husnain Ajmal " + a + " " + b);
-	   	  if(+Input!=0)
+       	  if(+Input!=0)
 	   	  {
-	   	  	$('.Error3').fadeOut();
-	   	  	//alert("Husnain Ajmal " + a + " " + b);
-	   	  	$('.Error2').fadeOut();
-	   	  //	alert(a + "/" + b);
-	   	  	if(+Input <= +available)
-	   	  	{
-	   	  //		alert(a + " / Husnain Ajmal" + b);
-	   	  $('.Error3').fadeOut();
-	   	     $('.text-danger').fadeOut();
-	   	  	 $('.Error2').fadeOut();	
-	   	    $('.SelectGroup').show("slow");
-	   	  	 var html = '<tr id='+item_id+'><td>'+item[1]+'</td><td>'+Input+'</td><td><a  style="border-radius:1.8rem" data-toggle="tooltip" title="Remove" class="BtnRemove btn btn-danger"><i class="fa fa-minus"></i></a></td></tr>';
-	         $('#SelectedItemTable').append(html);
-	   	  	}
-	   	  	else
-	   	  	{
-	   	  		 $('.Error3').fadeOut();
-	   	  	  $('.Error2').fadeOut();
-	   	      $('.text-danger').show();
-	   	  	 }
+	   	    	$('.Error3').fadeOut();
+	   	  	    $('.Error2').fadeOut();
+		   	  	if(+Input <= +available)
+		   	  	{
+			   	  $('.Error3').fadeOut();
+			   	     $('.text-danger').fadeOut();
+			   	  	 $('.Error2').fadeOut();
+			   	  	 var className =item[1];
+			   	  	 className=className.replace(/\s+/g, '');	
+			   	  	 //alert(className);
+			   	  	 option.push(className);
+			   	    $('.SelectGroup').show("slow");
+			   	    var Optionclass;
+			   	    
+			   	    for (var i = 0; i < option.length; i++) 
+			   	    {
+		                 Optionclass = '.';
+		                 Optionclass += option[i];
+		                 $(Optionclass).fadeOut();
+			   	    };
+		             
+			   	  	 var html = '<tr id='+className+'><td>'+item[1]+'</td><td>'+Input+'</td><td><a  style="border-radius:1.8rem" id="'+className+'" class="BtnRemove btn btn-danger"><i class="fa fa-minus"></i></a></td></tr>';
+			         $('#SelectedItemTable').append(html);
+			   	  }
+		   	  	else
+		   	  	{
+		   	  		 $('.Error3').fadeOut();
+		   	  	  $('.Error2').fadeOut();
+		   	      $('.text-danger').show();
+		   	  	 }
 	   	  }
 	   	  else
 	   	  {
-	   	  	 $('.Error3').fadeOut();
+	   	  	$('.Error3').fadeOut();
 	   	  	$('.text-danger').fadeOut();
 	   	    $('.Error2').show("slow");
 	   	  }
 
-   	 }
-   	 else
-   	 {
-  	       $('.text-danger').fadeOut();
-	   	   $('.Error2').fadeOut();
-           $('.Error3').show("slow");
-   	 }         
-   	 
-	   /* if (confirm("Do you want to delete this record?")) 
-	    {
-	    	//The Value of This becomes undefined in Ajax Success or error section 
-	    	//So we Need to Store Table and Row objects
-	    	var obj = $(this).parents('tr');
-	    	var table = $('#MemberdataTable').DataTable();
-	    	//Base_URL is not available in external JS file(here) So we need to Generate it from URL
-	    	var domain = window.location.origin; //To get the domain part from url
-	    	var pathArray = window.location.pathname.split('/'); // to split all string after domain
-	    	var host = pathArray[1]; //This will return the host or root in Url part
-	    	var base_url = domain +'/'+ host + '/'; //Combinng all to get base_url same as codeigniter
-	    	var id = $(this).attr("id");//Getiing the ID to Delete on server side 
+	   	}
+	   	else
+	   	{
+	  	     $('.text-danger').fadeOut();
+		   	 $('.Error2').fadeOut();
+	         $('.Error3').show("slow");
+	   	}         
 
-	        $.ajax({
-	            url:  base_url+ 'Members/deleteMember',
-	            type: 'POST',
-	            data: {uid:id},
-	            dataSrc : "",
-	            success: function () 
-	            {
-	            	table.row(obj).remove().draw(false);
-	                //$('#dataTable').DataTable().ajax.reload(); require a json object a parameter
-	                // and that was throwing JSON parse error.
-	                //SO we are just removing that particular row after successful Ajax delete
-	            },
-	            error: function ()
-	                   {
-	                    alert('Request failure');
-	                   }
-	            
-	                });
-            
-	    }
-	    */
 	  
     });
 
+$('select').on('change', function() {
+var	Stock= document.getElementById('StockID').value;
+   	item = Stock.split('/');
+   	var available=item[0];
+    document.getElementById('QuantityAvailable').value=available;
+    });
 
-$('.BtnRemove').click(function(){
-	alert("Husnain Ajmal");
-var btn_id = $(this).attr("id");
-$('#id').remove();
-});
+$(document).on('click','.BtnRemove',(function(){
+	if (confirm("Do you want to remove this entry"))
+	{
+		var count = $('#SelectedItemTable tr').length; //this returns total rows including header
+		count = count-2; //So we need to dec by 1. But when there is only one row and length is 1
+		//alert(count);  //We need to hide whole table view as there will be 0 rows now after delete
+		if (count==0) 
+			{
+				$('.SelectGroup').fadeOut();
+			};
+			var id = $(this).attr("id");	
+			var index = option.indexOf(id);
+			//alert(option);
+			if (index > -1)
+			{
+  				option.splice(index, 1);
+               }
+               RemovedClassName = "." + id;
+               $(RemovedClassName).show();
+               var Optionclass;
+	  
+	   	    for (var i = 0; i < option.length; i++) 
+	   	    {
+                 Optionclass = '.';
+                 Optionclass += option[i];
+                 $(Optionclass).fadeOut();
+	   	    };
+             
+	   $(this).closest('tr').remove();	
+	};
+}));
 
 //Add all the Jquer above it. DataTable call should be in the end. It was Ceating problem and doesnt working 
 //for further pages of data table

@@ -12,8 +12,10 @@ class product_model extends CI_Model
     public function getStocksDataForProduct()
     {  
         $query = $this->db->query("
-                                Select s.StockID as s_ID,s.StockName as s_Name from stocks as s 
+                                Select s.StockName as s_Name, sum(s.QuantityAvailable) as quantity
+                                from stocks as s 
                                 where s.QuantityIssued <= s.QuantityPurchased
+                                Group by s_Name
                                 ");
         return $query->result();
     }
@@ -32,29 +34,5 @@ class product_model extends CI_Model
         //  print_r($query->row());exit;
        return $query->row();  
     }
-    public function UpdateStock($sid,$data)
-    {
-        $this->db->where("StockID",$sid);
-        $this->db->update('stocks', $data);     
-    }
-    public function addStock($Stock)
-    {
-        return $this->db->insert('stocks',$Stock);
-    }
-
-    public function DeleteStockData($sid)
-    {
-        $this->db->where("StockID",$sid);
-        $this->db->delete("stocks");
-    }
-      
-    public function UpdateStocksIds($uid)
-    {
-      $this->db->set('SupplierID', '1111111111');
-     $this->db->where('SupplierID', $uid);
-     $this->db->update('stocks');
-//         Update stocks
-// set SupplierID = 1111111111
-// where  = 13
-     }
+    
 } 

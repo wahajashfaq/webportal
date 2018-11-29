@@ -1,6 +1,6 @@
 <?php include_once('Templates/Admin_header.php');?>   
    
-    <title>Portal Stocks</title>
+    <title>Portal Products</title>
 
 <?php include_once('Templates/Admin_NavBar_SidePanel.php');?>   
 
@@ -16,7 +16,7 @@
             <li class="breadcrumb-item">
               <a href="Dashboard" class="MyBreadCrumps">Dashboard</a>
             </li>
-            <li class="breadcrumb-item active">Available Stocks</li>
+            <li class="breadcrumb-item active">Available Product</li>
           </ol>
 
            
@@ -24,7 +24,7 @@
           <div class="card mb-3">
             <div class="card-header">
               <i class="fas fa-table"></i>
-              <b style ='text-align:center'>Available Stocks</b>
+              <b style ='text-align:center'>Available Product</b>
             </div>
             <div class="card-body">
               <div class="table-responsive">
