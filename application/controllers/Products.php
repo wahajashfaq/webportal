@@ -12,78 +12,168 @@ class Products extends CI_Controller {
 		// $this->viewStock();
 	}
 
-public function editStock()
+public function editProduct()
 	{
 		if(isset($_GET['DataID']))
 		{
-         $this->load->model('stock_model','st');
-         $sid = $_GET['DataID'];
-         //echo $sid;
-         $stock = $this->st->getStockData($sid);
-         $suppliers = $this->st->getsuppliers(); 
-    //       echo $sid;
-    //       echo "<pre>";
-		  // print_r($stock);exit;
-	     $this->load->view('editStock',['stock'=>$stock,'suppliers'=>$suppliers,'supplierID'=>$stock->id]);	
+         $this->load->model('product_model','pd');
+         $pid = $_GET['DataID'];
+         $product = $this->pd->getProductData($pid);
+         $SelectedData = $this->pd->getSelectedStocks($pid);
+         // $StockRecords = 
+         $this->Release_Stocks_From_Product($pid);
+         $Stocks = $this->pd->getStocksDataForProduct();
+         $this->load->view('editProduct',['product'=>$product,'Stocks'=>$Stocks,'SelectedData'=>$SelectedData]);	
 		} 
-       //echo $u_id;
+       
 	}
-	public function updateStock()
-	{
-       	 $this->load->model('stock_model','st'); 
-    	 $post =$this->input->post();
-		
-		 unset($post['submit']);
-		 if (!isset($post['QuantityIssued']) or empty($post['QuantityIssued']) ) {	$post['QuantityIssued'] = 0; }
-		 if (!isset($post['comments']) or empty($post['comments'])) { $post['comments'] = "No Comments"; }
-		 $post['TotalPrice'] = $post['QuantityPurchased'] * $post['PriceperKG'];
-		 $sid = $post['DataID'];
-		 unset($post['DataID']);
-		 
-		    // echo "<pre>";
-		    // print_r($post);exit;
-		 $this->st->UpdateStock($sid,$post);
-		 $this->viewStock();
-	}
-    
 
-    public function addStockView()
+public function UpdateProductEntry()
+{
+	
+}
+
+public function Release_Stocks_From_Product($pid)
+{
+	$this->load->model('product_model','pd');
+    $StockRecords= $this->pd->GetProductDetails($pid);
+    $this->pd->DeleteProductDetails($pid);
+     foreach ($StockRecords as $s) 
+     {
+     	$this->pd->Update_Stock_States_After_Release($s->sid,$s->NetWeight);
+     }
+//    return $StockRecords;
+}
+
+	public function AddProductEntry()
 	{
-		$this->load->model('stock_model','st');
-		$suppliers = $this->st->getsuppliers();
-		$this->load->view('AddStock',['suppliers'=>$suppliers]);
+		$product = $this->input->post();
+		$snames = $product['sname'];
+		$sweights = $product['sweight'];
+		$product['QuantityIssued'] = 0;
+        $product['QuantityAvailable']=$product['QuantityProduced'];
+
+    if (!isset($product['comments']) or empty($post['comments'])) { $product['comments'] = "No Comments"; }
+		
+        unset($product['sname']);
+        unset($product['sweight']);
+        unset($product['submit']);
+        unset($product['StockID']);
+        unset($product['InputAmount']);
+        
+       
+
+		foreach ($snames as $i=>$name) 
+		{
+			$InputItems[] = array
+			         ( //this array must be created dynamic 
+                      'name' => $name,
+                      'amount' => $sweights[$i],
+                      );
+		
+       }
+        $this->load->model('product_model','pd');
+        $StockItems = $this->pd->getValidStocksForCalculation();
+        echo "<pre>";
+        print_r($product);
+        echo "The Stocks Items are..<br>";
+        print_r($StockItems) ;
+        foreach ($StockItems as $item) 
+        {
+             $item->NetWeight = 0;
+             $item->NetValue = 0;
+         }
+//*********************CalCulation Starts***************************
+         $UpdateItem =array();
+
+foreach($InputItems as $i=>$input)
+{
+   $InputAmount = (int)$input['amount'];
+  foreach($StockItems as $j=>$item)
+  {
+   
+    //echo "Item is: " . $item['name']  ." ". $item['available']. "\n";
+    if($input['name'] == $item->name) 
+    {
+         if($InputAmount<= (int)$item->available)
+         {
+      
+          $item->NetWeight = $InputAmount;
+          $item->NetValue  = $item->price * $InputAmount;
+          $item->issued    +=$InputAmount;
+          $item->available -=$InputAmount;
+
+          array_push($UpdateItem,$item);
+          break;
+          
+         }
+         else
+         {
+          $item->NetWeight = $item->available;
+          $item->NetValue = $item->price * $item->NetWeight;
+         
+
+          $item->issued +=$item->available;
+          $InputAmount-=$item->available;
+          $item->available=0;
+          array_push($UpdateItem,$item);         
+         }
+     }
+ 
+   }
+}
+
+echo"<br>The Calculated Products Details are Below<br><br>";
+$weight = 0;
+$price=0;
+foreach($UpdateItem as $item)
+{
+   $weight+= $item->NetWeight;
+   $price+= $item->NetValue;
+}
+
+echo "Net Weight of Product is : " . $weight  ."<br>Net Price of Product is : ". $price. "<br>";
+
+$PriceperKG =floatval(($price/$product['QuantityProduced']));
+$product['PriceperKG']=$PriceperKG;
+echo "The input Items are....<br>";
+print_r($InputItems);
+// echo "The StockItems  are....<br>";
+// print_r($CopyStockItems);
+echo "The Updated Items are....<br>";
+print_r($UpdateItem);
+         
+print_r($product);
+  $pid = $this->pd->addProduct($product);
+  echo "<br>The Product ID is : " . $pid;
+  foreach ($UpdateItem as  $item) 
+  {
+  	$sid=$item->sid;
+  	$issued = $item->issued;
+  	$available = $item->available;
+  	$this->pd->UpdateStocksAfterProductEntry($sid,$issued,$available);  
+
+  }
+  foreach($UpdateItem as $item)
+	{
+		unset($item->purchased);
+		unset($item->price);
+		$item->pid=$pid;
+		$this->pd->addProductDetails($item);
+	}
+
+    redirect('/addProductView', 'refresh');	
+}
+
+	
+
+    public function addProductView()
+	{
+		$this->load->model('product_model','pd');
+		$Products = $this->pd->getProducts();
+		$this->load->view('ViewProducts',['Products'=>$Products]);
 	}
      
-    public function addStock()
-	{
-		 $this->load->model('stock_model','st'); 
-    	 $post =$this->input->post();
-		
-		 unset($post['submit']);
-		 if (!isset($post['QuantityIssued']) or empty($post['QuantityIssued']) ) {	$post['QuantityIssued'] = 0; }
-		 if (!isset($post['comments']) or empty($post['comments'])) { $post['comments'] = "No Comments"; }
-		 $post['TotalPrice'] = $post['QuantityPurchased'] * $post['PriceperKG'];
-		 
-		    // echo "<pre>";
-		    // print_r($post);exit;
-		 $this->st->addStock($post);
-		 $this->viewStock();
-	}
-        public function deleteStock()
-    {
-        $this->load->model('stock_model');
-        $uid = $this->input->post('uid');
-        $this->stock_model->DeleteStockData($uid);
-        return true;
-    }
-
-     public function viewStock()
-     {
-     	$this->load->model('stock_model','st');	
-	    $stocks = $this->st->getStocks();
-	  //    echo "<pre>";
-		 // print_r($stocks);exit;
-		$this->load->view('ViewStocks',['Stocks'=>$stocks]);
-     }
+   
 
 }

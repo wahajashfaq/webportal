@@ -8,6 +8,35 @@ $(document).ready(function() {
  $('.Error3').hide();
  $('.SelectGroup').hide();
  
+ //alert(arr[2].s_Name);
+   if (option.length==0) 
+			   	 {
+			   	     $(':input[type="submit"]').prop('disabled', true);
+                          
+			   	     $(".AddProduct").addClass("not-allowed");
+			   	 }
+			   	  else
+			   	 {
+			   	    $(':input[type="submit"]').prop('disabled', false);
+			   	    $(".AddProduct").removeClass("not-allowed");
+			   	 }
+      if(arr)
+      {
+      	for (var i = 0; i < arr.length; i++) 
+      	{
+      		className=arr[i].name;
+      		className.replace(/\s+/g, '');
+      		 option.push(className)
+         };
+
+        for (var i = 0; i < option.length; i++) 
+		{
+		  Optionclass = '.';
+		  Optionclass += option[i];
+		  $(Optionclass).fadeOut();
+	    };
+      }
+
   });
 
 // $(document).load(function(){
@@ -135,6 +164,7 @@ var option=[];
    	item = Stock.split('/');
    	var item_id=item[0];
     var available = item_id;
+  //  alert(item_id);
    	if (+item_id!=0)
    	 {
        	  if(+Input!=0)
@@ -151,17 +181,28 @@ var option=[];
 			   	  	 //alert(className);
 			   	  	 option.push(className);
 			   	    $('.SelectGroup').show("slow");
-			   	    var Optionclass;
+			   	    $('.SelectGroupforEdit').show("slow");
 			   	    
-			   	    for (var i = 0; i < option.length; i++) 
+			   	    var Optionclass;
+	                 if (option.length==0) 
+				   	 {
+				   	    $(':input[type="submit"]').prop('disabled', true);
+				   	 }
+				   	 else
+				   	 {
+				   	   $(':input[type="submit"]').prop('disabled', false);
+				   	 }
+				   	    for (var i = 0; i < option.length; i++) 
 			   	    {
 		                 Optionclass = '.';
 		                 Optionclass += option[i];
 		                 $(Optionclass).fadeOut();
 			   	    };
 		             
-			   	  	 var html = '<tr id='+className+'><td>'+item[1]+'</td><td>'+Input+'</td><td><a  style="border-radius:1.8rem" id="'+className+'" class="BtnRemove btn btn-danger"><i class="fa fa-minus"></i></a></td></tr>';
+			   	  	 var html = '<tr id='+className+'><input type="hidden" id="name" name="sname[]" value="'+item[1]+'"><td>'+item[1]+'</td><input type="hidden" id="name" name="sweight[]" value="'+Input+'"><td>'+Input+'</td><td><a  style="border-radius:1.8rem" id="'+className+'" class="BtnRemove btn btn-danger"><i class="fa fa-minus"></i></a></td></tr>';
 			         $('#SelectedItemTable').append(html);
+			          document.getElementById('StockID').value=0;
+                      document.getElementById('QuantityAvailable').value=0;
 			   	  }
 		   	  	else
 		   	  	{
@@ -195,16 +236,20 @@ var	Stock= document.getElementById('StockID').value;
     document.getElementById('QuantityAvailable').value=available;
     });
 
+
 $(document).on('click','.BtnRemove',(function(){
 	if (confirm("Do you want to remove this entry"))
 	{
+		 
 		var count = $('#SelectedItemTable tr').length; //this returns total rows including header
 		count = count-2; //So we need to dec by 1. But when there is only one row and length is 1
 		//alert(count);  //We need to hide whole table view as there will be 0 rows now after delete
 		if (count==0) 
 			{
 				$('.SelectGroup').fadeOut();
-			};
+				$('.SelectGroupforEdit').fadeOut();
+				$(':input[type="submit"]').prop('disabled', true);
+			}else{$(':input[type="submit"]').prop('disabled', false);}
 			var id = $(this).attr("id");	
 			var index = option.indexOf(id);
 			//alert(option);

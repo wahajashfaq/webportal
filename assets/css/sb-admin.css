@@ -371,6 +371,7 @@ footer.sticky-footer .copyright {
 body.sidebar-toggled footer.sticky-footer {
   width: 100%;
 }
+.not-allowed {cursor: not-allowed;}
 
 @media (min-width: 768px) {
   body.sidebar-toggled footer.sticky-footer {

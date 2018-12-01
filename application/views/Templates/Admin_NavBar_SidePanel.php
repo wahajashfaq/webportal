@@ -125,7 +125,7 @@
         </li>
         
        <li class="nav-item">
-        <a class="nav-link" href="<?php echo base_url().'Products'?>">
+        <a class="nav-link" href="<?php echo base_url().'Products/addProductView'?>">
             <!-- <i class="fas fa-fw fa-chart-area"></i> -->
         <h6 class="text-center"><span>View Products</span></h6>
         </a> 
