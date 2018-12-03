@@ -1,5 +1,5 @@
 <?php include_once('Templates/Admin_header.php');?>   
-   
+ 
     <title>Add Products</title>
 <script type="text/javascript">
 var arr = <?php echo json_encode($Stocks)?>;
@@ -60,12 +60,32 @@ var arr = <?php echo json_encode($Stocks)?>;
      <div class="form-group">
      <label class="control-label" for="StockID">Stocks</label>
         <select id="StockID" name="StockID" class="form-control" >
-         <option value="0" selected>Select one</option>
+         <?php
+          if ($Stocks) 
+          {
+           ?>
+           <option value="0" selected>Select one</option>
           <?php foreach ($Stocks as $Stock):?>
           <option  value="<?php echo $Stock->quantity."/".$Stock->s_Name;?>" class="StockOption <?php echo str_replace(' ','', $Stock->s_Name);?>"><?php echo $Stock->s_Name?></option>
-          <?php endforeach;?>
+          <?php endforeach;
+           }else
+           {?>
+              <option value="0" selected>Stocks Are Empty</option>  
+           <?php
+           }
+          ?>
         </select>    
      </div>
+     <?php 
+     if ($Stocks) 
+     { }
+      else{
+      ?>
+      <span style="color:red" class="Error4">Stocks are empty. Add/Release some Resource to Stocks</span>
+
+      <?php
+      }
+     ?>
      <span style="color:red" class="Error3">Must Select Valid Stock to proceed</span>
 
     </div>
@@ -142,7 +162,7 @@ var arr = <?php echo json_encode($Stocks)?>;
 <div class = "row">
    <div class="col-md-4 ">
     <div class="form-group">    
-    <input name="submit" class="AddProduct btn btn-md btn-primary" type="submit" value="Add Product">     
+    <input name="submit" class="AddProduct AddProductBtn btn btn-md btn-primary" type="submit" value="Add Product">     
     </div>
    </div>
 </div>

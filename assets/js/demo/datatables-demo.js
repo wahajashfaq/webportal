@@ -7,27 +7,17 @@ $(document).ready(function() {
  $('.Error2').hide();
  $('.Error3').hide();
  $('.SelectGroup').hide();
- 
+
  //alert(arr[2].s_Name);
-   if (option.length==0) 
-			   	 {
-			   	     $(':input[type="submit"]').prop('disabled', true);
-                          
-			   	     $(".AddProduct").addClass("not-allowed");
-			   	 }
-			   	  else
-			   	 {
-			   	    $(':input[type="submit"]').prop('disabled', false);
-			   	    $(".AddProduct").removeClass("not-allowed");
-			   	 }
-      if(arr)
+ //alert(arr.length);
+  if(arr)
       {
       	for (var i = 0; i < arr.length; i++) 
       	{
       		className=arr[i].name;
-      		className.replace(/\s+/g, '');
-      		 option.push(className)
-         };
+      	    className=className.replace(/\s+/g,'');
+      		option.push(className);
+      	 };
 
         for (var i = 0; i < option.length; i++) 
 		{
@@ -37,6 +27,19 @@ $(document).ready(function() {
 	    };
       }
 
+           if (option.length==0) 
+			  {
+			  	// $(':input[type="submit"]').prop('disabled', true);
+                $('.AddProductBtn').prop('disabled', true);           
+			    $(".AddProduct").addClass("not-allowed");
+			   }
+			else
+			   {
+			   	    //$(':input[type="submit"]').prop('disabled', false);
+			   	$('.AddProductBtn').prop('disabled', false);
+			   	$(".AddProduct").removeClass("not-allowed");
+			   }
+     
   });
 
 // $(document).load(function(){
@@ -186,11 +189,20 @@ var option=[];
 			   	    var Optionclass;
 	                 if (option.length==0) 
 				   	 {
-				   	    $(':input[type="submit"]').prop('disabled', true);
+				   	    //$(':input[type="submit"]').prop('disabled', true);
+
+                        $('.AddProductBtn').prop('disabled', true);
+
+				   	    
+				   	    
 				   	 }
 				   	 else
 				   	 {
-				   	   $(':input[type="submit"]').prop('disabled', false);
+				   	  // $(':input[type="submit"]').prop('disabled', false)
+				   	  ;
+				   	 $('.AddProductBtn').prop('disabled', false);
+
+				   	    
 				   	 }
 				   	    for (var i = 0; i < option.length; i++) 
 			   	    {
@@ -248,8 +260,13 @@ $(document).on('click','.BtnRemove',(function(){
 			{
 				$('.SelectGroup').fadeOut();
 				$('.SelectGroupforEdit').fadeOut();
-				$(':input[type="submit"]').prop('disabled', true);
-			}else{$(':input[type="submit"]').prop('disabled', false);}
+				//$(':input[type="submit"]').prop('disabled', true);
+                $('.AddProductBtn').prop('disabled', true);
+			}else
+			{
+				//$(':input[type="submit"]').prop('disabled', false);
+				$('.AddProductBtn').prop('disabled', false);
+			}
 			var id = $(this).attr("id");	
 			var index = option.indexOf(id);
 			//alert(option);

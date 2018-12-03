@@ -93,7 +93,7 @@ INSERT INTO `productdetails` (`pid`, `sid`, `name`, `issued`, `available`, `NetW
 --
 
 CREATE TABLE `products` (
-  `ProductID` int(12) NOT NULL,
+  `ProductID` int(12) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `ProductName` varchar(50) DEFAULT 'Default Product',
   `QuantityProduced` int(12) DEFAULT '0',
   `QuantityIssued` int(12) DEFAULT '0',
