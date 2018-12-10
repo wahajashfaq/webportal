@@ -109,18 +109,10 @@ class product_model extends CI_Model
                                 where StockID = '$sid'  
                                 ");
         $CurrentState =  $query->result();
-          // echo "<pre>";
-          // print_r($CurrentState);
-          // echo "<br><br>rcxedx";
-          // echo $NetWeight;
-          // exit;
            $data = array( 
                       'QuantityIssued'  =>$CurrentState[0]->qi - $NetWeight, 
                       'QuantityAvailable'=>$CurrentState[0]->avlb + $NetWeight 
                       );
-           //  echo "<pre>";
-           // echo $sid;
-           //  print_r($data);
          
 
             $this->db->where('StockID', $sid);

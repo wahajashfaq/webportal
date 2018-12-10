@@ -12,11 +12,13 @@ $(document).ready(function() {
  //alert(arr.length);
   if(arr)
       {
+      	
       	for (var i = 0; i < arr.length; i++) 
       	{
       		className=arr[i].name;
       	    className=className.replace(/\s+/g,'');
-      		option.push(className);
+      	    var CleanclassName = className.replace(/[^\w\s]/gi, '');
+      		option.push(CleanclassNameclassName);
       	 };
 
         for (var i = 0; i < option.length; i++) 
@@ -167,7 +169,8 @@ var option=[];
    	item = Stock.split('/');
    	var item_id=item[0];
     var available = item_id;
-  //  alert(item_id);
+    //alert(item_id + " "+ item[1]);
+
    	if (+item_id!=0)
    	 {
        	  if(+Input!=0)
@@ -176,41 +179,35 @@ var option=[];
 	   	  	    $('.Error2').fadeOut();
 		   	  	if(+Input <= +available)
 		   	  	{
+		   	  		//alert("Husnain Ajmal");
 			   	  $('.Error3').fadeOut();
 			   	     $('.text-danger').fadeOut();
 			   	  	 $('.Error2').fadeOut();
 			   	  	 var className =item[1];
 			   	  	 className=className.replace(/\s+/g, '');	
-			   	  	 //alert(className);
-			   	  	 option.push(className);
+			   	  	 CleanclassName =className.replace(/[^\w\s]/gi, '');
+			   	  	//alert(className);
+			   	  	 option.push(CleanclassName);
 			   	    $('.SelectGroup').show("slow");
 			   	    $('.SelectGroupforEdit').show("slow");
 			   	    
 			   	    var Optionclass;
 	                 if (option.length==0) 
 				   	 {
-				   	    //$(':input[type="submit"]').prop('disabled', true);
-
-                        $('.AddProductBtn').prop('disabled', true);
-
-				   	    
-				   	    
+                        $('.AddProductBtn').prop('disabled', true);   
 				   	 }
 				   	 else
 				   	 {
-				   	  // $(':input[type="submit"]').prop('disabled', false)
-				   	  ;
-				   	 $('.AddProductBtn').prop('disabled', false);
-
-				   	    
+				   	   $('.AddProductBtn').prop('disabled', false);
 				   	 }
 				   	    for (var i = 0; i < option.length; i++) 
 			   	    {
 		                 Optionclass = '.';
 		                 Optionclass += option[i];
+		                // alert(Optionclass);
 		                 $(Optionclass).fadeOut();
 			   	    };
-		             
+		             //alert(option);
 			   	  	 var html = '<tr id='+className+'><input type="hidden" id="name" name="sname[]" value="'+item[1]+'"><td>'+item[1]+'</td><input type="hidden" id="name" name="sweight[]" value="'+Input+'"><td>'+Input+'</td><td><a  style="border-radius:1.8rem" id="'+className+'" class="BtnRemove btn btn-danger"><i class="fa fa-minus"></i></a></td></tr>';
 			         $('#SelectedItemTable').append(html);
 			          document.getElementById('StockID').value=0;

@@ -33,6 +33,8 @@ var arr = <?php echo json_encode($SelectedData)?>;
       <label class="control-label" for="ProductName">Product Name</label>  
       <input id="ProductName" name="ProductName" type="text" value="<?php echo $product->ProductName;?>" placeholder="Product Name" class="form-control input-md" required="">
       <?php echo form_hidden('DataID', $product->ProductID, 'id="DataID"'); ?>
+      <?php echo form_hidden('QuantityIssued', $product->QuantityIssued, 'id="QuantityIssued"'); ?>
+   
     </div>
    </div>
 </div>

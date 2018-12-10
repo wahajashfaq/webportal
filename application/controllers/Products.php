@@ -23,9 +23,9 @@ public function editProduct()
          $product = $this->pd->getProductData($pid);
          $SelectedData = $this->pd->getSelectedStocks($pid);
          
-           // echo "<pre>";
-           // echo "<br>The Selected Stocks Are<br>";
-           // print_r($SelectedData);exit;
+            // echo "<pre>";
+            // echo "<br>The Selected Stocks Are<br>";
+            // print_r($SelectedData);exit;
          $this->Release_Stocks_From_Product($pid);
          $Stocks = $this->pd->getStocksDataForProduct();
          $this->load->view('editProduct',['product'=>$product,'Stocks'=>$Stocks,'SelectedData'=>$SelectedData]);	
@@ -38,13 +38,14 @@ public function UpdateProductEntry()
 	    //Getting Data from POST Request
 		$product = $this->input->post();
 		$pid = $product['DataID'];
+		 $this->load->model('product_model','pd');
+       
 	    $this->pd->DeleteProductDetails($pid);
     
 		//Setting Post Data for Use. This Function call Sets Post data and 
 		// Return us Selected $InputItems of user
 		$InputItems = $this->SetProductPostData($product);
 		unset($product['DataID']);
-        $this->load->model('product_model','pd');
         
         //Getting all Valid Stocks
         $StockItems = $this->pd->getValidStocksForCalculation();
@@ -121,10 +122,11 @@ public function Release_Stocks_From_Product($pid)
         $snames = $product['sname'];
 		$sweights = $product['sweight'];
 		//Setting Neccessary Variables to Insert in DB and rest of the calculation 
-		$product['QuantityIssued'] = 0; //Issued Quantity will be 0 for new product by default 
-        $product['QuantityAvailable']=$product['QuantityProduced'];//Adding Available attribute eqaul to produced amount
-                                           //Initial All produced amount will be available to make order
-//If User doest enter comments or decription set it to default
+		 
+        $product['QuantityAvailable']= $product['QuantityProduced'] - $product['QuantityIssued'];
+        //Adding Available attribute eqaul to produced amount
+       //Initial All produced amount will be available to make order
+//If User doesnt enter comments or decription set it to default
     if (!isset($product['comments']) or empty($post['comments'])) { $product['comments'] = "No Comments"; }
 //Unsetting /Removing all attributes that are further not required
         unset($product['sname']);
@@ -208,12 +210,14 @@ public function Release_Stocks_From_Product($pid)
 	{
 		//Getting Data from POST Request
 		$product = $this->input->post();
-		$InputItems = $this->SetProductPostData($product);
-
+		 $product['QuantityIssued'] = 0; //Issued Quantity will be 0 for new product by default 
+         //$product['QuantityAvailable']=$product['QuantityProduced'];//Adding Available attribute eqaul to produced amount
+          $InputItems = $this->SetProductPostData($product);
+       
 		 //Now InputItems is the array that contain all the selected stocks at each index
-		 //Load the product model as pd as get Valid Stocks to compare against Selected stocks
+		 //Load the product model as pd and get Valid Stocks to compare against Selected stocks
 		 //and make updates
-		 //By valid we mean a stock should have some Available amount and not 0.
+		 //By valid we mean a stock should have some amount Available  and != 0.
         $this->load->model('product_model','pd');
         $StockItems = $this->pd->getValidStocksForCalculation();//Getting all Valid Stocks
         // echo "<pre>";
@@ -251,6 +255,7 @@ $product['PriceperKG']=$PriceperKG;
 // print_r($UpdateItem);
          
 // print_r($product);
+//exit;
 	  $pid = $this->pd->addProduct($product);
 	  
 	   foreach ($UpdateItem as  $item) 

@@ -35,7 +35,8 @@ public function editStock()
 		 if (!isset($post['QuantityIssued']) or empty($post['QuantityIssued']) ) {	$post['QuantityIssued'] = 0; }
 		 if (!isset($post['comments']) or empty($post['comments'])) { $post['comments'] = "No Comments"; }
 		 $post['TotalPrice'] = $post['QuantityPurchased'] * $post['PriceperKG'];
-		 $sid = $post['DataID'];
+		 $post['QuantityAvailable'] = $post['QuantityPurchased'] - $post['QuantityIssued'];
+         $sid = $post['DataID'];
 		 unset($post['DataID']);
 		 
 		    // echo "<pre>";
