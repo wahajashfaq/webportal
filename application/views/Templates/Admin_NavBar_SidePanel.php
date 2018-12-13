@@ -86,7 +86,7 @@
           <div class="dropdown-menu" aria-labelledby="pagesDropdown">
             <h6 class="dropdown-header">Orders Screens:</h6>
             <a class="dropdown-item" href="<?php echo base_url().'Orders'?>">Add Orders</a>
-            <a class="dropdown-item" href="<?php echo base_url().'Orders/OrderView'?>">View Orders</a>
+            <a class="dropdown-item" href="<?php echo base_url().'Orders/OrdersView'?>">View Orders</a>
             </div>
         </li>
 

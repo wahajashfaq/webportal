@@ -95,33 +95,38 @@ class Orders extends CI_Controller {
        return $InputItems;
     }
 
-    public function OrderView()
+    public function OrdersView()
 	{
-		$this->load->model('order_model','od');
-		$Orders = $this->od->getOrders();
+		$this->load->model('order_model','obj');
+		$Orders = $this->obj->getOrders();
 		$this->load->view('ViewOrders',['Orders'=>$Orders]);
 	}
 
-public function Release_Stocks_From_Product($pid)
-{
+
+	public function temp()
+	{
+		$this->load->view("OrderDetails");
+	}
+	   
+   public function ViewOrderDetail()
+   {
+     if(isset($_GET['DataID']))
+		{
+         $this->load->model('order_model','obj');
+         $oid = $_GET['DataID'];
+         $OrderedProducts = $this->obj->getOrderedProducts($oid);
+         $OrderDetail = $this->obj->getOrderData($oid);
+         
+         $this->load->view('OrderDetails',['products'=>$OrderedProducts,'Order'=>$OrderDetail]);	
+		} 
+   }
+
+   public function Release_Stocks_From_Product($pid)
+   {
 	$this->load->model('product_model','pd');
 
 	//Getting all data of Product Details Before releasing them
     $StockRecords= $this->pd->GetProductDetails($pid);
-    
-    
-    //Delete is Neccessary as We always update Stocks after entry of product
-    //We compute Available Stocks without Current NetValues So that we can use modeified values 
-    //of StockItems
-    //If we want to Edit we want to and Should use the state of Stocks Without Update. So We delete
-    //All the Product details and compute them again. Be cause we don't know how many details are there
-    //at the time of Update 
-       // echo "<pre>";
-       // print_r($StockRecords);exit;
-    
-
-      // echo "<pre>";
-      // print_r($StockRecords);exit;
      foreach ($StockRecords as $s) 
      {
      	$this->pd->Update_Stock_States_After_Release($s->sid,$s->NetWeight);

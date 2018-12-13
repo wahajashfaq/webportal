@@ -14,7 +14,7 @@
           <!-- Breadcrumbs-->
           <ol class="breadcrumb">
             <li class="breadcrumb-item">
-              <a href="Dashboard" class="MyBreadCrumps">Dashboard / Orders / </a>
+              <a href="Dashboard" class="MyBreadCrumps">Dashboard / Orders </a>
             </li>
             <li class="breadcrumb-item active">View Orders</li>
           </ol>
@@ -56,7 +56,7 @@
                       <td style="width:15%"><?=date("Y-m-d", strtotime($p->DeliverDate));?></td>
                       <td><?=$p->Discount?></td>
                       <td><?=$p->GrandTotal?></td>
-                      <td><a href="#" data-placement="top" data-toggle="tooltip" title="Edit"style="color:White" class="btn btn-sm btn-primary"><i class="fa fa-pencil-square-o"></i> Edit</a></td>     
+                      <td><a href="<?php echo base_url();?>Orders/ViewOrderDetail?DataID=<?php echo $p->OrderID?>" data-placement="top" data-toggle="tooltip" title="Edit"style="color:White" class="btn btn-sm btn-primary"><i class="fa fa-pencil-square-o"></i> View</a></td>     
                       <td><a href="#" data-placement="top" data-toggle="tooltip" title="Edit"style="color:White" class="btn btn-sm btn-primary"><i class="fa fa-pencil-square-o"></i> Edit</a></td>
                       <td><button data-placement="top" data-toggle="tooltip" id="1" title="Delete" style="color:White" class="ProductDelete btn btn-sm btn-danger"><i class="fa fa-trash"></i> Delete</button></td>
                       

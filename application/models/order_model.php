@@ -39,11 +39,35 @@ public function addOrderDetails($Details)
 
 public function getOrders()
 { 
- $query = $this->db->query("
+  $query = $this->db->query("
                            Select *
                            from orders
                             ");
         return $query->result();
+}
+
+public function getOrderData($oid)
+{
+ $query = $this->db->query("
+                           Select o.OrderID as oid, o.Reference as ref,o.OrderDate as oDate,
+                           o.DeliverDate as dDate,o.Discount as disc ,o.GrandTotal as Total,
+                           concat(m.Name,' ',m.Lname) as CName, m.Email as email,m.ContactNumber as number 
+                            from orders as o,member as m 
+                            where o.OrderID = '$oid' and o.CustomerID = m.ID and m.Utype = 'Customer'
+                            ");
+        return $query->row();
+}
+public function getOrderedProducts($oid)
+{
+   $query = $this->db->query("
+                          SELECT Name, (sum(NetWeight)) as amount,(SUM(NetValue) / SUM(NetWeight) ) as PerKg,
+                          SUM(NetValue) as SubTotal
+                          FROM `orderdetails` 
+                          WHERE oid='$oid'
+                          GROUP BY Name
+                            ");
+        return $query->result();
+
 }
 public function getCustomersForOrders()
   {

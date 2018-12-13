@@ -13,7 +13,7 @@
           <!-- Breadcrumbs-->
           <ol class="breadcrumb">
             <li class="breadcrumb-item">
-              <a href="Dashboard" class="MyBreadCrumps">Dashboard / Orders /</a>
+              <a href="Dashboard" class="MyBreadCrumps">Dashboard</a>
             </li>
             <li class="breadcrumb-item active">OrderDetails</li>
           </ol>
@@ -26,7 +26,7 @@
                 <div class="card-body p-1">
                     <div class="row p-1">
                         <div class="col-md-6">
-                           <h3><p class="font-weight-bold mb-1"><?= $Order->oid?></p></h3> 
+                           <h3><p class="font-weight-bold mb-1">Order #550</p></h3> 
                             <p class="text-muted">Due to: 4 Dec, 2019</p>
                         </div>
                         <div class="col-md-6" >
