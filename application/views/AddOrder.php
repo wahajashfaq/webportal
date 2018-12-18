@@ -1,8 +1,8 @@
 <?php include_once('Templates/Admin_header.php');?>   
  
-    <title>Add Products</title>
+    <title>Add Orders</title>
 <script type="text/javascript">
-var arr = <?php echo json_encode($Stocks)?>;
+var arr = null;
 
 </script>
 <?php include_once('Templates/Admin_NavBar_SidePanel.php');?>   
@@ -18,77 +18,120 @@ var arr = <?php echo json_encode($Stocks)?>;
             <li class="breadcrumb-item">
               <a href="Dashboard" class="MyBreadCrumps">Dashboard</a>
             </li>
-            <li class="breadcrumb-item active">Add Products</li>
+            <li class="breadcrumb-item active">Add Orders</li>
           </ol>
 
-<form class="form-horizontal" action="<?php echo base_url()?>Products/AddProductEntry" method="POST">
+<form class="form-horizontal" action="<?php echo base_url()?>Orders/AddOrder" method="POST">
 <fieldset>
 
-
-<!-- Text input-->
-
 <div class = "row">
-   <div class="col-md-8 ">
+  
+   <div class="col-md-4 ">
     <div class="form-group">
-      <label class="control-label" for="ProductName">Product Name</label>  
-      <input id="ProductName" name="ProductName" type="text" placeholder="Product Name" class="form-control input-md" required="">
-    </div>
-   </div>
-</div>
-
-
-
-
-<div class = "row">
-    <div class="col-md-4 ">
-    <div class="form-group">
-    <label class="control-label" for="QuantityProduced">Quantity Produced(KG)</label>  
-    <input id="QuantityProduced" name="QuantityProduced" type="number" placeholder="e.g 10" class="form-control input-md" required="">      
+      <label class="control-label" for="Reference">Order Reference</label>  
+      <input id="Reference" name="Reference" type="text" placeholder="Order Reference" class="form-control input-md" required="">
     </div>
    </div>
 
-    <div class="col-md-4">
-      <div class="form-group"> <!-- Date input -->
-        <label class="control-label" for="ProductDate">Product Date</label>
-        <input class="form-control" id="ProductDate" name="ProductDate" placeholder="MM/DD/YYY" type="date" required="">
-      </div>
-   </div>
-</div>
-
-<div class = "row">
-    <div class="col-md-4 ">
+  <div class="col-md-4 ">
      <div class="form-group">
-     <label class="control-label" for="StockID">Stocks</label>
-        <select id="StockID" name="StockID" class="form-control" >
+     <label class="control-label" for="CustomerID">Customers</label>
+        <select  required id="CustomerID" name="CustomerID" class="form-control" >
          <?php
-          if ($Stocks) 
+          if ($Customers) 
           {
            ?>
-           <option value="0" selected>Select one</option>
-          <?php foreach ($Stocks as $Stock):?>
-          <option  value="<?php echo $Stock->quantity."/".$Stock->s_Name;?>" class="StockOption <?php echo str_replace(' ','', $Stock->s_Name);?>"><?php echo $Stock->s_Name?></option>
+           <option value="" selected>Select Customer</option>
+          <?php foreach ($Customers as $Customer):?>
+          <option  value="<?php echo $Customer->cid;?>" class="CustomerOption <?php echo str_replace(' ','', $Customer->Cname);?>"><?php echo $Customer->Cname?></option>
           <?php endforeach;
            }else
            {?>
-              <option value="0" selected>Stocks Are Empty</option>  
+              <option value="0" selected>No Customer In system</option>  
            <?php
            }
           ?>
         </select>    
      </div>
      <?php 
-     if ($Stocks) 
+     if ($Customers) 
      { }
       else{
       ?>
-      <span style="color:red" class="Error4">Stocks are empty. Add/Release some Resource to Stocks</span>
-
+      <span style="color:red" class="Error4">No Customea Available for Order</span>
       <?php
       }
      ?>
-     <span style="color:red" class="Error3">Must Select Valid Stock to proceed</span>
+     <span style="color:red" class="Error3">Must Select Valid Products to proceed</span>
+
+  </div>
+</div>
+
+
+
+
+<div class = "row">
+   <div class="col-md-3">
+      <div class="form-group"> <!-- Date input -->
+        <label class="control-label" for="OrderDate">Order Date</label>
+        <input class="form-control" id="OrderDate" name="OrderDate" placeholder="MM/DD/YYY" type="date" required="">
+      </div>
+   </div>
+    <div class="col-md-3">
+      <div class="form-group"> <!-- Date input -->
+        <label class="control-label" for="DeliverDate">Delivery Date</label>
+        <input class="form-control" id="DeliverDate" name="DeliverDate" placeholder="MM/DD/YYY" type="date" required="">
+      </div>
+   </div>
+
+    <div class="col-md-2">
+     <div class="form-group">
+     <label class="control-label" for="Discount">Discount</label>  
+     <input id="Discount" name="Discount" min=0 type="number" placeholder="0" class="form-control input-md" >
+     </div>
+    </div>
+     
+
+</div>
+
+<div class = "row">
+    
+    <div class="col-md-4 ">
+     <div class="form-group">
+     <label class="control-label" for="StockID">Products</label>
+        <select id="StockID" name="StockID" class="form-control" >
+         <?php
+          if ($Products) 
+          {
+           ?>
+           <option value="0" selected>Select one</option>
+          <?php foreach ($Products as $Product):?>
+          <option  value="<?php echo $Product->quantity."/".$Product->s_Name;?>" 
+            class="ProductOption <?php echo preg_replace('/[^A-Za-z0-9\-]/', '', str_replace(' ','', $Product->s_Name));?>">
+            <?php echo $Product->s_Name?>
+          </option>
+          <?php endforeach;
+           }else
+           {?>
+              <option value="0" selected>Product Are Empty</option>  
+           <?php
+           }
+          ?>
+        </select>    
+     </div>
+     <?php 
+     if ($Products) 
+     { }
+      else{
+      ?>
+      <span style="color:red" class="Error4">No Products Available for Order</span>
+      <?php
+      }
+     ?>
+     <span style="color:red" class="Error3">Must Select Valid Products to proceed</span>
 
     </div>
+
 
     <div class="col-md-4 ">
     <div class="form-group">
@@ -111,8 +154,8 @@ var arr = <?php echo json_encode($Stocks)?>;
      
      <div class="col-md-4">
        <div class="form-group">    
-       <label class="control-label" for="AddItem">Add Item</label></br>
-       <a name="AddItem" id="AddItem" style="border-radius:1.8rem" class="AddItem btn btn-md btn-primary"><i class="fa fa-plus"></i></a>    
+       <label class="control-label" for="AddPoduct">Add Product</label></br>
+       <a name="AddPoduct" id="AddPoduct" style="border-radius:1.8rem" class="AddItem btn btn-md btn-primary"><i class="fa fa-plus"></i></a>    
        </div>
        </div>
      </div>
@@ -162,7 +205,7 @@ var arr = <?php echo json_encode($Stocks)?>;
 <div class = "row">
    <div class="col-md-4 ">
     <div class="form-group">    
-    <input name="submit" class="AddProduct AddProductBtn btn btn-md btn-primary" type="submit" value="Add Product">     
+    <input name="submit" class="AddProduct AddProductBtn btn btn-md btn-primary" type="submit" value="Add Order">     
     </div>
    </div>
 </div>

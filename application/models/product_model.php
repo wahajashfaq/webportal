@@ -11,6 +11,18 @@ class product_model extends CI_Model
          return  $insert_id;
     }
 
+    public function UpdateProductDetails($pid,$item)
+    {
+      $this->db->where('pid', $pid);
+      $this->db->update('productdetails', $item); 
+    }
+    
+    public function UpdateProduct($pid,$product)
+    {
+        $this->db->where('ProductID', $pid);
+        $this->db->update('products', $product);
+    }
+
     public function getProductData($pid)
     {   
         $query = $this->db->query("
@@ -25,10 +37,11 @@ class product_model extends CI_Model
     public function getSelectedStocks($pid)
     {
         $query = $this->db->query("
-                                Select name, count(NetWeight) as amount
-                                from productdetails
-                                where pid = '$pid'  
-                                ");
+                                    Select name, SUM(NetWeight) as amount
+                                    from productdetails
+                                    where pid = '$pid'
+                                    group by name
+                                  ");
         return $query->result();
         
     }
@@ -83,9 +96,8 @@ class product_model extends CI_Model
 
      public function DeleteProductDetails($pid)
      {
-        $this->db->where("pid",$pid);
-        $this->db->delete("productdetails");
-    
+          $this->db->where("pid",$pid);
+          $this->db->delete("productdetails");
      }
     
 
@@ -97,12 +109,12 @@ class product_model extends CI_Model
                                 where StockID = '$sid'  
                                 ");
         $CurrentState =  $query->result();
-     
-
            $data = array( 
-                      'QuantityIssued'  =>$CurrentState['qi'] - $NetWeight, 
-                      'QuantityAvailable'=>$CurrentState['avlb'] + $NetWeight 
+                      'QuantityIssued'  =>$CurrentState[0]->qi - $NetWeight, 
+                      'QuantityAvailable'=>$CurrentState[0]->avlb + $NetWeight 
                       );
+         
+
             $this->db->where('StockID', $sid);
             $this->db->update('stocks', $data);
   

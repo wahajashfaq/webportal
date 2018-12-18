@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 02, 2018 at 12:01 AM
+-- Generation Time: Dec 10, 2018 at 01:14 PM
 -- Server version: 10.1.25-MariaDB
 -- PHP Version: 7.1.7
 
@@ -47,7 +47,7 @@ CREATE TABLE `member` (
 INSERT INTO `member` (`ID`, `Name`, `Lname`, `Email`, `ContactNumber`, `Utype`, `uaddress`, `EntryDate`, `comments`) VALUES
 (13, 'Wahaj', 'Ashfaq', 'Wahaj.com', '03030966241', 'Supplier', 'Canal Bank', '2018-11-23 00:00:00', 'Husnain is one of our best supplier since begginging. Husnain is one of our best supplier since begginging. Husnain is one of our best supplier since begginging. Husnain is one of our best supplier since begginging'),
 (16, 'Gulzaib', 'Malik', 'Gullo@gmail.com', '03030966241', 'Customer', 'Canal Bank', '2018-11-23 00:00:00', 'Husnain is one of our best supplier since begginging. Husnain is one of our best supplier since begginging. Husnain is one of our best supplier since begginging. Husnain is one of our best supplier since begginging'),
-(32, 'Ali', 'Butt', 'Butt@gmail.com', '03030966241', 'Customer', 'Canal Bank', '2018-11-23 00:00:00', 'Husnain is one of our best supplier since begginging. Husnain is one of our best supplier since begginging. Husnain is one of our best supplier since begginging. Husnain is one of our best supplier since begginging'),
+(32, 'Ali', 'Butt', 'Butt@gmail.com', '03030966241', 'Customer', 'Canal Bank', '2018-11-23 00:00:00', '     Husnain is one of our best supplier since begginging. Husnain is one of our best supplier since begginging. Husnain is one of our best supplier since begginging. Husnain is one of our best supplier since begginging     '),
 (33, 'Khawar', 'Hussain', 'Khawar@gmail.com', '03030966241', 'Customer', 'Canal Bank', '2018-11-23 00:00:00', 'Husnain is one of our best supplier since begginging. Husnain is one of our best supplier since begginging. Husnain is one of our best supplier since begginging. Husnain is one of our best supplier since begginging'),
 (35, 'Mudasar', 'Zaman', 'Mudasar@gmail.com', '03030966241', 'Supplier', 'Canal Bank', '2018-11-23 00:00:00', 'Husnain is one of our best supplier since begginging. Husnain is one of our best supplier since begginging. Husnain is one of our best supplier since begginging. Husnain is one of our best supplier since begginging'),
 (36, 'Nomi', 'Shah', 'nomi@gmail.com', '03030966241', 'Supplier', 'Canal Bank', '2018-11-23 00:00:00', 'Husnain is one of our best supplier since begginging. Husnain is one of our best supplier since begginging. Husnain is one of our best supplier since begginging. Husnain is one of our best supplier since begginging     '),
@@ -59,6 +59,54 @@ INSERT INTO `member` (`ID`, `Name`, `Lname`, `Email`, `ContactNumber`, `Utype`, 
 (65, 'Mudasar', 'Zaman', 'Mudasar@gmail.com', '03030966241', 'Supplier', 'Canal Bank', '2018-11-23 00:00:00', 'Husnain is one of our best supplier since begginging. Husnain is one of our best supplier since begginging. Husnain is one of our best supplier since begginging. Husnain is one of our best supplier since begginging'),
 (66, 'Nomi', 'Shah', 'nomi@gmail.com', '03030966241', 'Supplier', 'Canal Bank', '2018-11-23 00:00:00', 'Husnain is one of our best supplier since begginging. Husnain is one of our best supplier since begginging. Husnain is one of our best supplier since begginging. Husnain is one of our best supplier since begginging'),
 (1111111111, 'Default ', 'User', 'non@gmail.com', '00000000', 'Supplier', 'Non', NULL, 'NOn');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `orderdetails`
+--
+
+CREATE TABLE `orderdetails` (
+  `oid` int(11) NOT NULL,
+  `pid` int(11) NOT NULL,
+  `Name` varchar(60) DEFAULT NULL,
+  `NetWeight` float DEFAULT NULL,
+  `NetValue` float DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `orderdetails`
+--
+
+INSERT INTO `orderdetails` (`oid`, `pid`, `Name`, `NetWeight`, `NetValue`) VALUES
+(3, 10, 'AlfhaBeta', 10, 3140),
+(3, 12, 'AlfhaBeta', 5, 143),
+(3, 8, 'Head&Shoulder', 10, 4464),
+(3, 9, 'Sunsilk', 20, 682);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `orders`
+--
+
+CREATE TABLE `orders` (
+  `OrderID` int(11) NOT NULL,
+  `Reference` varchar(50) DEFAULT NULL,
+  `CustomerID` int(11) NOT NULL,
+  `OrderDate` datetime DEFAULT NULL,
+  `DeliverDate` datetime DEFAULT NULL,
+  `Discount` float DEFAULT NULL,
+  `GrandTotal` float NOT NULL,
+  `comments` varchar(600) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`OrderID`, `Reference`, `CustomerID`, `OrderDate`, `DeliverDate`, `Discount`, `GrandTotal`, `comments`) VALUES
+(3, 'Rafaan Order', 16, '2018-12-01 00:00:00', '2018-12-11 00:00:00', 125, 8303, 'No Comments');
 
 -- --------------------------------------------------------
 
@@ -81,10 +129,27 @@ CREATE TABLE `productdetails` (
 --
 
 INSERT INTO `productdetails` (`pid`, `sid`, `name`, `issued`, `available`, `NetWeight`, `NetValue`) VALUES
-(1, 12, 'Liquid Nitrogen', 20, 0, 10, 1000),
-(1, 13, 'Liquid Nitrogen', 10, 2, 5, 25),
-(1, 8, 'Sulphuric Acid', 10, 0, 10, 120),
-(1, 11, 'Sodium carbonate Pentahidrate', 10, 2, 10, 200);
+(8, 14, 'Alumunium', 20, 80, 20, 2000),
+(8, 12, 'Liquid Nitrogen', 22, 8, 22, 2200),
+(8, 8, 'Sulphuric Acid', 22, 28, 22, 264),
+(9, 12, 'Liquid Nitrogen', 30, 0, 8, 800),
+(9, 13, 'Liquid Nitrogen', 2, 10, 2, 10),
+(9, 14, 'Alumunium', 50, 50, 30, 3000),
+(9, 8, 'Sulphuric Acid', 37, 13, 15, 180),
+(9, 11, 'Sodium carbonate Pentahidrate', 5, 7, 5, 100),
+(10, 11, 'Sodium carbonate Pentahidrate', 12, 0, 7, 140),
+(10, 14, 'Alumunium', 80, 20, 30, 3000),
+(11, 13, 'Liquid Nitrogen', 12, 0, 10, 50),
+(11, 10, 'Liquid Nitrogen', 5, 5, 5, 50),
+(11, 14, 'Alumunium', 90, 10, 10, 1000),
+(11, 8, 'Sulphuric Acid', 50, 0, 13, 156),
+(11, 9, 'Sulphuric Acid', 7, 5, 7, 70),
+(12, 14, 'Alumunium', 95, 5, 5, 500),
+(12, 9, 'Sulphuric Acid', 10, 2, 3, 30),
+(12, 10, 'Liquid Nitrogen', 9, 1, 4, 40),
+(13, 14, 'Alumunium', 100, 0, 5, 500),
+(13, 10, 'Liquid Nitrogen', 10, 0, 1, 10),
+(13, 9, 'Sulphuric Acid', 12, 0, 2, 20);
 
 -- --------------------------------------------------------
 
@@ -108,8 +173,12 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`ProductID`, `ProductName`, `QuantityProduced`, `QuantityIssued`, `QuantityAvailable`, `PriceperKG`, `ProductDate`, `comments`) VALUES
-(1, 'Head&Shoulder', 100, 0, 100, 13.45, '2018-12-13 00:00:00', 'No Comments'),
-(2, 'AlfhaBeta', 100, 0, 100, 1.5, '2018-12-05 00:00:00', 'No Comments');
+(8, 'Head&Shoulder', 10, 10, 0, 446.4, '2018-12-06 00:00:00', 'No Comments'),
+(9, 'Sunsilk', 120, 20, 100, 34.0833, '2018-12-07 00:00:00', 'No Comments'),
+(10, 'AlfhaBeta', 10, 10, 0, 314, '2018-12-05 00:00:00', 'No Comments'),
+(11, 'Brighto Paints', 10, 0, 10, 132.6, '2018-12-14 00:00:00', 'No Comments'),
+(12, 'AlfhaBeta', 20, 5, 15, 28.5, '2018-12-07 00:00:00', 'No Comments'),
+(13, 'Head&Shoulder', 15, 0, 15, 35.3333, '2018-12-07 00:00:00', 'No Comments');
 
 -- --------------------------------------------------------
 
@@ -124,8 +193,8 @@ CREATE TABLE `stocks` (
   `QuantityPurchased` int(12) DEFAULT NULL,
   `QuantityIssued` int(12) DEFAULT NULL,
   `QuantityAvailable` int(12) DEFAULT NULL,
-  `PriceperKG` int(12) DEFAULT NULL,
-  `TotalPrice` int(12) DEFAULT NULL,
+  `PriceperKG` float DEFAULT NULL,
+  `TotalPrice` float DEFAULT NULL,
   `StockDate` datetime DEFAULT CURRENT_TIMESTAMP,
   `comments` varchar(500) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -135,12 +204,13 @@ CREATE TABLE `stocks` (
 --
 
 INSERT INTO `stocks` (`StockID`, `SupplierID`, `StockName`, `QuantityPurchased`, `QuantityIssued`, `QuantityAvailable`, `PriceperKG`, `TotalPrice`, `StockDate`, `comments`) VALUES
-(8, 35, 'Sulphuric Acid', 10, 10, 0, 12, 120, '2018-11-08 00:00:00', 'y6gtfrdyhgtfredy6gtfred'),
-(9, 13, 'Sulphuric Acid', 12, -4, 4, 10, 120, '2018-11-17 00:00:00', 'vrfcdbtvrcfex'),
-(10, 45, 'Liquid Nitrogen', 10, -8, 8, 10, 100, '2018-11-24 00:00:00', 'hbtgvcrfedx'),
-(11, 51, 'Sodium carbonate Pentahidrate', 12, -1, 1, 20, 240, '2018-11-01 00:00:00', 'No Comments'),
-(12, 36, 'Liquid Nitrogen', 20, 20, 0, 100, 2000, '2018-11-01 00:00:00', 'No Comments'),
-(13, 13, 'Liquid Nitrogen', 12, -2, 2, 5, 60, '2018-11-14 00:00:00', 'No Comments');
+(8, 35, 'Sulphuric Acid', 50, 50, 0, 12, 600, '2018-11-08 00:00:00', 'y6gtfrdyhgtfredy6gtfred            '),
+(9, 13, 'Sulphuric Acid', 12, 12, 0, 10, 120, '2018-11-17 00:00:00', 'vrfcdbtvrcfex'),
+(10, 45, 'Liquid Nitrogen', 10, 10, 0, 10, 100, '2018-11-24 00:00:00', 'hbtgvcrfedx'),
+(11, 51, 'Sodium carbonate Pentahidrate', 12, 12, 0, 20, 240, '2018-11-01 00:00:00', 'No Comments'),
+(12, 36, 'Liquid Nitrogen', 30, 30, 0, 100, 3000, '2018-11-01 00:00:00', 'No Comments                  '),
+(13, 13, 'Liquid Nitrogen', 12, 12, 0, 5, 60, '2018-11-14 00:00:00', 'No Comments'),
+(14, 13, 'Alumunium', 100, 100, 0, 100, 10000, '2018-12-19 00:00:00', 'No Comments');
 
 -- --------------------------------------------------------
 
@@ -195,6 +265,12 @@ ALTER TABLE `member`
   ADD PRIMARY KEY (`ID`);
 
 --
+-- Indexes for table `orders`
+--
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`OrderID`);
+
+--
 -- Indexes for table `products`
 --
 ALTER TABLE `products`
@@ -223,15 +299,20 @@ ALTER TABLE `user`
 ALTER TABLE `member`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1111111112;
 --
+-- AUTO_INCREMENT for table `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `OrderID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `ProductID` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ProductID` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT for table `stocks`
 --
 ALTER TABLE `stocks`
-  MODIFY `StockID` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `StockID` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT for table `user`
 --

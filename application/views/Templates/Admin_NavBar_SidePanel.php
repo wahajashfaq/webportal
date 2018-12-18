@@ -73,62 +73,75 @@
       <ul class="sidebar navbar-nav">
         <li class="nav-item active">
           <a class="nav-link" href="<?php echo base_url().'Dashboard'?>">
-            <h6 class="text-center">
-             <i class="fas fa-fw fa-tachometer-alt"></i>
-              <span>Dashboard</span></h6>
+            <h6><i class="fas fa-fw fa-tachometer-alt"></i><span>Dashboard</span></h6>
           </a>
         </li>
 
-        <li class="nav-item">
-        <a class="nav-link" href="<?php echo base_url().'User'?>">
-        <h6 class="text-center"><span>Add Users</span></h6>
-        </a>
+
+      <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-fw fa-shopping-cart"></i>
+            <span>Orders</span>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="pagesDropdown">
+            <h6 class="dropdown-header">Orders Screens:</h6>
+            <a class="dropdown-item" href="<?php echo base_url().'Orders'?>">Add Orders</a>
+            <a class="dropdown-item" href="<?php echo base_url().'Orders/OrdersView'?>">View Orders</a>
+            </div>
         </li>
 
-        <li class="nav-item">
-        <a class="nav-link" href="<?php echo base_url().'User/getusers'?>">
-        <h6 class="text-center"><span>View Users</span></h6>
-        </a>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-fw fa-user"></i>
+            <span>Users</span>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="pagesDropdown">
+            <h6 class="dropdown-header">Users Screens:</h6>
+            <a class="dropdown-item" href="<?php echo base_url().'User'?>">Add Users</a>
+            <a class="dropdown-item" href="<?php echo base_url().'User/getusers'?>">View Users</a>
+            </div>
         </li>
 
-        <li class="nav-item">
-        <a class="nav-link" href="<?php echo base_url().'Members'?>">
-        <h6 class="text-center"><span>Add Member</span></h6>
-        </a>
-        </li>
 
-        <li class="nav-item">
-        <a class="nav-link" href="<?php echo base_url().'Members/getmembers'?>">
-        <h6 class="text-center"><span>View Members</span></h6>
-        </a>
-        </li>
+    <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-fw fa-user-tie"></i>
+            <span>Members</span>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="pagesDropdown">
+            <h6 class="dropdown-header">Member Screens:</h6>
+            <a class="dropdown-item" href="<?php echo base_url().'Members'?>">Add Member</a>
+            <a class="dropdown-item" href="<?php echo base_url().'Members/getmembers'?>">View Members</a>
+          </div>
+     </li>
 
-        <li class="nav-item">
-        <a class="nav-link" href="<?php echo base_url().'Stocks/addStockView'?>">
-        <h6 class="text-center"><span>Add Stocks</span></h6>
-        </a> 
-        </li>
-        
-       
-       <li class="nav-item">
-        <a class="nav-link" href="<?php echo base_url().'Stocks'?>">
-        <h6 class="text-center"><span>View Stocks</span></h6>
-        </a> 
-        </li>
-        
 
-         <li class="nav-item">
-        <a class="nav-link" href="<?php echo base_url().'Products'?>">
-            <!-- <i class="fas fa-fw fa-chart-area"></i> -->
-        <h6 class="text-center"><span>Add Products</span></h6>
-        </a> 
-        </li>
-        
-       <li class="nav-item">
-        <a class="nav-link" href="<?php echo base_url().'Products/addProductView'?>">
-            <!-- <i class="fas fa-fw fa-chart-area"></i> -->
-        <h6 class="text-center"><span>View Products</span></h6>
-        </a> 
-        </li>
+    <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-fw fa-folder"></i>
+            <span>Stocks</span>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="pagesDropdown">
+            <h6 class="dropdown-header">Stock Screens:</h6>
+            <a class="dropdown-item" href="<?php echo base_url().'Stocks/addStockView'?>">Add Stock</a>
+            <a class="dropdown-item" href="<?php echo base_url().'Stocks'?>">View Stocks</a>
+          </div>
+     </li>
+
+
+
+    <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-fw fa-dice-d6"></i>
+            <span>Products</span>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="pagesDropdown">
+            <h6 class="dropdown-header">Product Screens:</h6>
+            <a class="dropdown-item" href="<?php echo base_url().'Products'?>">Add Product</a>
+            <a class="dropdown-item" href="<?php echo base_url().'Products/ProductView'?>">View Products</a>
+          </div>
+     </li>
+
+
     </ul>
 <!-- End of Side panel and header -->

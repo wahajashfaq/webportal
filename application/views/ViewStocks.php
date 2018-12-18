@@ -7,6 +7,8 @@
 <!-- End of Side panel and header -->
 
 <!-- Rest of the body starts here -->
+
+
       <div id="content-wrapper">
 
         <div class="container-fluid">
@@ -14,12 +16,44 @@
           <!-- Breadcrumbs-->
           <ol class="breadcrumb">
             <li class="breadcrumb-item">
-              <a href="Dashboard" class="MyBreadCrumps">Dashboard</a>
+              <a href="Dashboard" class="MyBreadCrumps">Dashboard / Stocks</a>
             </li>
             <li class="breadcrumb-item active">Available Stocks</li>
           </ol>
 
-           
+<form class="form-horizontal" action="<?php echo base_url()?>Stocks/AddStockEntry" method="post">
+<fieldset>
+
+<div class = "row">
+
+   <div class="col-md-4 ">
+      <div class="form-group"> <!-- Date input -->
+        <label class="control-label" for="StockDate">From Date</label>
+        <input class="form-control" id="FromDate" name="FromDate" placeholder="MM/DD/YYY" type="date" required="">
+      </div>
+   </div>
+
+   <div class="col-md-4 ">
+      <div class="form-group"> <!-- Date input -->
+        <label class="control-label" for="ToDate">To Date</label>
+        <input class="form-control" id="ToDate" name="ToDate" placeholder="MM/DD/YYY" type="date" required="">
+      </div>
+    
+   </div>
+ </div>
+
+<div class = "row">
+   <div class="col-md-4 ">
+    <div class="form-group">    
+    <input name="submit" class="btn btn-md btn-primary" type="submit" value="Search">     
+    </div>
+   </div>
+</div>
+
+</fieldset>
+</form>
+
+
           <!-- DataTables Example -->
           <div class="card mb-3">
             <div class="card-header">

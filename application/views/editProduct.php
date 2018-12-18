@@ -3,6 +3,7 @@
     <title>Edit Products</title>
 <script type="text/javascript">
 var arr = <?php echo json_encode($SelectedData)?>;
+//alert(arr[0].name);
 </script>
 <?php include_once('Templates/Admin_NavBar_SidePanel.php');?>   
 
@@ -32,6 +33,8 @@ var arr = <?php echo json_encode($SelectedData)?>;
       <label class="control-label" for="ProductName">Product Name</label>  
       <input id="ProductName" name="ProductName" type="text" value="<?php echo $product->ProductName;?>" placeholder="Product Name" class="form-control input-md" required="">
       <?php echo form_hidden('DataID', $product->ProductID, 'id="DataID"'); ?>
+      <?php echo form_hidden('QuantityIssued', $product->QuantityIssued, 'id="QuantityIssued"'); ?>
+   
     </div>
    </div>
 </div>
@@ -119,7 +122,7 @@ var arr = <?php echo json_encode($SelectedData)?>;
                           <th>Remove</th>
                         </tr>
                       </thead>
-                                           <tbody>
+                      <tbody>
                       <?php if(count($SelectedData)):
                          foreach ($SelectedData as $stock):
                         ?>
@@ -157,7 +160,7 @@ var arr = <?php echo json_encode($SelectedData)?>;
    <div class="col-md-8">
       <div class="form-group">
       <label for="comments">Description</label>
-      <textarea class="form-control" name="comments" id="comments" rows="7" cols="50"></textarea>
+      <textarea class="form-control" name="comments" id="comments" rows="7" cols="50"><?php echo $product->comments?></textarea>
       </div>
   </div>
 </div>
