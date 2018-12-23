@@ -1,9 +1,9 @@
 <?php include_once('Templates/Admin_header.php');?>   
  
-    <title>Add Orders</title>
-<script type="text/javascript">
-var arr = null;
+    <title>Edit Orders</title>
 
+<script type="text/javascript">
+var arr = <?php echo json_encode($SelectedData)?>;
 </script>
 <?php include_once('Templates/Admin_NavBar_SidePanel.php');?>   
 
@@ -18,10 +18,10 @@ var arr = null;
             <li class="breadcrumb-item">
               <a href="Dashboard" class="MyBreadCrumps">Dashboard</a>
             </li>
-            <li class="breadcrumb-item active">Add Orders</li>
+            <li class="breadcrumb-item active">Edit Orders</li>
           </ol>
 
-<form class="form-horizontal" action="<?php echo base_url()?>Orders/AddOrder" method="POST">
+<form class="form-horizontal" action="<?php echo base_url()?>Orders/UpdateOrderEntry" method="POST">
 <fieldset>
 
 <div class = "row">
@@ -29,7 +29,8 @@ var arr = null;
    <div class="col-md-3 ">
     <div class="form-group">
       <label class="control-label" for="Reference">Order Reference</label>  
-      <input id="Reference" name="Reference" type="text" placeholder="Order Reference" class="form-control input-md" required="">
+      <input id="Reference" name="Reference" value="<?=$Order->Reference?>" type="text" placeholder="Order Reference" class="form-control input-md" required="">
+       <?php echo form_hidden('DataID', $Order->OrderID, 'id="DataID"'); ?>
     </div>
    </div>
 
@@ -41,9 +42,9 @@ var arr = null;
           if ($Customers) 
           {
            ?>
-           <option value="" selected>Select Customer</option>
+           <option value="0">Select Customer</option>
           <?php foreach ($Customers as $Customer):?>
-          <option  value="<?php echo $Customer->cid;?>" class="CustomerOption <?php echo str_replace(' ','', $Customer->Cname);?>"><?php echo $Customer->Cname?></option>
+          <option  value="<?php echo $Customer->cid;?>"<?=$Customer->cid == $Order->CustomerID ? ' selected="selected"' : '';?> class="CustomerOption <?php echo preg_replace('/[^A-Za-z0-9\-]/', '', str_replace(' ','', $Customer->Cname));?>"><?php echo $Customer->Cname?></option>
           <?php endforeach;
            }else
            {?>
@@ -58,21 +59,21 @@ var arr = null;
      { }
       else{
       ?>
-      <span style="color:red" class="Error4">No Customea Available for Order</span>
+      <span style="color:red" class="Error4">No Customer Registered</span>
       <?php
       }
      ?>
-     <span style="color:red" class="Error3">Must Select Customer to proceed</span>
+     <span style="color:red" class="Error3">Must Select Valid Products to proceed</span>
 
   </div>
 
   <div class="col-md-2">
      <div class="form-group">
      <label class="control-label" for="Selling Price">Price</label>  
-     <input id="Selling_Price" name="Selling_Price" min=0 type="number" placeholder="0" class="form-control input-md" >
+     <input id="Selling_Price" name="Selling_Price" value="<?= $Order->Selling_Price?>" min=0 type="number" placeholder="0" class="form-control input-md" >
      </div>
   </div>
-   
+  
 </div>
 
 
@@ -82,20 +83,20 @@ var arr = null;
    <div class="col-md-3">
       <div class="form-group"> <!-- Date input -->
         <label class="control-label" for="OrderDate">Order Date</label>
-        <input class="form-control" id="OrderDate" name="OrderDate" placeholder="MM/DD/YYY" type="date" required="">
+        <input class="form-control"  value="<?php echo date("Y-m-d", strtotime($Order->OrderDate ));?>" id="OrderDate" name="OrderDate" placeholder="MM/DD/YYY" type="date" required="">
       </div>
    </div>
     <div class="col-md-3">
       <div class="form-group"> <!-- Date input -->
         <label class="control-label" for="DeliverDate">Delivery Date</label>
-        <input class="form-control" id="DeliverDate" name="DeliverDate" placeholder="MM/DD/YYY" type="date" required="">
+        <input class="form-control"  value="<?php echo date("Y-m-d", strtotime($Order->DeliverDate ));?>" id="DeliverDate" name="DeliverDate" placeholder="MM/DD/YYY" type="date" required="">
       </div>
    </div>
 
     <div class="col-md-2">
      <div class="form-group">
-     <label class="control-label" for="Discount">Discount</label>  
-     <input id="Discount" name="Discount" min=0 type="number" placeholder="0" class="form-control input-md" >
+     <label class="control-label"  for="Discount">Discount</label>  
+     <input id="Discount" name="Discount" value="<?= $Order->Discount?>" min=0 type="number" placeholder="0" class="form-control input-md" >
      </div>
     </div>
      
@@ -114,9 +115,9 @@ var arr = null;
            ?>
            <option value="0" selected>Select one</option>
           <?php foreach ($Products as $Product):?>
-          <option  value="<?php echo $Product->quantity."/".$Product->s_Name;?>" 
-            class="ProductOption <?php echo preg_replace('/[^A-Za-z0-9\-]/', '', str_replace(' ','', $Product->s_Name));?>">
-            <?php echo $Product->s_Name?>
+          <option  value="<?php echo $Product->quantity."/".$Product->p_Name;?>" 
+            class="ProductOption <?php echo preg_replace('/[^A-Za-z0-9\-]/', '', str_replace(' ','', $Product->p_Name));?>">
+            <?php echo $Product->p_Name?>
           </option>
           <?php endforeach;
            }else
@@ -155,8 +156,8 @@ var arr = null;
      
        <div class="col-md-4">
        <div class="form-group">
-       <label class="control-label" for="InputAmount">Amount(KG)</label>  
-       <input id="InputAmount" name="InputAmount" type="number" placeholder="000" class="form-control input-md" >
+       <label class="control-label"  for="InputAmount">Amount(KG)</label>  
+       <input id="InputAmount" name="InputAmount"  type="number" placeholder="000" class="form-control input-md" >
        </div>
        </div>
      
@@ -176,7 +177,7 @@ var arr = null;
 </div>
 
 
-<div class = "SelectGroup row">
+<div class = "SelectGroupforOrder row">
    <div class="col-md-8 ">
       <div class="form-group"> <!-- Date input -->
         <label class="card mb-3 card-header control-label" for="ProductDate"><b>Selected Items</b></label>
@@ -191,8 +192,31 @@ var arr = null;
                         </tr>
                       </thead>
                      
-                        <tbody>      
-                        </tbody>
+                      <tbody>
+                      <?php if(count($SelectedData)):
+                         foreach ($SelectedData as $stock):
+                        ?>
+                      <tr>
+                      <input type="hidden" id="name" name="sname[]" value="<?php echo $stock->name;?>"> 
+                      <td><?=$stock->name?></td>
+                      <input type="hidden" id="name" name="sweight[]" value="<?php echo $stock->amount;?>">
+                      <td><?=$stock->amount?></td>
+                      <td>
+                      <a  style="border-radius:1.8rem" id="<?php echo preg_replace('/[^A-Za-z0-9\-]/', '', str_replace(' ','', $stock->name));?>" class="BtnRemove btn btn-danger"><i class="fa fa-minus"></i></a>
+                      </td> 
+                    </tr>
+                          <?php
+                          endforeach;
+                          else:
+                          ?>
+                        <tr>
+                          <td colspan="9">
+                            No Records Found..!!
+                          </td>
+                        </tr>
+                      <?php endif;?>
+
+                  </tbody>
                       </table>
                   </div>
               </div>
@@ -204,7 +228,7 @@ var arr = null;
    <div class="col-md-8">
       <div class="form-group">
       <label for="comments">Description</label>
-      <textarea class="form-control" name="comments" id="comments" rows="7" cols="50"></textarea>
+      <textarea class="form-control" name="comments" id="comments" rows="7" cols="50"><?=$Order->comments?></textarea>
       </div>
   </div>
 </div>

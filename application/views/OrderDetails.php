@@ -32,7 +32,7 @@
                         <div class="col-md-6" >
 
                         <div class="col-md-2 pull-right">
-                        <a href="<?php echo base_url().'Orders/OrdersView'?>" data-toggle="tooltip" title="Back" style="color:White" 
+                        <a href="<?php echo base_url().'Orders/ShowOrders'?>" data-toggle="tooltip" title="Back" style="color:White" 
                         class="btn btn-md btn-info pull-right mb-1">
                           <i class="fa fa-arrow-left" aria-hidden="true"></i>
                           Back    
@@ -40,7 +40,7 @@
                         </div>
 
                         <div class="col-md-2 pull-right">
-                        <a href="<?php echo base_url().'Orders/OrdersView'?>" data-toggle="tooltip" title="Back" style="color:White" 
+                        <a href="<?php echo base_url()?>Orders/editOrder?DataID=<?php echo $Order->oid?>" data-toggle="tooltip" title="Back" style="color:White" 
                         class="btn btn-md btn-info pull-right mb-1">
                           <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                           Edit    

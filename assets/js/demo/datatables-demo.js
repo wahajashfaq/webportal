@@ -1,24 +1,50 @@
 // Call the dataTables jQuery plugin
 $(document).ready(function() {
+// $('#StockdataTable thead tr').clone(true).appendTo( '#StockdataTable thead' );
+    $('#StockdataTable thead tr:eq(0) th').each( function (i) {
+        var title = $(this).text();
+      var temphtml = $(this).html();
+		       
+      //  alert(title);
+ 			if (title == "Edit" || title=="Delete" || title == "View" || title=="Cancel") 
+		 	{  $(this).html(temphtml+ '<br><p style="padding-bottom:13px;"></p>');  }
+        	else
+        	{
+        	//alert(title);
+        	    $(this).html(temphtml+ '<br><input type="text" style="width:102px;" placeholder="Search"/>' );    
+		        $( 'input', this ).on( 'keyup change', function () {
+		            if ( table.column(i).search() !== this.value ) {
+		                table
+		                    .column(i)
+		                    .search( this.value )
+		                    .draw();
+		            }
+		        } );
+             };
+    } );
+ 
+
  $('#MemberdataTable').DataTable();
  $('#UserdataTable').DataTable();
- $('#StockdataTable').DataTable();
  $('.text-danger').hide();
  $('.Error2').hide();
  $('.Error3').hide();
  $('.SelectGroup').hide();
-
+//alert("HUsnain");
  //alert(arr[2].s_Name);
  //alert(arr.length);
+
+
+// $('#StockdataTable').DataTable();
+ 
   if(arr)
       {
-      	
       	for (var i = 0; i < arr.length; i++) 
       	{
       		className=arr[i].name;
       	    className=className.replace(/\s+/g,'');
       	    var CleanclassName = className.replace(/[^\w\s]/gi, '');
-      		option.push(CleanclassNameclassName);
+      		option.push(CleanclassName);
       	 };
 
         for (var i = 0; i < option.length; i++) 
@@ -187,9 +213,11 @@ var option=[];
 			   	  	 className=className.replace(/\s+/g, '');	
 			   	  	 CleanclassName =className.replace(/[^\w\s]/gi, '');
 			   	  	//alert(className);
+			   	  	//alert(CleanclassName);
 			   	  	 option.push(CleanclassName);
 			   	    $('.SelectGroup').show("slow");
 			   	    $('.SelectGroupforEdit').show("slow");
+			   	   $('.SelectGroupforOrder').show("slow");
 			   	    
 			   	    var Optionclass;
 	                 if (option.length==0) 
@@ -204,7 +232,7 @@ var option=[];
 			   	    {
 		                 Optionclass = '.';
 		                 Optionclass += option[i];
-		                // alert(Optionclass);
+		                 //alert(Optionclass);
 		                 $(Optionclass).fadeOut();
 			   	    };
 		             //alert(option);
@@ -256,7 +284,8 @@ $(document).on('click','.BtnRemove',(function(){
 		if (count==0) 
 			{
 				$('.SelectGroup').fadeOut();
-				$('.SelectGroupforEdit').fadeOut();
+	            $('.SelectGroupforOrder').fadeOut();
+	            $('.SelectGroupforEdit').fadeOut();
 				//$(':input[type="submit"]').prop('disabled', true);
                 $('.AddProductBtn').prop('disabled', true);
 			}else
@@ -265,13 +294,15 @@ $(document).on('click','.BtnRemove',(function(){
 				$('.AddProductBtn').prop('disabled', false);
 			}
 			var id = $(this).attr("id");	
-			var index = option.indexOf(id);
+			id=id.replace(/\s+/g,'');
+      	    var CleanclassName = id.replace(/[^\w\s]/gi, '');
+			var index = option.indexOf(CleanclassName);
 			//alert(option);
 			if (index > -1)
 			{
   				option.splice(index, 1);
                }
-               RemovedClassName = "." + id;
+               RemovedClassName = "." + CleanclassName;
                $(RemovedClassName).show();
                var Optionclass;
 	  
@@ -290,5 +321,10 @@ $(document).on('click','.BtnRemove',(function(){
 //for further pages of data table
 $('#dataTable').DataTable();
  $('#UserdataTable').DataTable();
-$('#StockdataTable').DataTable();
+//$('#StockdataTable').DataTable();
 $('#MemberdataTable').DataTable();
+
+  var table= $('#StockdataTable').DataTable( {
+        orderCellsTop: true,
+        fixedHeader: true
+    } );

@@ -62,18 +62,18 @@
             </div>
             <div class="card-body">
               <div class="table-responsive">
-                <table class="table table-striped table-hover table-responsive " id="StockdataTable"  `>
+                <table class="table table-striped table-hover table-responsive table-md " id="StockdataTable"  `>
                     <thead style="Background:silver">
                     <tr >
-                      <th>StockName</th>
-                      <th>SuppliedBy</th>
-                      <th>Purchased(KG)</th>
-                      <th>Issued(KG)</th>
-                      <th>CostPer(KG)</th>
-                      <th>TotalBill</th>
-                      <th>SuppliedOn</th>
-                      <th>Edit</th>
-                      <th>Delete</th>
+                      <th style="width:20%">StockName</th>
+                      <th style="width:20%">SuppliedBy</th>
+                      <th style="width:5%">Purchased</th>
+                      <th style="width:5%">Issued</th>
+                      <th style="width:5%">CostPer</th>
+                      <th style="width:5%">TotalBill</th>
+                      <th style="width:15%">SuppliedOn</th>
+                      <th style="width:10%">Edit</th>
+                      <th style="width:15%">Delete</th>
                     </tr>
                   </thead>
 
@@ -82,15 +82,15 @@
                          foreach ($Stocks as $stock):
                         ?>
                       <tr> 
-                      <td><?=$stock->StockName?></td>
-                      <td><?=$stock->SupplierName?></td>
-                      <td><?=$stock->QP?></td>
-                      <td><?=$stock->Qissue?></td>
-                      <td><?=$stock->Price?></td>
-                      <td><?=$stock->bill?></td>
+                      <td style="width:20%"><?=$stock->StockName?></td>
+                      <td style="width:20%"><?=$stock->SupplierName?></td>
+                      <td style="width:5%"><?=$stock->QP?></td>
+                      <td style="width:5%"><?=$stock->Qissue?></td>
+                      <td style="width:5%"><?=$stock->Price?></td>
+                      <td style="width:5%"><?=$stock->bill?></td>
                       <td style="width:15%"><?=date("Y-m-d", strtotime($stock->date));?></td> 
-                      <td><a href="<?php echo base_url()?>Stocks/editStock?DataID=<?php echo $stock->s_ID?>" data-placement="top" data-toggle="tooltip" title="Edit"style="color:White" class="btn btn-sm btn-primary"><i class="fa fa-pencil-square-o"></i> Edit</a></td>
-                      <td><button data-placement="top" data-toggle="tooltip" id="<?php echo $stock->s_ID?>" title="Delete" style="color:White" class="StockDelete btn btn-sm btn-danger"><i class="fa fa-trash"></i> Delete</button></td>
+                      <td style="width:10%"><a href="<?php echo base_url()?>Stocks/editStock?DataID=<?php echo $stock->s_ID?>" data-placement="top" data-toggle="tooltip" title="Edit"style="color:White" class="btn btn-sm btn-primary"><i class="fa fa-pencil-square-o"></i> Edit</a></td>
+                      <td style="width:15%"><button data-placement="top" data-toggle="tooltip" id="<?php echo $stock->s_ID?>" title="Delete" style="color:White" class="StockDelete btn btn-sm btn-danger"><i class="fa fa-trash"></i> Delete</button></td>
                       
                     </tr>
                           <?php

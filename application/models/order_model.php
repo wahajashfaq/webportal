@@ -10,6 +10,15 @@ class order_model extends CI_Model
 
      return  $insert_id;
   }
+
+  public function UpdateOrder($oid,$order)
+  {
+
+    // echo "<pre>";
+    // print_r($order);exit;
+        $this->db->where('OrderID', $oid);
+        $this->db->update('orders', $order);
+  }
  public function getProductsForOrders()
   {
      $query = $this->db->query("
@@ -21,13 +30,45 @@ class order_model extends CI_Model
         return $query->result();
   }
 
-
- public function UpdateProductsAfterOrderEntery($sid,$issued,$available)
+ public function getOrderDetails($oid)
  {
+           $query = $this->db->query("
+                                Select * 
+                                from orders  
+                                where OrderID ='$oid'
+                                ");
+        
+       return $query->row();  
+  
+ }
+
+public function Get_Data_From_OrderDetails($oid)  
+{
+  $query = $this->db->query("Select *
+                             from orderdetails
+                             where oid = '$oid'  
+                            ");
+        return $query->result();
+}
+
+ public function getSelectedProducts($oid)
+ {
+           $query = $this->db->query("
+                                    Select name, SUM(NetWeight) as amount, SUM(NetValue) as SubTotal
+                                    from orderdetails
+                                    where oid = '$oid'
+                                    group by name
+                                  ");
+        return $query->result();
+    
+ }
+ public function UpdateProductsAfterOrderEntry($sid,$issued,$available)
+ {
+ 
    $data = array( 
-                      'QuantityIssued'  =>$issued, 
-                      'QuantityAvailable'=>  $available 
-                      );
+                  'QuantityIssued'  =>$issued, 
+                  'QuantityAvailable'=>  $available 
+                 );
             $this->db->where('ProductID', $sid);
             $this->db->update('products', $data);
   }
@@ -58,6 +99,52 @@ public function getOrderData($oid)
                            ");
         return $query->row();
 }
+
+ public function DeleteOrderDetails($oid)
+     {
+          $this->db->where("oid",$oid);
+          $this->db->delete("orderdetails");
+     }
+    
+
+
+public function Update_Products_States_After_Release($pid,$NetWeight)
+{
+   $query = $this->db->query("
+                                Select QuantityIssued as qi,QuantityAvailable as avlb
+                                from products
+                                where ProductID = '$pid'  
+                                ");
+        $CurrentState =  $query->result();
+           $data = array( 
+                      'QuantityIssued'  =>$CurrentState[0]->qi - $NetWeight, 
+                      'QuantityAvailable'=>$CurrentState[0]->avlb + $NetWeight 
+                      );
+         
+
+            $this->db->where('ProductID', $pid);
+            $this->db->update('products', $data);
+  
+    
+}
+
+public function getProductsDataForOrder($oid)
+{
+    $query = $this->db->query("
+                                Select p.ProductName as p_Name, sum(p.QuantityAvailable) as quantity
+                                from products as p 
+                                where p.QuantityIssued <= p.QuantityProduced and (p.ProductID IN
+                                (
+                                  Select pid from orderdetails where oid = '$oid'
+                                  )
+                                 ) or p.QuantityAvailable!=0
+                                Group by p_Name
+                              ");
+        return $query->result();
+ }
+ 
+
+
 public function getOrderedProducts($oid)
 {
    $query = $this->db->query("

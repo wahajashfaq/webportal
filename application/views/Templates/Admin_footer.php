@@ -7,7 +7,7 @@
         <footer class="sticky-footer">
           <div class="container my-auto">
             <div class="copyright text-center my-auto">
-              <span>Copyright © <b>WGW</b>Solutions 2018</span>
+              <span>Copyright © <b><i>TimeTex Industries</i></b> 2018</span>
             </div>
           </div>
         </footer>

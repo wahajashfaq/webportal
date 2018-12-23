@@ -65,7 +65,7 @@ var arr = <?php echo json_encode($SelectedData)?>;
         <select id="StockID" name="StockID" class="form-control" >
          <option value="0" selected>Select one</option>
           <?php foreach ($Stocks as $Stock):?>
-          <option  value="<?php echo $Stock->quantity."/".$Stock->s_Name;?>" class="StockOption <?php echo str_replace(' ','', $Stock->s_Name);?>"><?php echo $Stock->s_Name?></option>
+          <option  value="<?php echo $Stock->quantity."/".$Stock->s_Name;?>" class="StockOption <?php echo preg_replace('/[^A-Za-z0-9\-]/', '', str_replace(' ','', $Stock->s_Name));?>"><?php echo $Stock->s_Name?></option>
           <?php endforeach;?>
         </select>    
      </div>

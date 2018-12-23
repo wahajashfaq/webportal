@@ -12,14 +12,17 @@ class Orders extends CI_Controller {
 	}
    
 
-     public function AddOrder()
-     {
+ public function AddOrder()
+ {
          $product = $this->input->post();
 		 $InputItems = $this->SetProductPostData($product);
           
 		 $this->load->model('order_model','pd');
          $ProductItems = $this->pd->getValidProductsForCalculation();//Getting all Valid Stocks
-        
+        if (!isset($product['Selling_Price']) or empty($product['Selling_Price'])) 
+        {
+          $product['Selling_Price'] = 0;
+        }
         foreach ($ProductItems as $item) 
         {
              $item->NetWeight = 0;
@@ -52,7 +55,69 @@ class Orders extends CI_Controller {
 		  	$pid=$item->pid;
 		  	$issued = $item->issued;
 		  	$available = $item->available;
-		  	$this->pd->UpdateProductsAfterOrderEntery($pid,$issued,$available);  
+		//  	echo "Pid : ". $pid . " Issued : " . $issued . " Available " . $available ." <br>";
+		  	$this->pd->UpdateProductsAfterOrderEntry($pid,$issued,$available);  
+	   }
+	//   exit;
+		foreach($UpdateItem as $item)
+		{
+			unset($item->purchased);
+			unset($item->price);
+			unset($item->available);
+			unset($item->issued);
+			$item->oid=$oid;
+			$this->pd->addOrderDetails($item);
+		}
+       redirect('Orders/ShowOrders', 'refresh');	
+
+     }
+
+ public function UpdateOrderEntry()
+ {
+         $product = $this->input->post();
+         $oid = $product['DataID'];
+		 $InputItems = $this->SetProductPostData($product);
+         unset($product['DataID']); 
+     	 $this->load->model('order_model','pd');
+         $this->Release_Products_From_Order($oid);
+         
+         $this->pd->DeleteOrderDetails($oid);
+    
+	     $ProductItems = $this->pd->getValidProductsForCalculation();//Getting all Valid Stocks
+        
+        foreach ($ProductItems as $item) 
+        {
+             $item->NetWeight = 0;
+             $item->NetValue = 0;
+         }
+
+        $UpdateItem = $this->Calculate_And_Generate_Stocks_Updates($InputItems,$ProductItems); 
+        $price=0;
+		foreach($UpdateItem as $item)
+		{
+		   $price+= $item->NetValue;
+		}
+		$DiscountedPrice = $price - $product['Discount'];
+		if ($DiscountedPrice>0) 
+		{
+			//If Valid Discounted Price
+	        $product['GrandTotal'] = $DiscountedPrice;
+		}
+        else
+        {
+        	//If User Enters Discount Greated than the grandtotal itself The Dicount will get set to 0
+        	// causing no change in Grandtotal
+        	$product['Discount']=0;
+        	$product['GrandTotal'] = $price;
+        }
+	 // $oid = $this->pd->addOrder($product);
+	      $this->pd->UpdateOrder($oid,$product);
+	   foreach ($UpdateItem as  $item) 
+	   { 
+		  	$pid=$item->pid;
+		  	$issued = $item->issued;
+		  	$available = $item->available;
+		  	$this->pd->UpdateProductsAfterOrderEntry($pid,$issued,$available);  
 	   }
 		foreach($UpdateItem as $item)
 		{
@@ -63,12 +128,47 @@ class Orders extends CI_Controller {
 			$item->oid=$oid;
 			$this->pd->addOrderDetails($item);
 		}
-    redirect('Products/ProductView', 'refresh');	
-     }
+       redirect('Orders/ShowOrders', 'refresh');	
+
+ }    
 	public function tempView()
 	{
 	  $this->load->view('OrderDetails');
     }
+
+public function editOrder()
+	{
+		if(isset($_GET['DataID']))
+		{
+         $this->load->model('order_model','od');
+         $oid = $_GET['DataID'];
+        // echo "ID id : " .$oid;
+         $Order = $this->od->getOrderDetails($oid);
+         $SelectedData = $this->od->getSelectedProducts($oid);
+         $Customers = $this->od->getCustomersForOrders();
+		 $Products = $this->od->getProductsDataForOrder($oid);
+          // echo "<pre>" . " " . $oid;
+          // print_r($SelectedData);
+          // print_r($Products);
+
+        foreach ($SelectedData as $s) 
+        {
+        	foreach ($Products as $p) 
+        	{
+        		if($p->p_Name == $s->name)
+        		{
+                      $p->quantity += $s->amount;
+        		}
+        	}
+        }
+       //   print_r($Products);exit;
+       //   print_r($Products);
+       //   print_r($SelectedData);exit;
+         $this->load->view('editOrder',['Order'=>$Order,'Products'=>$Products,'Customers'=>$Customers,'SelectedData'=>$SelectedData]);	
+		} 
+       
+	}
+
 
     public function SetProductPostData(&$product)
     {
@@ -95,7 +195,7 @@ class Orders extends CI_Controller {
        return $InputItems;
     }
 
-    public function OrdersView()
+    public function ShowOrders()
 	{
 		$this->load->model('order_model','obj');
 		$Orders = $this->obj->getOrders();
@@ -121,25 +221,11 @@ class Orders extends CI_Controller {
 		} 
    }
 
-   public function Release_Stocks_From_Product($pid)
-   {
-	$this->load->model('product_model','pd');
 
-	//Getting all data of Product Details Before releasing them
-    $StockRecords= $this->pd->GetProductDetails($pid);
-     foreach ($StockRecords as $s) 
-     {
-     	$this->pd->Update_Stock_States_After_Release($s->sid,$s->NetWeight);
-     	//echo $s->sid." ".$s->NetWeight."<br>";
-     }
-    
-}
 
     public function Calculate_And_Generate_Stocks_Updates(&$InputItems,&$ProductItems)
     {
          $UpdateItem =array();
-        
-
 		foreach($InputItems as $i=>$input)
 		{
 		   $InputAmount = (int)$input['amount'];//Input amount is required Amount of selected stock
@@ -147,12 +233,11 @@ class Orders extends CI_Controller {
 		  foreach($ProductItems as $j=>$item)
 		  {
 		    //echo "Item is: " . $item['name']  ." ". $item['available']. "\n";
-		    //We need to update all the stocks item in available stocks for every stock item in selected stocks
-		    //For that if we select A than all the available stock items with A in Stock and have available amount
-		    //will be filtered here at a time. Comparison is made by Stock Names
+		    //We need to update all the stocks item in available products for every product item in selected stocks
+		    //For that if we select A than all the available stock items with A in product and have available amount
+		    //will be filtered here at a time. Comparison is made by Product Names
 		    if($input['name'] == $item->name) 
 		    {
-
 		         if($InputAmount<= (int)$item->available)  //
 		         {
 		          $item->NetWeight = $InputAmount;
@@ -182,37 +267,36 @@ class Orders extends CI_Controller {
       }
 
 
-public function editProduct()
-	{
-		if(isset($_GET['DataID']))
-		{
-         $this->load->model('product_model','pd');
-         $pid = $_GET['DataID'];
-         $product = $this->pd->getProductData($pid);
-         $SelectedData = $this->pd->getSelectedStocks($pid);
-         
-         $this->Release_Stocks_From_Product($pid);
-         $Stocks = $this->pd->getStocksDataForProduct();
-         $this->load->view('editProduct',['product'=>$product,'Stocks'=>$Stocks,'SelectedData'=>$SelectedData]);	
-		} 
-       
-	}
 
-public function UpdateProductEntry()
+   public function Release_Products_From_Order($oid)
+   {
+	$this->load->model('order_model','od');
+     $ProductRecords= $this->od->Get_Data_From_OrderDetails($oid);
+	     foreach ($ProductRecords as $p) 
+	     {
+	     	$this->od->Update_Products_States_After_Release($p->pid,$p->NetWeight);
+	     }
+	    
+    }
+    
+
+
+
+public function OldUpdateOrderEntry()
 {
 	    //Getting Data from POST Request
-		$product = $this->input->post();
-		$pid = $product['DataID'];
-		 $this->load->model('product_model','pd');       
-	    $this->pd->DeleteProductDetails($pid);
+		$Order = $this->input->post();
+		$oid = $Order['DataID'];
+		$this->load->model('order_model','od');       
+	    $this->od->DeleteOrderDetails($oid);
     
 		//Setting Post Data for Use. This Function call Sets Post data and 
 		// Return us Selected $InputItems of user
-		$InputItems = $this->SetProductPostData($product);
-		unset($product['DataID']);
+		$InputItems = $this->SetProductPostData($Order);
+		unset($Order['DataID']);
         
         //Getting all Valid Stocks
-        $StockItems = $this->pd->getValidStocksForCalculation();
+        $StockItems = $this->od->getValidStocksForCalculation();
         //We will be computing our results and updates against these $StockItems
         foreach ($StockItems as $item) 
         {
@@ -227,8 +311,8 @@ public function UpdateProductEntry()
 		   $price+= $item->NetValue;
 		}
 
-		$PriceperKG =floatval(($price/$product['QuantityProduced']));
-		$product['PriceperKG']=$PriceperKG;
+		$PriceperKG =floatval(($price/$Order['QuantityProduced']));
+		$Order['PriceperKG']=$PriceperKG;
 
 	  
 	   foreach ($UpdateItem as  $item) 
@@ -236,18 +320,18 @@ public function UpdateProductEntry()
 		  	$sid=$item->sid;
 		  	$issued = $item->issued;
 		  	$available = $item->available;
-		  	$this->pd->UpdateStocksAfterProductEntry($sid,$issued,$available);  
+		  	$this->od->UpdateStocksAfterProductEntry($sid,$issued,$available);  
 	   }
 		foreach($UpdateItem as $item)
 		{
 			unset($item->purchased);
 			unset($item->price);
-			$item->pid=$pid;
-			$this->pd->addProductDetails($item);
+			$item->pid=$oid;
+			$this->od->addProductDetails($item);
 		}
 
-         $this->pd->UpdateProduct($pid,$product);
-         redirect('Products/ProductView', 'refresh');	
+         $this->od->UpdateProduct($oid,$Order);
+         redirect('Orders/ShowOrders', 'refresh');	
 
 }
 

@@ -29,7 +29,7 @@
             </div>
             <div class="card-body">
               <div class="table-responsive">
-                <table class="table table-striped table-hover table-responsive " id="UserdataTable"  `>
+                <table class="table table-striped table-hover table-responsive " id="StockdataTable">
                     <thead style="Background:silver">
                     <tr >
                       <th>First Name</th>

@@ -31,15 +31,15 @@
                 <table class="table table-striped table-hover table-responsive " id="StockdataTable">
                     <thead style="Background:silver">
                     <tr >
-                      <th>Order# </th>
-                      <th>Reference</th>
-                      <th> Name</th>
-                      <th>Order Date</th>
-                      <th>Deliver Date</th>
-                      <th>Discount</th>
-                      <th>Total</th>
-                      <th>View</th>
-                      <th>Cancel</th>
+                      <th style="width:5%">Order# </th>
+                      <th style="width:20%">Reference</th>
+                      <th style="width:20%"> Name</th>
+                      <th style="width:15%">Order Date</th>
+                      <th style="width:15%">Deliver Date</th>
+                      <th style="width:5%">Discount</th>
+                      <th style="width:5%">Total</th>
+                      <th style="width:5%">View</th>
+                      <th style="width:20%">Cancel</th>
                     </tr>
                   </thead>
 
@@ -48,15 +48,15 @@
                          foreach ($Orders as $p):
                         ?>
                       <tr> 
-                      <td><?=$p->OrderID?></td>
-                      <td><?=$p->Reference?></td>
-                      <td><?=$p->CustomerID?></td>
+                      <td style="width:5%"><?=$p->OrderID?></td>
+                      <td style="width:20%"><?=$p->Reference?></td>
+                      <td style="width:20%"><?=$p->CustomerID?></td>
                       <td style="width:15%"><?=date("jS M,Y", strtotime($p->OrderDate));?></td>
                       <td style="width:15%"><?=date("jS M,Y", strtotime($p->DeliverDate));?></td>
-                      <td><?=$p->Discount?></td>
-                      <td><?=$p->GrandTotal?></td>
-                      <td><a href="<?php echo base_url();?>Orders/ViewOrderDetail?DataID=<?php echo $p->OrderID?>" data-placement="top" data-toggle="tooltip" title="View"style="color:White" class="btn btn-sm btn-primary"><i class="fa fa-eye"></i> View</a></td>     
-                        <td><button data-placement="top" data-toggle="tooltip" id="1" title="Cancel" style="color:White" class="OrderDelete btn btn-sm btn-danger"><i class="fa fa-trash"></i> Cancel</button></td>
+                      <td style="width:5%"><?=$p->Discount?></td>
+                      <td style="width:5%"><?=$p->GrandTotal?></td>
+                      <td style="width:5%"><a href="<?php echo base_url();?>Orders/ViewOrderDetail?DataID=<?php echo $p->OrderID?>" data-placement="top" data-toggle="tooltip" title="View"style="color:White" class="btn btn-sm btn-primary"><i class="fa fa-eye"></i> View</a></td>     
+                      <td style="width:20%"><button data-placement="top" data-toggle="tooltip" id="1" title="Cancel" style="color:White" class="OrderDelete btn btn-sm btn-danger"><i class="fa fa-trash"></i> Cancel</button></td>
                       
                     </tr>
                           <?php
