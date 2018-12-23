@@ -72,6 +72,16 @@ class Orders extends CI_Controller {
 
      }
 
+
+public function deleteOrder()
+{
+	$this->load->model('order_model','od');
+	$oid = $this->input->post('uid');
+	$this->Release_Products_From_Order($oid);     
+    $this->od->DeleteOrderDetails($oid);
+    $this->od->DeleteOrder($oid);
+    //return true;
+}
  public function UpdateOrderEntry()
  {
          $product = $this->input->post();

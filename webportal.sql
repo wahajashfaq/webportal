@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 10, 2018 at 01:14 PM
+-- Generation Time: Dec 23, 2018 at 11:26 PM
 -- Server version: 10.1.25-MariaDB
 -- PHP Version: 7.1.7
 
@@ -48,7 +48,6 @@ INSERT INTO `member` (`ID`, `Name`, `Lname`, `Email`, `ContactNumber`, `Utype`, 
 (13, 'Wahaj', 'Ashfaq', 'Wahaj.com', '03030966241', 'Supplier', 'Canal Bank', '2018-11-23 00:00:00', 'Husnain is one of our best supplier since begginging. Husnain is one of our best supplier since begginging. Husnain is one of our best supplier since begginging. Husnain is one of our best supplier since begginging'),
 (16, 'Gulzaib', 'Malik', 'Gullo@gmail.com', '03030966241', 'Customer', 'Canal Bank', '2018-11-23 00:00:00', 'Husnain is one of our best supplier since begginging. Husnain is one of our best supplier since begginging. Husnain is one of our best supplier since begginging. Husnain is one of our best supplier since begginging'),
 (32, 'Ali', 'Butt', 'Butt@gmail.com', '03030966241', 'Customer', 'Canal Bank', '2018-11-23 00:00:00', '     Husnain is one of our best supplier since begginging. Husnain is one of our best supplier since begginging. Husnain is one of our best supplier since begginging. Husnain is one of our best supplier since begginging     '),
-(33, 'Khawar', 'Hussain', 'Khawar@gmail.com', '03030966241', 'Customer', 'Canal Bank', '2018-11-23 00:00:00', 'Husnain is one of our best supplier since begginging. Husnain is one of our best supplier since begginging. Husnain is one of our best supplier since begginging. Husnain is one of our best supplier since begginging'),
 (35, 'Mudasar', 'Zaman', 'Mudasar@gmail.com', '03030966241', 'Supplier', 'Canal Bank', '2018-11-23 00:00:00', 'Husnain is one of our best supplier since begginging. Husnain is one of our best supplier since begginging. Husnain is one of our best supplier since begginging. Husnain is one of our best supplier since begginging'),
 (36, 'Nomi', 'Shah', 'nomi@gmail.com', '03030966241', 'Supplier', 'Canal Bank', '2018-11-23 00:00:00', 'Husnain is one of our best supplier since begginging. Husnain is one of our best supplier since begginging. Husnain is one of our best supplier since begginging. Husnain is one of our best supplier since begginging     '),
 (45, 'Werad', 'Ashfaq', 'Werad@gmail.com', '03030966241', 'Supplier', 'Canal Bank', '2018-11-23 00:00:00', 'Husnain is one of our best supplier since begginging. Husnain is one of our best supplier since begginging. Husnain is one of our best supplier since begginging. Husnain is one of our best supplier since begginging'),
@@ -56,8 +55,6 @@ INSERT INTO `member` (`ID`, `Name`, `Lname`, `Email`, `ContactNumber`, `Utype`, 
 (50, 'Mudasar', 'Zaman', 'Mudasar@gmail.com', '03030966241', 'Supplier', 'Canal Bank', '2018-11-23 00:00:00', 'Husnain is one of our best supplier since begginging. Husnain is one of our best supplier since begginging. Husnain is one of our best supplier since begginging. Husnain is one of our best supplier since begginging'),
 (51, 'Nomi', 'Shah', 'nomi@gmail.com', '03030966241', 'Supplier', 'Canal Bank', '2018-11-23 00:00:00', 'Husnain is one of our best supplier since begginging. Husnain is one of our best supplier since begginging. Husnain is one of our best supplier since begginging. Husnain is one of our best supplier since begginging'),
 (56, 'ArhamG', 'boss', 'Arham@gmail.com', '03030966241', 'Customer', 'Canal Bank', '2018-11-23 00:00:00', 'Husnain is one of our best supplier since begginging. Husnain is one of our best supplier since begginging. Husnain is one of our best supplier since begginging. Husnain is one of our best supplier since begginging'),
-(65, 'Mudasar', 'Zaman', 'Mudasar@gmail.com', '03030966241', 'Supplier', 'Canal Bank', '2018-11-23 00:00:00', 'Husnain is one of our best supplier since begginging. Husnain is one of our best supplier since begginging. Husnain is one of our best supplier since begginging. Husnain is one of our best supplier since begginging'),
-(66, 'Nomi', 'Shah', 'nomi@gmail.com', '03030966241', 'Supplier', 'Canal Bank', '2018-11-23 00:00:00', 'Husnain is one of our best supplier since begginging. Husnain is one of our best supplier since begginging. Husnain is one of our best supplier since begginging. Husnain is one of our best supplier since begginging'),
 (1111111111, 'Default ', 'User', 'non@gmail.com', '00000000', 'Supplier', 'Non', NULL, 'NOn');
 
 -- --------------------------------------------------------
@@ -79,10 +76,26 @@ CREATE TABLE `orderdetails` (
 --
 
 INSERT INTO `orderdetails` (`oid`, `pid`, `Name`, `NetWeight`, `NetValue`) VALUES
-(3, 10, 'AlfhaBeta', 10, 3140),
-(3, 12, 'AlfhaBeta', 5, 143),
-(3, 8, 'Head&Shoulder', 10, 4464),
-(3, 9, 'Sunsilk', 20, 682);
+(3, 12, 'AlfhaBeta', 10, 285),
+(3, 13, 'Head&Shoulder', 5, 176.667),
+(5, 10, 'AlfhaBeta', 4, 1256),
+(5, 11, 'Brighto Paints', 5, 663),
+(5, 8, 'Head&Shoulder', 8, 3571.2),
+(5, 14, 'PaintFant', 20, 150),
+(5, 9, 'Sunsilk', 30, 1022.5),
+(6, 10, 'AlfhaBeta', 6, 1884),
+(6, 11, 'Brighto Paints', 3, 397.8),
+(6, 8, 'Head&Shoulder', 2, 892.8),
+(6, 13, 'Head&Shoulder', 3, 106),
+(6, 14, 'PaintFant', 20, 150),
+(6, 9, 'Sunsilk', 30, 1022.5),
+(7, 11, 'Brighto Paints', 2, 265.2),
+(7, 13, 'Head&Shoulder', 7, 247.333),
+(7, 14, 'PaintFant', 20, 150),
+(7, 9, 'Sunsilk', 10, 340.833),
+(8, 12, 'AlfhaBeta', 5, 142.5),
+(8, 9, 'Sunsilk', 10, 340.833),
+(8, 14, 'PaintFant', 20, 150);
 
 -- --------------------------------------------------------
 
@@ -98,6 +111,7 @@ CREATE TABLE `orders` (
   `DeliverDate` datetime DEFAULT NULL,
   `Discount` float DEFAULT NULL,
   `GrandTotal` float NOT NULL,
+  `Selling_Price` float NOT NULL,
   `comments` varchar(600) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -105,8 +119,12 @@ CREATE TABLE `orders` (
 -- Dumping data for table `orders`
 --
 
-INSERT INTO `orders` (`OrderID`, `Reference`, `CustomerID`, `OrderDate`, `DeliverDate`, `Discount`, `GrandTotal`, `comments`) VALUES
-(3, 'Rafaan Order', 16, '2018-12-01 00:00:00', '2018-12-11 00:00:00', 125, 8303, 'No Comments');
+INSERT INTO `orders` (`OrderID`, `Reference`, `CustomerID`, `OrderDate`, `DeliverDate`, `Discount`, `GrandTotal`, `Selling_Price`, `comments`) VALUES
+(3, 'Texas order', 48, '2018-12-01 00:00:00', '2018-12-26 00:00:00', 20, 441.667, 6000, 'No Comments'),
+(5, 'Raffaan Order', 16, '2018-11-28 00:00:00', '2019-01-05 00:00:00', 88, 6574.7, 7500, 'No Comments'),
+(6, 'Arham Production 101', 48, '2018-11-25 00:00:00', '2018-11-30 00:00:00', 20, 4433.1, 10000, 'No Comments'),
+(7, 'Dairy Wall Street Order ', 56, '2018-11-24 00:00:00', '2019-01-03 00:00:00', 22, 981.366, 80800, 'No Comments'),
+(8, 'Gulzaib @101_Order', 16, '2018-11-25 00:00:00', '2018-11-30 00:00:00', 100, 533.333, 10000, 'No Comments');
 
 -- --------------------------------------------------------
 
@@ -149,7 +167,10 @@ INSERT INTO `productdetails` (`pid`, `sid`, `name`, `issued`, `available`, `NetW
 (12, 10, 'Liquid Nitrogen', 9, 1, 4, 40),
 (13, 14, 'Alumunium', 100, 0, 5, 500),
 (13, 10, 'Liquid Nitrogen', 10, 0, 1, 10),
-(13, 9, 'Sulphuric Acid', 12, 0, 2, 20);
+(13, 9, 'Sulphuric Acid', 12, 0, 2, 20),
+(14, 15, 'Salt(NACL)', 30, 0, 30, 300),
+(14, 17, 'Salt(NACL)', 20, 30, 10, 200),
+(14, 18, 'KOH', 20, 0, 20, 400);
 
 -- --------------------------------------------------------
 
@@ -174,11 +195,12 @@ CREATE TABLE `products` (
 
 INSERT INTO `products` (`ProductID`, `ProductName`, `QuantityProduced`, `QuantityIssued`, `QuantityAvailable`, `PriceperKG`, `ProductDate`, `comments`) VALUES
 (8, 'Head&Shoulder', 10, 10, 0, 446.4, '2018-12-06 00:00:00', 'No Comments'),
-(9, 'Sunsilk', 120, 20, 100, 34.0833, '2018-12-07 00:00:00', 'No Comments'),
+(9, 'Sunsilk', 120, 80, 40, 34.0833, '2018-12-07 00:00:00', 'No Comments'),
 (10, 'AlfhaBeta', 10, 10, 0, 314, '2018-12-05 00:00:00', 'No Comments'),
-(11, 'Brighto Paints', 10, 0, 10, 132.6, '2018-12-14 00:00:00', 'No Comments'),
-(12, 'AlfhaBeta', 20, 5, 15, 28.5, '2018-12-07 00:00:00', 'No Comments'),
-(13, 'Head&Shoulder', 15, 0, 15, 35.3333, '2018-12-07 00:00:00', 'No Comments');
+(11, 'Brighto Paints', 10, 10, 0, 132.6, '2018-12-14 00:00:00', 'No Comments'),
+(12, 'AlfhaBeta', 20, 15, 5, 28.5, '2018-12-07 00:00:00', 'No Comments'),
+(13, 'Head&Shoulder', 15, 15, 0, 35.3333, '2018-12-07 00:00:00', 'No Comments'),
+(14, 'PaintFant', 120, 80, 40, 7.5, '2018-12-14 00:00:00', 'No Comments');
 
 -- --------------------------------------------------------
 
@@ -210,7 +232,11 @@ INSERT INTO `stocks` (`StockID`, `SupplierID`, `StockName`, `QuantityPurchased`,
 (11, 51, 'Sodium carbonate Pentahidrate', 12, 12, 0, 20, 240, '2018-11-01 00:00:00', 'No Comments'),
 (12, 36, 'Liquid Nitrogen', 30, 30, 0, 100, 3000, '2018-11-01 00:00:00', 'No Comments                  '),
 (13, 13, 'Liquid Nitrogen', 12, 12, 0, 5, 60, '2018-11-14 00:00:00', 'No Comments'),
-(14, 13, 'Alumunium', 100, 100, 0, 100, 10000, '2018-12-19 00:00:00', 'No Comments');
+(14, 13, 'Alumunium', 100, 100, 0, 100, 10000, '2018-12-19 00:00:00', 'No Comments'),
+(15, 13, 'Salt(NACL)', 30, 30, 0, 10, 300, '2018-12-12 00:00:00', 'No Comments'),
+(16, 13, 'KOH', 20, 0, 20, 20, 400, '2018-12-22 00:00:00', 'No Comments'),
+(17, 45, 'Salt(NACL)', 50, 20, 30, 20, 1000, '2018-12-29 00:00:00', 'No Comments'),
+(18, 35, 'KOH', 20, 20, 0, 20, 400, '2018-12-21 00:00:00', 'No Comments');
 
 -- --------------------------------------------------------
 
@@ -302,17 +328,17 @@ ALTER TABLE `member`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `OrderID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `OrderID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `ProductID` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `ProductID` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT for table `stocks`
 --
 ALTER TABLE `stocks`
-  MODIFY `StockID` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `StockID` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 --
 -- AUTO_INCREMENT for table `user`
 --

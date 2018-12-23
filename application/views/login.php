@@ -77,9 +77,7 @@ function foo(){
 
 
           </form>
-          <div class="text-center">
-            <a class="d-block small" href="forgot-password.html">Forgot Password?</a>
-          </div>
+         
         </div>
       </div>
     </div>

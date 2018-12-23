@@ -143,7 +143,11 @@ public function getProductsDataForOrder($oid)
         return $query->result();
  }
  
-
+public function DeleteOrder($oid)
+{
+       $this->db->where("OrderID",$oid);
+        $this->db->delete("orders");
+}
 
 public function getOrderedProducts($oid)
 {
