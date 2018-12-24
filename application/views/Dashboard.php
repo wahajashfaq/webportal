@@ -91,7 +91,7 @@
 
           
           <!-- DataTables Example -->
-          <div class="card mb-3">
+          <!--<div class="card mb-3">
             <div class="card-header">
               <i class="fas fa-table"></i>
               <b style ='text-align:center'>Available Stocks</b>
@@ -475,7 +475,7 @@
                 
                 </table>
               </div>
-            </div>
+            </div>-->
 
             <!-- Add Footer here. Footer inlcudes logout model links and emding tags -->
             
