@@ -26,14 +26,14 @@ var arr = null;
 
 <div class = "row">
   
-   <div class="col-md-3 ">
+   <div class="col-md-4 ">
     <div class="form-group">
       <label class="control-label" for="Reference">Order Reference</label>  
       <input id="Reference" name="Reference" type="text" placeholder="Order Reference" class="form-control input-md" required="">
     </div>
    </div>
 
-  <div class="col-md-3 ">
+  <div class="col-md-4 ">
      <div class="form-group">
      <label class="control-label" for="CustomerID">Customers</label>
         <select  required id="CustomerID" name="CustomerID" class="form-control" >
@@ -66,12 +66,6 @@ var arr = null;
 
   </div>
 
-  <div class="col-md-2">
-     <div class="form-group">
-     <label class="control-label" for="Selling Price">Price</label>  
-     <input id="Selling_Price" name="Selling_Price" min=0 type="number" placeholder="0" class="form-control input-md" >
-     </div>
-  </div>
    
 </div>
 
@@ -104,7 +98,7 @@ var arr = null;
 
 <div class = "row">
     
-    <div class="col-md-4 ">
+    <div class="col-md-3 ">
      <div class="form-group">
      <label class="control-label" for="StockID">Products</label>
         <select id="StockID" name="StockID" class="form-control" >
@@ -141,34 +135,42 @@ var arr = null;
     </div>
 
 
-    <div class="col-md-4 ">
+    <div class="col-md-5 ">
     <div class="form-group">
      
      <div class="row">
+
+       <div class="col-md-3">
+       <div class="form-group">
+       <label class="control-label"  for="SPrice">Price</label>  
+       <input id="SPrice" name="SPrice" type="number" min="0" placeholder="000" class="form-control input-md" >
+       </div>
+       </div>
+     
       
-       <div class="col-md-4">
+       <div class="col-md-3">
        <div class="form-group">
        <label class="control-label"  for="QuantityAvailable">Available(KG)</label>  
        <input id="QuantityAvailable" disabled name="QuantityAvailable" type="number" placeholder="000" class="form-control input-md" >
        </div>
        </div>
      
-       <div class="col-md-4">
+       <div class="col-md-3">
        <div class="form-group">
        <label class="control-label" for="InputAmount">Amount(KG)</label>  
        <input id="InputAmount" name="InputAmount" type="number" placeholder="000" class="form-control input-md" >
        </div>
        </div>
      
-     <div class="col-md-4">
+      <div class="col-md-3">
        <div class="form-group">    
        <label class="control-label" for="AddPoduct">Add Product</label></br>
        <a name="AddPoduct" id="AddPoduct" style="border-radius:1.8rem" class="AddItem btn btn-md btn-primary"><i class="fa fa-plus"></i></a>    
        </div>
-       </div>
+      </div>
      </div>
        <span class="text-danger">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Input Amount should be less than available</span>
-       <span style="color:red" class="Error2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Must Add input amount to proceed</span>
+       <span style="color:red" class="Error2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Must Add input amount to proceed</span>
 
     </div>
    </div>
@@ -187,6 +189,7 @@ var arr = null;
                         <tr >
                           <th>Name</th>
                           <th>Selected Amount</th>
+                          <th>Selling Rate</th>
                           <th>Remove</th>
                         </tr>
                       </thead>

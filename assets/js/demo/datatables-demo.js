@@ -230,70 +230,74 @@ $('.OrderDelete').click(function()
  $('.AddItem').click(function()
    {
     var Input= document.getElementById('InputAmount').value;
+    var price= document.getElementById('SPrice').value;
    	var	Stock= document.getElementById('StockID').value;
+   	//alert(price);
    	item = Stock.split('/');
    	var item_id=item[0];
     var available = item_id;
     //alert(item_id + " "+ item[1]);
-
+    if(price ==""){alert("Must Select A Selling Price");}
    	if (+item_id!=0)
    	 {
-       	  if(+Input!=0)
-	   	  {
-	   	    	$('.Error3').fadeOut();
-	   	  	    $('.Error2').fadeOut();
-		   	  	if(+Input <= +available)
-		   	  	{
-		   	  		//alert("Husnain Ajmal");
-			   	  $('.Error3').fadeOut();
-			   	     $('.text-danger').fadeOut();
-			   	  	 $('.Error2').fadeOut();
-			   	  	 var className =item[1];
-			   	  	 className=className.replace(/\s+/g, '');	
-			   	  	 CleanclassName =className.replace(/[^\w\s]/gi, '');
-			   	  	//alert(className);
-			   	  	//alert(CleanclassName);
-			   	  	 option.push(CleanclassName);
-			   	    $('.SelectGroup').show("slow");
-			   	    $('.SelectGroupforEdit').show("slow");
-			   	   $('.SelectGroupforOrder').show("slow");
-			   	    
-			   	    var Optionclass;
-	                 if (option.length==0) 
-				   	 {
-                        $('.AddProductBtn').prop('disabled', true);   
-				   	 }
-				   	 else
-				   	 {
-				   	   $('.AddProductBtn').prop('disabled', false);
-				   	 }
-				   	    for (var i = 0; i < option.length; i++) 
-			   	    {
-		                 Optionclass = '.';
-		                 Optionclass += option[i];
-		                 //alert(Optionclass);
-		                 $(Optionclass).fadeOut();
-			   	    };
-		             //alert(option);
-			   	  	 var html = '<tr id='+className+'><input type="hidden" id="name" name="sname[]" value="'+item[1]+'"><td>'+item[1]+'</td><input type="hidden" id="name" name="sweight[]" value="'+Input+'"><td>'+Input+'</td><td><a  style="border-radius:1.8rem" id="'+className+'" class="BtnRemove btn btn-danger"><i class="fa fa-minus"></i></a></td></tr>';
-			         $('#SelectedItemTable').append(html);
-			          document.getElementById('StockID').value=0;
-                      document.getElementById('QuantityAvailable').value=0;
-			   	  }
-		   	  	else
-		   	  	{
-		   	  		 $('.Error3').fadeOut();
-		   	  	  $('.Error2').fadeOut();
-		   	      $('.text-danger').show();
-		   	  	 }
-	   	  }
-	   	  else
-	   	  {
-	   	  	$('.Error3').fadeOut();
-	   	  	$('.text-danger').fadeOut();
-	   	    $('.Error2').show("slow");
-	   	  }
-
+   	 	if(price !="")
+   	 	  {
+	       	  if(+Input!=0)
+		   	  {
+		   	    	$('.Error3').fadeOut();
+		   	  	    $('.Error2').fadeOut();
+			   	  	if(+Input <= +available)
+			   	  	{
+			   	  		//alert("Husnain Ajmal");
+				   	  $('.Error3').fadeOut();
+				   	     $('.text-danger').fadeOut();
+				   	  	 $('.Error2').fadeOut();
+				   	  	 var className =item[1];
+				   	  	 className=className.replace(/\s+/g, '');	
+				   	  	 CleanclassName =className.replace(/[^\w\s]/gi, '');
+				   	  	//alert(className);
+				   	  	//alert(CleanclassName);
+				   	  	 option.push(CleanclassName);
+				   	    $('.SelectGroup').show("slow");
+				   	    $('.SelectGroupforEdit').show("slow");
+				   	   $('.SelectGroupforOrder').show("slow");
+				   	    
+				   	    var Optionclass;
+		                 if (option.length==0) 
+					   	 {
+	                        $('.AddProductBtn').prop('disabled', true);   
+					   	 }
+					   	 else
+					   	 {
+					   	   $('.AddProductBtn').prop('disabled', false);
+					   	 }
+					   	    for (var i = 0; i < option.length; i++) 
+				   	    {
+			                 Optionclass = '.';
+			                 Optionclass += option[i];
+			                 //alert(Optionclass);
+			                 $(Optionclass).fadeOut();
+				   	    };
+			             //alert(option);
+				   	  	 var html = '<tr id='+className+'><input type="hidden" id="name" name="sname[]" value="'+item[1]+'"><td>'+item[1]+'</td><input type="hidden" id="name" name="sweight[]" value="'+Input+'"><td>'+Input+'</td><input type="hidden" id="sprice" name="sprice[]" value="'+price+'"><td>'+price+'</td><td><a  style="border-radius:1.8rem" id="'+className+'" class="BtnRemove btn btn-danger"><i class="fa fa-minus"></i></a></td></tr>';
+				         $('#SelectedItemTable').append(html);
+				          document.getElementById('StockID').value=0;
+	                      document.getElementById('QuantityAvailable').value=0;
+				   	  }
+			   	  	else
+			   	  	{
+			   	  		 $('.Error3').fadeOut();
+			   	  	  $('.Error2').fadeOut();
+			   	      $('.text-danger').show();
+			   	  	 }
+		   	  }
+		   	  else
+		   	  {
+		   	  	$('.Error3').fadeOut();
+		   	  	$('.text-danger').fadeOut();
+		   	    $('.Error2').show("slow");
+		   	  }
+	      }     
 	   	}
 	   	else
 	   	{
