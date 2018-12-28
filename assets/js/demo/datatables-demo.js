@@ -4,14 +4,14 @@ $(document).ready(function() {
     $('#StockdataTable thead tr:eq(0) th').each( function (i) {
         var title = $(this).text();
       var temphtml = $(this).html();
-		       
+
       //  alert(title);
- 			if (title == "Edit" || title=="Delete" || title == "View" || title=="Cancel") 
+ 			if (title == "Edit" || title=="Delete" || title == "View" || title=="Cancel")
 		 	{  $(this).html(temphtml+ '<br><p style="padding-bottom:13px;"></p>');  }
         	else
         	{
         	//alert(title);
-        	    $(this).html(temphtml+ '<br><input type="text" style="width:102px;" placeholder="Search"/>' );    
+        	    $(this).html(temphtml+ '<br><input type="text" style="width:102px;" placeholder="Search"/>' );
 		        $( 'input', this ).on( 'keyup change', function () {
 		            if ( table.column(i).search() !== this.value ) {
 		                table
@@ -22,7 +22,7 @@ $(document).ready(function() {
 		        } );
              };
     } );
- 
+
 
  $('#MemberdataTable').DataTable();
  $('#UserdataTable').DataTable();
@@ -36,10 +36,10 @@ $(document).ready(function() {
 
 
 // $('#StockdataTable').DataTable();
- 
+
   if(arr)
       {
-      	for (var i = 0; i < arr.length; i++) 
+      	for (var i = 0; i < arr.length; i++)
       	{
       		className=arr[i].name;
       	    className=className.replace(/\s+/g,'');
@@ -47,7 +47,7 @@ $(document).ready(function() {
       		option.push(CleanclassName);
       	 };
 
-        for (var i = 0; i < option.length; i++) 
+        for (var i = 0; i < option.length; i++)
 		{
 		  Optionclass = '.';
 		  Optionclass += option[i];
@@ -55,10 +55,10 @@ $(document).ready(function() {
 	    };
       }
 
-           if (option.length==0) 
+           if (option.length==0)
 			  {
 			  	// $(':input[type="submit"]').prop('disabled', true);
-                $('.AddProductBtn').prop('disabled', true);           
+                $('.AddProductBtn').prop('disabled', true);
 			    $(".AddProduct").addClass("not-allowed");
 			   }
 			else
@@ -67,7 +67,7 @@ $(document).ready(function() {
 			   	$('.AddProductBtn').prop('disabled', false);
 			   	$(".AddProduct").removeClass("not-allowed");
 			   }
-     
+
   });
 
 // $(document).load(function(){
@@ -76,9 +76,9 @@ $(document).ready(function() {
 var option=[];
    $('.UserDelete').click(function()
    {
-	    if (confirm("Do you want to delete this record?")) 
+	    if (confirm("Do you want to delete this record?"))
 	    {
-	    	//The Value of This becomes undefined in Ajax Success or error section 
+	    	//The Value of This becomes undefined in Ajax Success or error section
 	    	//So we Need to Store Table and Row objects
 	    	var obj = $(this).parents('tr');
 	    	var table = $('#UserdataTable').DataTable();
@@ -87,14 +87,14 @@ var option=[];
 	    	var pathArray = window.location.pathname.split('/'); // to split all string after domain
 	    	var host = pathArray[1]; //This will return the host or root in Url part
 	    	var base_url = domain +'/'+ host + '/'; //Combinng all to get base_url same as codeigniter
-	    	var id = $(this).attr("id");//Getiing the ID to Delete on server side 
+	    	var id = $(this).attr("id");//Getiing the ID to Delete on server side
 
 	        $.ajax({
 	            url:  base_url+ 'User/deleteUser',
 	            type: 'POST',
 	            data: {uid:id},
 	            dataSrc : "",
-	            success: function () 
+	            success: function ()
 	            {
 	            	table.row(obj).remove().draw(false);
 	                //$('#dataTable').DataTable().ajax.reload(); require a json object a parameter
@@ -105,19 +105,19 @@ var option=[];
 	                   {
 	                    alert('Request failure');
 	                   }
-	            
+
 	                });
-            
+
 	    }
-	    
+
     });
 
 
    $('.Delete').click(function()
    {
-	    if (confirm("Do you want to delete this record?")) 
+	    if (confirm("Do you want to delete this record?"))
 	    {
-	    	//The Value of This becomes undefined in Ajax Success or error section 
+	    	//The Value of This becomes undefined in Ajax Success or error section
 	    	//So we Need to Store Table and Row objects
 	    	var obj = $(this).parents('tr');
 	    	var table = $('#MemberdataTable').DataTable();
@@ -126,14 +126,14 @@ var option=[];
 	    	var pathArray = window.location.pathname.split('/'); // to split all string after domain
 	    	var host = pathArray[1]; //This will return the host or root in Url part
 	    	var base_url = domain +'/'+ host + '/'; //Combinng all to get base_url same as codeigniter
-	    	var id = $(this).attr("id");//Getiing the ID to Delete on server side 
+	    	var id = $(this).attr("id");//Getiing the ID to Delete on server side
 
 	        $.ajax({
 	            url:  base_url+ 'Members/deleteMember',
 	            type: 'POST',
 	            data: {uid:id},
 	            dataSrc : "",
-	            success: function () 
+	            success: function ()
 	            {
 	            	table.row(obj).remove().draw(false);
 	                //$('#dataTable').DataTable().ajax.reload(); require a json object a parameter
@@ -144,19 +144,19 @@ var option=[];
 	                   {
 	                    alert('Request failure');
 	                   }
-	            
+
 	                });
-            
+
 	    }
-	    
+
     });
 
 //StockDelete
    $('.StockDelete').click(function()
    {
-	    if (confirm("Do you want to delete this record?")) 
+	    if (confirm("Do you want to delete this record?"))
 	    {
-	    	//The Value of This becomes undefined in Ajax Success or error section 
+	    	//The Value of This becomes undefined in Ajax Success or error section
 	    	//So we Need to Store Table and Row objects
 	    	var obj = $(this).parents('tr');
 	    	var table = $('#StockdataTable').DataTable();
@@ -165,14 +165,14 @@ var option=[];
 	    	var pathArray = window.location.pathname.split('/'); // to split all string after domain
 	    	var host = pathArray[1]; //This will return the host or root in Url part
 	    	var base_url = domain +'/'+ host + '/'; //Combinng all to get base_url same as codeigniter
-	    	var id = $(this).attr("id");//Getiing the ID to Delete on server side 
+	    	var id = $(this).attr("id");//Getiing the ID to Delete on server side
 
 	        $.ajax({
 	            url:  base_url+ 'Stocks/deleteStock',
 	            type: 'POST',
 	            data: {uid:id},
 	            dataSrc : "",
-	            success: function () 
+	            success: function ()
 	            {
 	            	table.row(obj).remove().draw(false);
 	            },
@@ -180,20 +180,20 @@ var option=[];
 	                   {
 	                    alert('Request failure');
 	                   }
-	            
+
 	                });
-            
+
 	    }
-	    
+
     });
 
 
 //OrderDelete / Order Cancel
 $('.OrderDelete').click(function()
    {
-	    if (confirm("Do you want to delete this record?")) 
+	    if (confirm("Do you want to delete this record?"))
 	    {
-	    	//The Value of This becomes undefined in Ajax Success or error section 
+	    	//The Value of This becomes undefined in Ajax Success or error section
 	    	//So we Need to Store Table and Row objects
 	    	var obj = $(this).parents('tr');
 	    	var table = $('#StockdataTable').DataTable();
@@ -202,14 +202,14 @@ $('.OrderDelete').click(function()
 	    	var pathArray = window.location.pathname.split('/'); // to split all string after domain
 	    	var host = pathArray[1]; //This will return the host or root in Url part
 	    	var base_url = domain +'/'+ host + '/'; //Combinng all to get base_url same as codeigniter
-	    	var id = $(this).attr("id");//Getiing the ID to Delete on server side 
+	    	var id = $(this).attr("id");//Getiing the ID to Delete on server side
            //  alert(id);
 	        $.ajax({
 	            url:  base_url+ 'Orders/deleteOrder',
 	            type: 'POST',
 	            data: {uid:id},
 	            dataSrc : "",
-	            success: function () 
+	            success: function ()
 	            {
 	            	table.row(obj).remove().draw(false);
 	            },
@@ -217,11 +217,11 @@ $('.OrderDelete').click(function()
 	                   {
 	                    alert('Request failure');
 	                   }
-	            
+
 	                });
-            
+
 	    }
-	    
+
     });
 
 
@@ -249,7 +249,7 @@ $('.OrderDelete').click(function()
 			   	     $('.text-danger').fadeOut();
 			   	  	 $('.Error2').fadeOut();
 			   	  	 var className =item[1];
-			   	  	 className=className.replace(/\s+/g, '');	
+			   	  	 className=className.replace(/\s+/g, '');
 			   	  	 CleanclassName =className.replace(/[^\w\s]/gi, '');
 			   	  	//alert(className);
 			   	  	//alert(CleanclassName);
@@ -257,17 +257,17 @@ $('.OrderDelete').click(function()
 			   	    $('.SelectGroup').show("slow");
 			   	    $('.SelectGroupforEdit').show("slow");
 			   	   $('.SelectGroupforOrder').show("slow");
-			   	    
+
 			   	    var Optionclass;
-	                 if (option.length==0) 
+	                 if (option.length==0)
 				   	 {
-                        $('.AddProductBtn').prop('disabled', true);   
+                        $('.AddProductBtn').prop('disabled', true);
 				   	 }
 				   	 else
 				   	 {
 				   	   $('.AddProductBtn').prop('disabled', false);
 				   	 }
-				   	    for (var i = 0; i < option.length; i++) 
+				   	    for (var i = 0; i < option.length; i++)
 			   	    {
 		                 Optionclass = '.';
 		                 Optionclass += option[i];
@@ -300,9 +300,9 @@ $('.OrderDelete').click(function()
 	  	     $('.text-danger').fadeOut();
 		   	 $('.Error2').fadeOut();
 	         $('.Error3').show("slow");
-	   	}         
+	   	}
 
-	  
+
     });
 
 $('select').on('change', function() {
@@ -316,11 +316,11 @@ var	Stock= document.getElementById('StockID').value;
 $(document).on('click','.BtnRemove',(function(){
 	if (confirm("Do you want to remove this entry"))
 	{
-		 
+
 		var count = $('#SelectedItemTable tr').length; //this returns total rows including header
 		count = count-2; //So we need to dec by 1. But when there is only one row and length is 1
 		//alert(count);  //We need to hide whole table view as there will be 0 rows now after delete
-		if (count==0) 
+		if (count==0)
 			{
 				$('.SelectGroup').fadeOut();
 	            $('.SelectGroupforOrder').fadeOut();
@@ -332,7 +332,7 @@ $(document).on('click','.BtnRemove',(function(){
 				//$(':input[type="submit"]').prop('disabled', false);
 				$('.AddProductBtn').prop('disabled', false);
 			}
-			var id = $(this).attr("id");	
+			var id = $(this).attr("id");
 			id=id.replace(/\s+/g,'');
       	    var CleanclassName = id.replace(/[^\w\s]/gi, '');
 			var index = option.indexOf(CleanclassName);
@@ -344,19 +344,19 @@ $(document).on('click','.BtnRemove',(function(){
                RemovedClassName = "." + CleanclassName;
                $(RemovedClassName).show();
                var Optionclass;
-	  
-	   	    for (var i = 0; i < option.length; i++) 
+
+	   	    for (var i = 0; i < option.length; i++)
 	   	    {
                  Optionclass = '.';
                  Optionclass += option[i];
                  $(Optionclass).fadeOut();
 	   	    };
-             
-	   $(this).closest('tr').remove();	
+
+	   $(this).closest('tr').remove();
 	};
 }));
 
-//Add all the Jquer above it. DataTable call should be in the end. It was Ceating problem and doesnt working 
+//Add all the Jquer above it. DataTable call should be in the end. It was Ceating problem and doesnt working
 //for further pages of data table
 $('#dataTable').DataTable();
  $('#UserdataTable').DataTable();
@@ -364,6 +364,7 @@ $('#dataTable').DataTable();
 $('#MemberdataTable').DataTable();
 
   var table= $('#StockdataTable').DataTable( {
+       "order": [[ 6, "desc" ]],
         orderCellsTop: true,
         fixedHeader: true
     } );

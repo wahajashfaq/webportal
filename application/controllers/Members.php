@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Members extends CI_Controller 
+class Members extends CI_Controller
 {
 
 	public function index()
@@ -14,7 +14,7 @@ class Members extends CI_Controller
 	}
 	public function addMember()
 	{
-		$post =$this->input->post(); 
+		$post =$this->input->post();
 		$this->load->model('member_model');
 		unset($post['submit']);
 		$this->member_model->addMember($post);
@@ -28,15 +28,15 @@ class Members extends CI_Controller
          $this->load->model('member_model');
          $uid = $_GET['DataID'];
          $user = $this->member_model->getMemberData($uid);
-	     $this->load->view('editMember',['user'=>$user]);	
-		} 
+	     $this->load->view('editMember',['user'=>$user]);
+		}
        //echo $u_id;
 	}
 
 	public function updateMember()
 	{
        $this->load->model('member_model');
-       
+
        //Getting the POST data In variables. If the post attributes names are same as fields in DB.
        //Than we can pass whole post array after unsetting Submit and Hidden field reducing the effort
         //Making an array of Variable name same as member table fields name
@@ -60,18 +60,25 @@ class Members extends CI_Controller
 	{
 		$this->load->model('member_model');
 		$uid = $this->input->post('uid');
-		
+
 		$this->member_model->DeleteMemberData($uid);
 		 //return "Record Deleted Successfully";
 		return true;
 	}
-    public function getmembers()
+    public function getcustomers()
 	{
 		$this->load->model('member_model');
-		$users=$this->member_model->getmembers();
-        $this->load->view('ViewMembers',['users'=>$users]);
+		$users=$this->member_model->getcustomer();
+        $this->load->view('ViewCustomers',['users'=>$users]);
 	}
 
+public function getsuppliers()
+{
+        $this->load->model('member_model');
+        $users=$this->member_model->getsupplier();
+        $this->load->view('ViewSuppliers',['users'=>$users]);
+
+}
 	public function foo()
 	{
     $this->load->view('response');

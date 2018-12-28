@@ -1,8 +1,8 @@
-<?php include_once('Templates/Admin_header.php');?>   
-   
+<?php include_once('Templates/Admin_header.php');?>
+
     <title>Dashboard</title>
 
-<?php include_once('Templates/Admin_NavBar_SidePanel.php');?>   
+<?php include_once('Templates/Admin_NavBar_SidePanel.php');?>
 
 
 <!-- Rest of the body starts here -->
@@ -19,7 +19,7 @@
           </ol>
 
            <!-- Start Coding From here -->
-          
+
           <div class="container">
     <div class="row">
         <div class="col-xs-12">
@@ -169,7 +169,7 @@
 </style>
 
 
-      <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+      <div class="card-footer small text-muted"></div>
       </div>
 
-<?php include_once('Templates/Admin_footer.php');?>   
+<?php include_once('Templates/Admin_footer.php');?>

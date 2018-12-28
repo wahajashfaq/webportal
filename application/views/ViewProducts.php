@@ -1,8 +1,8 @@
-<?php include_once('Templates/Admin_header.php');?>   
-   
+<?php include_once('Templates/Admin_header.php');?>
+
     <title>Portal Products</title>
 
-<?php include_once('Templates/Admin_NavBar_SidePanel.php');?>   
+<?php include_once('Templates/Admin_NavBar_SidePanel.php');?>
 
 <!-- End of Side panel and header -->
 
@@ -19,7 +19,7 @@
             <li class="breadcrumb-item active">Available Products</li>
           </ol>
 
-           
+
           <!-- DataTables Example -->
           <div class="card mb-3">
             <div class="card-header">
@@ -45,15 +45,15 @@
                       <?php if(count($Products)):
                          foreach ($Products as $p):
                         ?>
-                      <tr> 
+                      <tr>
                       <td><?=$p->pName?></td>
                       <td><?=$p->QP?></td>
                       <td><?=$p->Qissue?></td>
                       <td><?=$p->Price?></td>
-                      <td style="width:15%"><?=date("Y-m-d", strtotime($p->date));?></td> 
+                      <td style="width:15%"><?=date("Y-m-d", strtotime($p->date));?></td>
                       <td><a href="<?php echo base_url()?>Products/editProduct?DataID=<?php echo $p->pid?>" data-placement="top" data-toggle="tooltip" title="Edit"style="color:White" class="btn btn-sm btn-primary"><i class="fa fa-pencil-square-o"></i> Edit</a></td>
                       <td><button data-placement="top" data-toggle="tooltip" id="<?php echo $p->pid?>" title="Delete" style="color:White" class="ProductDelete btn btn-sm btn-danger"><i class="fa fa-trash"></i> Delete</button></td>
-                      
+
                     </tr>
                           <?php
                           endforeach;
@@ -67,11 +67,11 @@
                       <?php endif;?>
 
                   </tbody>
-                
+
                 </table>
               </div>
             </div>
-    <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+    <div class="card-footer small text-muted"></div>
           </div>
 
-<?php include_once('Templates/Admin_footer.php');?>   
+<?php include_once('Templates/Admin_footer.php');?>

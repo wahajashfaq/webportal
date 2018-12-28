@@ -1,8 +1,8 @@
-<?php include_once('Templates/Admin_header.php');?>   
-   
+<?php include_once('Templates/Admin_header.php');?>
+
     <title>Dashboard</title>
 
-<?php include_once('Templates/Admin_NavBar_SidePanel.php');?>   
+<?php include_once('Templates/Admin_NavBar_SidePanel.php');?>
 
 
 <!-- Rest of the body starts here -->
@@ -89,7 +89,7 @@
             </div>
           </div>
 
-          
+
           <!-- DataTables Example -->
           <!--<div class="card mb-3">
             <div class="card-header">
@@ -111,7 +111,7 @@
                       <th>Delete</th>
                     </tr>
                   </thead>
-                 
+
                     <tbody>
                     <tr class ="table-danger">
                       <td>Sulphuric Acid</td>
@@ -123,7 +123,7 @@
                       <td><button  data-placement="top" data-toggle="tooltip" title="Edit" class="btn btn-primary"><i class="fa fa-pencil-square-o"></i> Edit</button></td>
                       <td><button  data-placement="top" data-toggle="tooltip" title="Delete" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</button></td>
                     </tr>
-                
+
                     <tr class ="table-primary">
                       <td>Sulphuric Acid</td>
                       <td>1000</td>
@@ -144,7 +144,7 @@
                       <td><button  data-placement="top" data-toggle="tooltip" title="Edit" class="btn btn-primary"><i class="fa fa-pencil-square-o"></i> Edit</button></td>
                       <td><button  data-placement="top" data-toggle="tooltip" title="Delete" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</button></td>
                     </tr>
-                
+
                     <tr class ="table-primary">
                       <td>Sulphuric Acid</td>
                       <td>1000</td>
@@ -165,7 +165,7 @@
                       <td><button  data-placement="top" data-toggle="tooltip" title="Edit" class="btn btn-primary"><i class="fa fa-pencil-square-o"></i> Edit</button></td>
                       <td><button  data-placement="top" data-toggle="tooltip" title="Delete" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</button></td>
                     </tr>
-                
+
                     <tr class ="table-primary">
                       <td>Sulphuric Acid</td>
                       <td>1000</td>
@@ -186,7 +186,7 @@
                       <td><button  data-placement="top" data-toggle="tooltip" title="Edit" class="btn btn-primary"><i class="fa fa-pencil-square-o"></i> Edit</button></td>
                       <td><button  data-placement="top" data-toggle="tooltip" title="Delete" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</button></td>
                     </tr>
-                
+
                     <tr class ="table-primary">
                       <td>Sulphuric Acid</td>
                       <td>1000</td>
@@ -207,7 +207,7 @@
                       <td><button  data-placement="top" data-toggle="tooltip" title="Edit" class="btn btn-primary"><i class="fa fa-pencil-square-o"></i> Edit</button></td>
                       <td><button  data-placement="top" data-toggle="tooltip" title="Delete" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</button></td>
                     </tr>
-                
+
                     <tr class ="table-primary">
                       <td>Sulphuric Acid</td>
                       <td>1000</td>
@@ -228,7 +228,7 @@
                       <td><button  data-placement="top" data-toggle="tooltip" title="Edit" class="btn btn-primary"><i class="fa fa-pencil-square-o"></i> Edit</button></td>
                       <td><button  data-placement="top" data-toggle="tooltip" title="Delete" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</button></td>
                     </tr>
-                
+
                     <tr class ="table-primary">
                       <td>Sulphuric Acid</td>
                       <td>1000</td>
@@ -249,7 +249,7 @@
                       <td><button  data-placement="top" data-toggle="tooltip" title="Edit" class="btn btn-primary"><i class="fa fa-pencil-square-o"></i> Edit</button></td>
                       <td><button  data-placement="top" data-toggle="tooltip" title="Delete" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</button></td>
                     </tr>
-                
+
                     <tr class ="table-primary">
                       <td>Sulphuric Acid</td>
                       <td>1000</td>
@@ -270,7 +270,7 @@
                       <td><button  data-placement="top" data-toggle="tooltip" title="Edit" class="btn btn-primary"><i class="fa fa-pencil-square-o"></i> Edit</button></td>
                       <td><button  data-placement="top" data-toggle="tooltip" title="Delete" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</button></td>
                     </tr>
-                
+
                     <tr class ="table-primary">
                       <td>Sulphuric Acid</td>
                       <td>1000</td>
@@ -291,7 +291,7 @@
                       <td><button  data-placement="top" data-toggle="tooltip" title="Edit" class="btn btn-primary"><i class="fa fa-pencil-square-o"></i> Edit</button></td>
                       <td><button  data-placement="top" data-toggle="tooltip" title="Delete" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</button></td>
                     </tr>
-                
+
                     <tr class ="table-primary">
                       <td>Sulphuric Acid</td>
                       <td>1000</td>
@@ -312,7 +312,7 @@
                       <td><button  data-placement="top" data-toggle="tooltip" title="Edit" class="btn btn-primary"><i class="fa fa-pencil-square-o"></i> Edit</button></td>
                       <td><button  data-placement="top" data-toggle="tooltip" title="Delete" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</button></td>
                     </tr>
-                
+
                     <tr class ="table-primary">
                       <td>Sulphuric Acid</td>
                       <td>1000</td>
@@ -333,7 +333,7 @@
                       <td><button  data-placement="top" data-toggle="tooltip" title="Edit" class="btn btn-primary"><i class="fa fa-pencil-square-o"></i> Edit</button></td>
                       <td><button  data-placement="top" data-toggle="tooltip" title="Delete" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</button></td>
                     </tr>
-                
+
                     <tr class ="table-primary">
                       <td>Sulphuric Acid</td>
                       <td>1000</td>
@@ -354,7 +354,7 @@
                       <td><button  data-placement="top" data-toggle="tooltip" title="Edit" class="btn btn-primary"><i class="fa fa-pencil-square-o"></i> Edit</button></td>
                       <td><button  data-placement="top" data-toggle="tooltip" title="Delete" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</button></td>
                     </tr>
-                
+
                     <tr class ="table-primary">
                       <td>Sulphuric Acid</td>
                       <td>1000</td>
@@ -375,7 +375,7 @@
                       <td><button  data-placement="top" data-toggle="tooltip" title="Edit" class="btn btn-primary"><i class="fa fa-pencil-square-o"></i> Edit</button></td>
                       <td><button  data-placement="top" data-toggle="tooltip" title="Delete" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</button></td>
                     </tr>
-                
+
                     <tr class ="table-primary">
                       <td>Sulphuric Acid</td>
                       <td>1000</td>
@@ -396,7 +396,7 @@
                       <td><button  data-placement="top" data-toggle="tooltip" title="Edit" class="btn btn-primary"><i class="fa fa-pencil-square-o"></i> Edit</button></td>
                       <td><button  data-placement="top" data-toggle="tooltip" title="Delete" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</button></td>
                     </tr>
-                
+
                     <tr class ="table-primary">
                       <td>Sulphuric Acid</td>
                       <td>1000</td>
@@ -417,7 +417,7 @@
                       <td><button  data-placement="top" data-toggle="tooltip" title="Edit" class="btn btn-primary"><i class="fa fa-pencil-square-o"></i> Edit</button></td>
                       <td><button  data-placement="top" data-toggle="tooltip" title="Delete" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</button></td>
                     </tr>
-                
+
                     <tr class ="table-primary">
                       <td>Sulphuric Acid</td>
                       <td>1000</td>
@@ -438,7 +438,7 @@
                       <td><button  data-placement="top" data-toggle="tooltip" title="Edit" class="btn btn-primary"><i class="fa fa-pencil-square-o"></i> Edit</button></td>
                       <td><button  data-placement="top" data-toggle="tooltip" title="Delete" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</button></td>
                     </tr>
-                
+
                     <tr class ="table-primary">
                       <td>Sulphuric Acid</td>
                       <td>1000</td>
@@ -459,7 +459,7 @@
                       <td><button  data-placement="top" data-toggle="tooltip" title="Edit" class="btn btn-primary"><i class="fa fa-pencil-square-o"></i> Edit</button></td>
                       <td><button  data-placement="top" data-toggle="tooltip" title="Delete" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</button></td>
                     </tr>
-                
+
                     <tr class ="table-primary">
                       <td>Sulphuric Acid</td>
                       <td>1000</td>
@@ -470,16 +470,16 @@
                       <td><button  data-placement="top" data-toggle="tooltip" title="Edit" class="btn btn-primary"><i class="fa fa-pencil-square-o"></i> Edit</button></td>
                       <td><button  data-placement="top" data-toggle="tooltip" title="Delete" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</button></td>
                     </tr>
-                
+
                   </tbody>
-                
+
                 </table>
               </div>
             </div>-->
 
             <!-- Add Footer here. Footer inlcudes logout model links and emding tags -->
-            
-    <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+
+    <div class="card-footer small text-muted"></div>
           </div>
 
-<?php include_once('Templates/Admin_footer.php');?>   
+<?php include_once('Templates/Admin_footer.php');?>

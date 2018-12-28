@@ -9,34 +9,35 @@ class stock_model extends CI_Model
     }
 
     public function getStocks()
-    {  
+    {
         $query = $this->db->query("
                                 Select s.StockID as s_ID,s.StockName as StockName,s.SupplierID as id,
                                 CONCAT (m.Name,m.Lname) as SupplierName,s.QuantityPurchased as QP,
                                 s.QuantityIssued as Qissue,s.PriceperKG as Price,s.TotalPrice as bill,
-                                s.StockDate as date from member as m,stocks as s 
+                                s.StockDate as date from member as m,stocks as s
                                 where m.ID = s.SupplierID
+                                order by s.StockDate desc
                                 ");
         return $query->result();
     }
- 
+
     public function getStockData($sid)
-    {   
+    {
         $query = $this->db->query("
                                 Select s.StockID as s_ID,s.StockName as StockName,s.SupplierID as id,
                                 CONCAT (m.Name,m.Lname) as SupplierName,s.QuantityPurchased as QP,
                                 s.QuantityIssued as Qissue,s.PriceperKG as Price,s.TotalPrice as bill,
-                                s.StockDate as date,s.comments as comment 
-                                from member as m,stocks as s 
+                                s.StockDate as date,s.comments as comment
+                                from member as m,stocks as s
                                 where m.ID = s.SupplierID and  s.StockID ='$sid'
                                 ");
-        
-       return $query->row();  
+
+       return $query->row();
     }
     public function UpdateStock($sid,$data)
     {
         $this->db->where("StockID",$sid);
-        $this->db->update('stocks', $data);     
+        $this->db->update('stocks', $data);
     }
     public function addStock($Stock)
     {
@@ -48,7 +49,7 @@ class stock_model extends CI_Model
         $this->db->where("StockID",$sid);
         $this->db->delete("stocks");
     }
-      
+
     public function UpdateStocksIds($uid)
     {
       $this->db->set('SupplierID', '1111111111');
@@ -58,4 +59,4 @@ class stock_model extends CI_Model
 // set SupplierID = 1111111111
 // where  = 13
      }
-} 
+}

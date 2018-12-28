@@ -1,8 +1,8 @@
-<?php include_once('Templates/Admin_header.php');?>   
-   
+<?php include_once('Templates/Admin_header.php');?>
+
     <title>Order Details</title>
 
-<?php include_once('Templates/Admin_NavBar_SidePanel.php');?>   
+<?php include_once('Templates/Admin_NavBar_SidePanel.php');?>
 
 
 <!-- Rest of the body starts here -->
@@ -26,35 +26,35 @@
                 <div class="card-body p-1">
                     <div class="row p-1">   <!--Ref https://www.w3schools.com/php/func_date_date_format.asp-->
                         <div class="col-md-6"> <!--dS gives 11th M gives month name and Y gives year-->
-                           <h3><p class="font-weight-bold mb-1">Order#<?= $Order->oid?></p></h3> 
+                           <h3><p class="font-weight-bold mb-1">Order#<?= $Order->oid?></p></h3>
                             <p class="text-muted">Due to: <?=date("dS M,Y", strtotime($Order->dDate));?></p>
                         </div>
                         <div class="col-md-6" >
 
                         <div class="col-md-2 pull-right">
-                        <a href="<?php echo base_url().'Orders/ShowOrders'?>" data-toggle="tooltip" title="Back" style="color:White" 
+                        <a href="<?php echo base_url().'Orders/ShowOrders'?>" data-toggle="tooltip" title="Back" style="color:White"
                         class="btn btn-md btn-info pull-right mb-1">
                           <i class="fa fa-arrow-left" aria-hidden="true"></i>
-                          Back    
+                          Back
                          </a>
                         </div>
 
                         <div class="col-md-2 pull-right">
-                        <a href="<?php echo base_url()?>Orders/editOrder?DataID=<?php echo $Order->oid?>" data-toggle="tooltip" title="Back" style="color:White" 
+                        <a href="<?php echo base_url()?>Orders/editOrder?DataID=<?php echo $Order->oid?>" data-toggle="tooltip" title="Back" style="color:White"
                         class="btn btn-md btn-info pull-right mb-1">
                           <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                          Edit    
+                          Edit
                          </a>
                         </div>
 
                         <div class="col-md-2 pull-right">
-                         <button data-placement="top" data-toggle="tooltip" title="Print" style="color:White" 
+                         <button data-placement="top" data-toggle="tooltip" title="Print" style="color:White"
                          class="OrderPDFBtn btn btn-md btn-info pull-right mb-1">
                           <i class="fa fa-file-pdf-o" aria-hidden="true"  ></i>
                            Export PDF
                          </button>
-                        
-                        </div> 
+
+                        </div>
                       </div>
 
                     </div>
@@ -62,7 +62,7 @@
                     <hr class="my-3">
 
                     <div class="row pb-4 p-4">
-                        
+
                     <div class="col-md-6">
                             <p class="font-weight-bold mb-4">Customer Details</p>
                             <p class="mb-1"><span class="text-muted"><b>NAME:</b></span> <?=$Order->CName?></p>
@@ -94,11 +94,11 @@
                                  </tr>
                               </thead>
                               <tbody>
-                                    <?php 
-                                    if ($products) 
+                                    <?php
+                                    if ($products)
                                     {
-                                        foreach ($products as $key => $p) 
-                                        {   
+                                        foreach ($products as $key => $p)
+                                        {
                                     ?>
                                     <tr>
                                         <td><?=$key+1?></td>
@@ -126,7 +126,7 @@
                     </div>
 
                     <div class="d-flex flex-row-reverse bg-dark text-white p-1">
-                        
+
                             <div class="py-3 px-4 text-right">
                             <div class="mb-2"></div>
                             <div class="h2 font-weight-light"></div>
@@ -145,11 +145,11 @@
             </div>
         </div>
     </div>
-    
-   
+
+
 </div>
-  
-      <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+
+      <div class="card-footer small text-muted"></div>
       </div>
 
-<?php include_once('Templates/Admin_footer.php');?>   
+<?php include_once('Templates/Admin_footer.php');?>

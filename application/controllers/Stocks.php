@@ -18,19 +18,19 @@ public function editStock()
          $sid = $_GET['DataID'];
          //echo $sid;
          $stock = $this->st->getStockData($sid);
-         $suppliers = $this->st->getsuppliers(); 
+         $suppliers = $this->st->getsuppliers();
     //       echo $sid;
     //       echo "<pre>";
 		  // print_r($stock);exit;
-	     $this->load->view('editStock',['stock'=>$stock,'suppliers'=>$suppliers,'supplierID'=>$stock->id]);	
-		} 
+	     $this->load->view('editStock',['stock'=>$stock,'suppliers'=>$suppliers,'supplierID'=>$stock->id]);
+		}
        //echo $u_id;
 	}
 	public function updateStock()
 	{
-       	 $this->load->model('stock_model','st'); 
+       	 $this->load->model('stock_model','st');
     	 $post =$this->input->post();
-		
+
 		 unset($post['submit']);
 		 if (!isset($post['QuantityIssued']) or empty($post['QuantityIssued']) ) {	$post['QuantityIssued'] = 0; }
 		 if (!isset($post['comments']) or empty($post['comments'])) { $post['comments'] = "No Comments"; }
@@ -38,13 +38,13 @@ public function editStock()
 		 $post['QuantityAvailable'] = $post['QuantityPurchased'] - $post['QuantityIssued'];
          $sid = $post['DataID'];
 		 unset($post['DataID']);
-		 
+
 		    // echo "<pre>";
 		    // print_r($post);exit;
 		 $this->st->UpdateStock($sid,$post);
 		 $this->viewStock();
 	}
-    
+
 
     public function addStockView()
 	{
@@ -52,17 +52,17 @@ public function editStock()
 		$suppliers = $this->st->getsuppliers();
 		$this->load->view('AddStock',['suppliers'=>$suppliers]);
 	}
-     
+
     public function addStock()
 	{
-		 $this->load->model('stock_model','st'); 
+		 $this->load->model('stock_model','st');
     	 $post =$this->input->post();
-		
+
 		 unset($post['submit']);
 		 if (!isset($post['QuantityIssued']) or empty($post['QuantityIssued']) ) {	$post['QuantityIssued'] = 0; }
 		 if (!isset($post['comments']) or empty($post['comments'])) { $post['comments'] = "No Comments"; }
-		 
-		 $post['TotalPrice'] = $post['QuantityPurchased'] * $post['PriceperKG'];		 
+
+		 $post['TotalPrice'] = $post['QuantityPurchased'] * $post['PriceperKG'];
 		 $post['QuantityAvailable'] = $post['QuantityPurchased'] - $post['QuantityIssued'];
 
 		 $this->st->addStock($post);
@@ -78,11 +78,11 @@ public function editStock()
 
      public function viewStock()
      {
-     	$this->load->model('stock_model','st');	
+     	$this->load->model('stock_model','st');
 	    $stocks = $this->st->getStocks();
-	  //    echo "<pre>";
-		 // print_r($stocks);exit;
-		$this->load->view('ViewStocks',['Stocks'=>$stocks]);
+	 //     echo "<pre>";
+		//  print_r($stocks);exit;
+	 $this->load->view('ViewStocks',['Stocks'=>$stocks]);
      }
 
 }

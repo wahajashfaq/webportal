@@ -26,14 +26,14 @@
           <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <h7>
               <?php
-              if (isset($_SESSION['FullName'])) 
-               {  echo $_SESSION['FullName']; } 
+              if (isset($_SESSION['FullName']))
+               {  echo $_SESSION['FullName']; }
               ?>
            </h7>
             <i class="fas fa-user-circle fa-fw"></i>
           </a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Logout</a>
+            <a class="dropdown-item" href="<?php echo base_url().'Dashboard/login'?>" data-toggle="modal" data-target="#logoutModal">Logout</a>
           </div>
         </li>
       </ul>
@@ -82,7 +82,10 @@
           <div class="dropdown-menu" aria-labelledby="pagesDropdown">
             <h6 class="dropdown-header">Member Screens:</h6>
             <a class="dropdown-item" href="<?php echo base_url().'Members'?>">Add Member</a>
-            <a class="dropdown-item" href="<?php echo base_url().'Members/getmembers'?>">View Members</a>
+            <a class="dropdown-item" href="<?php echo base_url().'Members/getsuppliers'?>">View Suppliers
+            </a>
+            <a class="dropdown-item" href="<?php echo base_url().'Members/getcustomers'?>">View Customers
+            </a>
           </div>
      </li>
 
@@ -110,6 +113,19 @@
             <h6 class="dropdown-header">Product Screens:</h6>
             <a class="dropdown-item" href="<?php echo base_url().'Products'?>">Add Product</a>
             <a class="dropdown-item" href="<?php echo base_url().'Products/ProductView'?>">View Products</a>
+          </div>
+     </li>
+     <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+           <i class="fas fa-fw fa-folder"></i>
+            <span>Reports</span>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="pagesDropdown">
+            <h6 class="dropdown-header">Report Screens:</h6>
+            <a class="dropdown-item" href="#">Stock Report</a>
+            <a class="dropdown-item" href="#">Product Report</a>
+            <a class="dropdown-item" href="#">Creditors Report</a>
+            <a class="dropdown-item" href="#">Debtors Report</a>
           </div>
      </li>
 

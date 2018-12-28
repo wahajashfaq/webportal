@@ -1,5 +1,5 @@
 
-        
+
         </div>
         <!-- /.container-fluid -->
 
@@ -36,13 +36,13 @@
           <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
           <div class="modal-footer">
             <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-            <a class="btn btn-primary" href="login.html">Logout</a>
+            <a class="btn btn-primary" href="<?php echo base_url().'Dashboard/login'?>">Logout</a>
           </div>
         </div>
       </div>
     </div>
 
-    
+
     <!-- Bootstrap core JavaScript-->
     <script src="<?php echo base_url().'assets/vendor/jquery/jquery.min.js';?>"></script>
     <script src="<?php echo base_url().'assets/vendor/bootstrap/js/bootstrap.bundle.min.js';?>"></script>
@@ -59,8 +59,8 @@
 
     <!-- Demo scripts for this page-->
     <script src="<?php echo base_url().'assets/js/demo/datatables-demo.js';?>"></script>
-   
-<!-- 
+
+<!--
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
