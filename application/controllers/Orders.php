@@ -16,13 +16,11 @@ class Orders extends CI_Controller {
  {
          $product = $this->input->post();
 		 $InputItems = $this->SetProductPostData($product);
-          
+          // echo "<pre>";
+          // print_r($InputItems);exit;
 		 $this->load->model('order_model','pd');
          $ProductItems = $this->pd->getValidProductsForCalculation();//Getting all Valid Stocks
-        if (!isset($product['Selling_Price']) or empty($product['Selling_Price'])) 
-        {
-          $product['Selling_Price'] = 0;
-        }
+        
         foreach ($ProductItems as $item) 
         {
              $item->NetWeight = 0;
@@ -62,7 +60,7 @@ class Orders extends CI_Controller {
 		foreach($UpdateItem as $item)
 		{
 			unset($item->purchased);
-			unset($item->price);
+			//unset($item->price);
 			unset($item->available);
 			unset($item->issued);
 			$item->oid=$oid;
@@ -185,10 +183,13 @@ public function editOrder()
 
         $snames = $product['sname'];
 		$sweights = $product['sweight'];
+		$sprice = $product['sprice'];
    if (!isset($product['comments']) or empty($product['comments'])) { $product['comments'] = "No Comments"; }
    if (!isset($product['Discount']) or empty($product['Discount'])) { $product['Discount'] = 0; }
         unset($product['sname']);
         unset($product['sweight']);
+        unset($product['sprice']);
+        unset($product['SPrice']);
         unset($product['submit']);
         unset($product['StockID']);
         unset($product['InputAmount']);
@@ -200,6 +201,7 @@ public function editOrder()
 		                (
 		                'name' => $name,
 		                'amount' => $sweights[$i],
+		                'price' => $sprice[$i],
 		                );
        }
        return $InputItems;
@@ -248,6 +250,7 @@ public function editOrder()
 		    //will be filtered here at a time. Comparison is made by Product Names
 		    if($input['name'] == $item->name) 
 		    {
+		    	$item->price  = $input['price'];
 		         if($InputAmount<= (int)$item->available)  //
 		         {
 		          $item->NetWeight = $InputAmount;
@@ -261,15 +264,14 @@ public function editOrder()
 		         else
 		         {
 		          $item->NetWeight = $item->available;
-		          $item->NetValue = $item->price * $item->NetWeight;
-		         
+		          $item->NetValue =$item->price * $item->NetWeight;
+		          
 		          $item->issued +=$item->available;
 		          $InputAmount-=$item->available;
 		          $item->available=0;
 		          array_push($UpdateItem,$item);         
 		         }
 		     }
-		 
 		   }
 		}
 
