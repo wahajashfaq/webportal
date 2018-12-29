@@ -89,7 +89,7 @@
                                   <th class="border-0 text-uppercase small font-weight-bold">No#</th>
                                   <th class="border-0 text-uppercase small font-weight-bold">Item</th>
                                   <th class="border-0 text-uppercase small font-weight-bold">Quantity</th>
-                                  <th class="border-0 text-uppercase small font-weight-bold">Unit Cost</th>
+                                  <th class="border-0 text-uppercase small font-weight-bold">Unit Price</th>
                                   <th class="border-0 text-uppercase small font-weight-bold">Total</th>
                                  </tr>
                               </thead>
