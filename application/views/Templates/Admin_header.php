@@ -33,6 +33,7 @@
 <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
  -->
     <!-- Bootstrap core CSS-->
+    
 <link href="<?php echo base_url().'assets/vendor/bootstrap/css/bootstrap.min.css'?>" rel="stylesheet">
 
     <!-- Custom fonts for this template-->

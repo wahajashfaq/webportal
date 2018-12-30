@@ -58,7 +58,7 @@ var arr = null;
      { }
       else{
       ?>
-      <span style="color:red" class="Error4">No Customea Available for Order</span>
+      <span style="color:red" class="Error4">No Customer Available for Order</span>
       <?php
       }
      ?>

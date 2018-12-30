@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 23, 2018 at 11:26 PM
+-- Generation Time: Dec 29, 2018 at 04:28 PM
 -- Server version: 10.1.25-MariaDB
 -- PHP Version: 7.1.7
 
@@ -68,34 +68,18 @@ CREATE TABLE `orderdetails` (
   `pid` int(11) NOT NULL,
   `Name` varchar(60) DEFAULT NULL,
   `NetWeight` float DEFAULT NULL,
-  `NetValue` float DEFAULT NULL
+  `NetValue` float DEFAULT NULL,
+  `price` float DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `orderdetails`
 --
 
-INSERT INTO `orderdetails` (`oid`, `pid`, `Name`, `NetWeight`, `NetValue`) VALUES
-(3, 12, 'AlfhaBeta', 10, 285),
-(3, 13, 'Head&Shoulder', 5, 176.667),
-(5, 10, 'AlfhaBeta', 4, 1256),
-(5, 11, 'Brighto Paints', 5, 663),
-(5, 8, 'Head&Shoulder', 8, 3571.2),
-(5, 14, 'PaintFant', 20, 150),
-(5, 9, 'Sunsilk', 30, 1022.5),
-(6, 10, 'AlfhaBeta', 6, 1884),
-(6, 11, 'Brighto Paints', 3, 397.8),
-(6, 8, 'Head&Shoulder', 2, 892.8),
-(6, 13, 'Head&Shoulder', 3, 106),
-(6, 14, 'PaintFant', 20, 150),
-(6, 9, 'Sunsilk', 30, 1022.5),
-(7, 11, 'Brighto Paints', 2, 265.2),
-(7, 13, 'Head&Shoulder', 7, 247.333),
-(7, 14, 'PaintFant', 20, 150),
-(7, 9, 'Sunsilk', 10, 340.833),
-(8, 12, 'AlfhaBeta', 5, 142.5),
-(8, 9, 'Sunsilk', 10, 340.833),
-(8, 14, 'PaintFant', 20, 150);
+INSERT INTO `orderdetails` (`oid`, `pid`, `Name`, `NetWeight`, `NetValue`, `price`) VALUES
+(9, 8, 'Head&Shoulder', 10, 1000, 100),
+(9, 10, 'AlfhaBeta', 10, 2000, 200),
+(9, 12, 'AlfhaBeta', 5, 1000, 200);
 
 -- --------------------------------------------------------
 
@@ -120,11 +104,7 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`OrderID`, `Reference`, `CustomerID`, `OrderDate`, `DeliverDate`, `Discount`, `GrandTotal`, `Selling_Price`, `comments`) VALUES
-(3, 'Texas order', 48, '2018-12-01 00:00:00', '2018-12-26 00:00:00', 20, 441.667, 6000, 'No Comments'),
-(5, 'Raffaan Order', 16, '2018-11-28 00:00:00', '2019-01-05 00:00:00', 88, 6574.7, 7500, 'No Comments'),
-(6, 'Arham Production 101', 48, '2018-11-25 00:00:00', '2018-11-30 00:00:00', 20, 4433.1, 10000, 'No Comments'),
-(7, 'Dairy Wall Street Order ', 56, '2018-11-24 00:00:00', '2019-01-03 00:00:00', 22, 981.366, 80800, 'No Comments'),
-(8, 'Gulzaib @101_Order', 16, '2018-11-25 00:00:00', '2018-11-30 00:00:00', 100, 533.333, 10000, 'No Comments');
+(9, 'Raffaan Order', 32, '2018-11-29 00:00:00', '2019-01-04 00:00:00', 0, 4000, 0, 'No Comments');
 
 -- --------------------------------------------------------
 
@@ -195,12 +175,12 @@ CREATE TABLE `products` (
 
 INSERT INTO `products` (`ProductID`, `ProductName`, `QuantityProduced`, `QuantityIssued`, `QuantityAvailable`, `PriceperKG`, `ProductDate`, `comments`) VALUES
 (8, 'Head&Shoulder', 10, 10, 0, 446.4, '2018-12-06 00:00:00', 'No Comments'),
-(9, 'Sunsilk', 120, 80, 40, 34.0833, '2018-12-07 00:00:00', 'No Comments'),
+(9, 'Sunsilk', 120, 0, 120, 34.0833, '2018-12-07 00:00:00', 'No Comments'),
 (10, 'AlfhaBeta', 10, 10, 0, 314, '2018-12-05 00:00:00', 'No Comments'),
-(11, 'Brighto Paints', 10, 10, 0, 132.6, '2018-12-14 00:00:00', 'No Comments'),
-(12, 'AlfhaBeta', 20, 15, 5, 28.5, '2018-12-07 00:00:00', 'No Comments'),
-(13, 'Head&Shoulder', 15, 15, 0, 35.3333, '2018-12-07 00:00:00', 'No Comments'),
-(14, 'PaintFant', 120, 80, 40, 7.5, '2018-12-14 00:00:00', 'No Comments');
+(11, 'Brighto Paints', 10, 0, 10, 132.6, '2018-12-14 00:00:00', 'No Comments'),
+(12, 'AlfhaBeta', 20, 5, 15, 28.5, '2018-12-07 00:00:00', 'No Comments'),
+(13, 'Head&Shoulder', 15, 0, 15, 35.3333, '2018-12-07 00:00:00', 'No Comments'),
+(14, 'PaintFant', 120, 0, 120, 7.5, '2018-12-14 00:00:00', 'No Comments');
 
 -- --------------------------------------------------------
 
@@ -328,7 +308,7 @@ ALTER TABLE `member`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `OrderID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `OrderID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `products`
 --

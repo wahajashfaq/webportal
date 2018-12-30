@@ -21,7 +21,7 @@
 <!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 
-    <title>WebPortal Login</title>
+    <title>Login</title>
 
     <!-- Bootstrap core CSS-->
     <link href="<?php echo base_url().'/assets/vendor/bootstrap/css/bootstrap.min.css';?>" rel="stylesheet">
@@ -50,7 +50,7 @@ function foo(){
       <div class="card card-login mx-auto mt-5">
         <div class="card-header">Login</div>
         <div class="card-body">
-          <form class="form-horizontal" action="<?php echo base_url().'User/LoginService'?>" method="post">
+          <form class="form-horizontal" action="<?php echo base_url().'LoginService'?>" method="post">
                <span id="MailError1" class="text-danger"><?php 
                  if (isset($error)) {
                     echo $error;

@@ -163,7 +163,7 @@ public function getOrderedProducts($oid)
 }
 public function getCustomersForOrders()
   {
-     $query = $this->db->query("Select ID as cid,CONCAT (Name,Lname) as Cname from member
+     $query = $this->db->query("Select ID as cid,CONCAT (Name,' ',Lname) as Cname from member
                                 where Utype = 'Customer'");
       return $query->result();
   }
