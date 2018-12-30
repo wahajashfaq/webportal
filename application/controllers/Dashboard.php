@@ -15,15 +15,13 @@ class Dashboard extends CI_Controller
          {
            redirect('login', 'refresh');	
          }
-         
+         $this->load->model('user_model');
+        
     }
 
 
 public function LoginUtil()
     {
-        $this->load->model('user_model');
-        
-
         $pass = $this->input->post("inputPassword");
         $mail = $this->input->post("inputEmail");
        $result =$this->user_model->AuthenticateUser($mail,$pass); 
@@ -54,7 +52,6 @@ public function LoginUtil()
     $this->session->unset_userdata('userName');
     $this->session->unset_userdata('Utype');
     $this->session->unset_userdata('Login');
-           
     $this->load->driver('cache');
     $this->session->sess_destroy();
     $this->cache->clean();
@@ -65,7 +62,8 @@ public function LoginUtil()
 
     public function PrepareDashBoard()
     {
-         $this->load->view('Dashboard');
+       $data = $this->user_model->getDashboardData();
+       $this->load->view('Dashboard',['Data' =>$data]);
     }
 
 	public function index()

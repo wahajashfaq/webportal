@@ -33,7 +33,7 @@
             <i class="fas fa-user-circle fa-fw"></i>
           </a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-            <a class="dropdown-item" href="<?php echo base_url().'Dashboard/login'?>" data-toggle="modal" data-target="#logoutModal">Logout</a>
+            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Logout</a>
           </div>
         </li>
       </ul>
@@ -57,7 +57,7 @@
           <div class="dropdown-menu" aria-labelledby="pagesDropdown">
             <h6 class="dropdown-header">Orders Screens:</h6>
             <a class="dropdown-item" href="<?php echo base_url().'Orders'?>">Add Orders</a>
-            <a class="dropdown-item" href="<?php echo base_url().'Orders/ShowOrders'?>">View Orders</a>
+            <a class="dropdown-item" href="<?php echo base_url().'Orders'?>">View Orders</a>
             </div>
         </li>
 
@@ -112,7 +112,7 @@
           <div class="dropdown-menu" aria-labelledby="pagesDropdown">
             <h6 class="dropdown-header">Product Screens:</h6>
             <a class="dropdown-item" href="<?php echo base_url().'Products'?>">Add Product</a>
-            <a class="dropdown-item" href="<?php echo base_url().'Products/ProductView'?>">View Products</a>
+            <a class="dropdown-item" href="<?php echo base_url().'Products'?>">View Products</a>
           </div>
      </li>
      <li class="nav-item dropdown">

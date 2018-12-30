@@ -27,9 +27,9 @@
                   <div class="card-body-icon">
                     <i class="fas fa-fw fa fa-truck"></i>
                   </div>
-                  <div class="mr-5">26 suppliers!</div>
+                  <div class="mr-5"><?= $Data->Scount?> Supliers!</div>
                 </div>
-                <a class="card-footer text-white clearfix small z-1" href="#">
+                <a class="card-footer text-white clearfix small z-1" href="<?php echo base_url()?>Suppliers">
                   <span class="float-left">View Details</span>
                   <span class="float-right">
                     <i class="fas fa-angle-right"></i>
@@ -43,9 +43,9 @@
                   <div class="card-body-icon">
                     <i class="fas fa-fw fa fa-user"></i>
                   </div>
-                  <div class="mr-5">11 Customers!</div>
+                  <div class="mr-5"><?=  $Data->Ccount?> Customer!</div>
                 </div>
-                <a class="card-footer text-white clearfix small z-1" href="#">
+                <a class="card-footer text-white clearfix small z-1" href="<?php echo base_url()?>Customers">
                   <span class="float-left">View Details</span>
                   <span class="float-right">
                     <i class="fas fa-angle-right"></i>
@@ -60,9 +60,9 @@
                   <div class="card-body-icon">
                     <i class="fas fa-fw fa-shopping-cart"></i>
                   </div>
-                  <div class="mr-5">123 New Orders!</div>
+                  <div class="mr-5"><?=$Data->Ocount?> New Orders!</div>
                 </div>
-                <a class="card-footer text-white clearfix small z-1" href="#">
+                <a class="card-footer text-white clearfix small z-1" href="<?php echo base_url()?>Orders">
                   <span class="float-left">View Details</span>
                   <span class="float-right">
                     <i class="fas fa-angle-right"></i>
@@ -77,9 +77,9 @@
                     <i class="fas fa-fw  fa-dice-d6"></i>
 
                   </div>
-                  <div class="mr-5">13 Products!</div>
+                  <div class="mr-5"><?=$Data->Pcount?> Products!</div>
                 </div>
-                <a class="card-footer text-white clearfix small z-1" href="#">
+                <a class="card-footer text-white clearfix small z-1" href="<?php echo base_url()?>Products">
                   <span class="float-left">View Details</span>
                   <span class="float-right">
                     <i class="fas fa-angle-right"></i>
@@ -89,395 +89,7 @@
             </div>
           </div>
 
-
-          <!-- DataTables Example -->
-          <!--<div class="card mb-3">
-            <div class="card-header">
-              <i class="fas fa-table"></i>
-              <b style ='text-align:center'>Available Stocks</b>
-            </div>
-            <div class="card-body">
-              <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                    <thead>
-                    <tr >
-                      <th>Name</th>
-                      <th>Quantity Produced</th>
-                      <th>Quantity Issued</th>
-                      <th>Available</th>
-                      <th>Product Date</th>
-                      <th>Price Per Kg</th>
-                      <th>Edit</th>
-                      <th>Delete</th>
-                    </tr>
-                  </thead>
-
-                    <tbody>
-                    <tr class ="table-danger">
-                      <td>Sulphuric Acid</td>
-                      <td>1000</td>
-                      <td>500</td>
-                      <td>500</td>
-                      <td>2011/04/25</td>
-                      <td>$320,800</td>
-                      <td><button  data-placement="top" data-toggle="tooltip" title="Edit" class="btn btn-primary"><i class="fa fa-pencil-square-o"></i> Edit</button></td>
-                      <td><button  data-placement="top" data-toggle="tooltip" title="Delete" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</button></td>
-                    </tr>
-
-                    <tr class ="table-primary">
-                      <td>Sulphuric Acid</td>
-                      <td>1000</td>
-                      <td>500</td>
-                      <td>500</td>
-                      <td>2011/04/25</td>
-                      <td>$320,800</td>
-                      <td><button  data-placement="top" data-toggle="tooltip" title="Edit" class="btn btn-primary"><i class="fa fa-pencil-square-o"></i> Edit</button></td>
-                      <td><button  data-placement="top" data-toggle="tooltip" title="Delete" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</button></td>
-                    </tr>
-                <tr class ="table-danger">
-                      <td>Sulphuric Acid</td>
-                      <td>1000</td>
-                      <td>500</td>
-                      <td>500</td>
-                      <td>2011/04/25</td>
-                      <td>$320,800</td>
-                      <td><button  data-placement="top" data-toggle="tooltip" title="Edit" class="btn btn-primary"><i class="fa fa-pencil-square-o"></i> Edit</button></td>
-                      <td><button  data-placement="top" data-toggle="tooltip" title="Delete" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</button></td>
-                    </tr>
-
-                    <tr class ="table-primary">
-                      <td>Sulphuric Acid</td>
-                      <td>1000</td>
-                      <td>500</td>
-                      <td>500</td>
-                      <td>2011/04/25</td>
-                      <td>$320,800</td>
-                      <td><button  data-placement="top" data-toggle="tooltip" title="Edit" class="btn btn-primary"><i class="fa fa-pencil-square-o"></i> Edit</button></td>
-                      <td><button  data-placement="top" data-toggle="tooltip" title="Delete" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</button></td>
-                    </tr>
-                <tr class ="table-danger">
-                      <td>Sulphuric Acid</td>
-                      <td>1000</td>
-                      <td>500</td>
-                      <td>500</td>
-                      <td>2011/04/25</td>
-                      <td>$320,800</td>
-                      <td><button  data-placement="top" data-toggle="tooltip" title="Edit" class="btn btn-primary"><i class="fa fa-pencil-square-o"></i> Edit</button></td>
-                      <td><button  data-placement="top" data-toggle="tooltip" title="Delete" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</button></td>
-                    </tr>
-
-                    <tr class ="table-primary">
-                      <td>Sulphuric Acid</td>
-                      <td>1000</td>
-                      <td>500</td>
-                      <td>500</td>
-                      <td>2011/04/25</td>
-                      <td>$320,800</td>
-                      <td><button  data-placement="top" data-toggle="tooltip" title="Edit" class="btn btn-primary"><i class="fa fa-pencil-square-o"></i> Edit</button></td>
-                      <td><button  data-placement="top" data-toggle="tooltip" title="Delete" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</button></td>
-                    </tr>
-                <tr class ="table-danger">
-                      <td>Sulphuric Acid</td>
-                      <td>1000</td>
-                      <td>500</td>
-                      <td>500</td>
-                      <td>2011/04/25</td>
-                      <td>$320,800</td>
-                      <td><button  data-placement="top" data-toggle="tooltip" title="Edit" class="btn btn-primary"><i class="fa fa-pencil-square-o"></i> Edit</button></td>
-                      <td><button  data-placement="top" data-toggle="tooltip" title="Delete" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</button></td>
-                    </tr>
-
-                    <tr class ="table-primary">
-                      <td>Sulphuric Acid</td>
-                      <td>1000</td>
-                      <td>500</td>
-                      <td>500</td>
-                      <td>2011/04/25</td>
-                      <td>$320,800</td>
-                      <td><button  data-placement="top" data-toggle="tooltip" title="Edit" class="btn btn-primary"><i class="fa fa-pencil-square-o"></i> Edit</button></td>
-                      <td><button  data-placement="top" data-toggle="tooltip" title="Delete" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</button></td>
-                    </tr>
-                <tr class ="table-danger">
-                      <td>Sulphuric Acid</td>
-                      <td>1000</td>
-                      <td>500</td>
-                      <td>500</td>
-                      <td>2011/04/25</td>
-                      <td>$320,800</td>
-                      <td><button  data-placement="top" data-toggle="tooltip" title="Edit" class="btn btn-primary"><i class="fa fa-pencil-square-o"></i> Edit</button></td>
-                      <td><button  data-placement="top" data-toggle="tooltip" title="Delete" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</button></td>
-                    </tr>
-
-                    <tr class ="table-primary">
-                      <td>Sulphuric Acid</td>
-                      <td>1000</td>
-                      <td>500</td>
-                      <td>500</td>
-                      <td>2011/04/25</td>
-                      <td>$320,800</td>
-                      <td><button  data-placement="top" data-toggle="tooltip" title="Edit" class="btn btn-primary"><i class="fa fa-pencil-square-o"></i> Edit</button></td>
-                      <td><button  data-placement="top" data-toggle="tooltip" title="Delete" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</button></td>
-                    </tr>
-                <tr class ="table-danger">
-                      <td>Sulphuric Acid</td>
-                      <td>1000</td>
-                      <td>500</td>
-                      <td>500</td>
-                      <td>2011/04/25</td>
-                      <td>$320,800</td>
-                      <td><button  data-placement="top" data-toggle="tooltip" title="Edit" class="btn btn-primary"><i class="fa fa-pencil-square-o"></i> Edit</button></td>
-                      <td><button  data-placement="top" data-toggle="tooltip" title="Delete" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</button></td>
-                    </tr>
-
-                    <tr class ="table-primary">
-                      <td>Sulphuric Acid</td>
-                      <td>1000</td>
-                      <td>500</td>
-                      <td>500</td>
-                      <td>2011/04/25</td>
-                      <td>$320,800</td>
-                      <td><button  data-placement="top" data-toggle="tooltip" title="Edit" class="btn btn-primary"><i class="fa fa-pencil-square-o"></i> Edit</button></td>
-                      <td><button  data-placement="top" data-toggle="tooltip" title="Delete" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</button></td>
-                    </tr>
-                <tr class ="table-danger">
-                      <td>Sulphuric Acid</td>
-                      <td>1000</td>
-                      <td>500</td>
-                      <td>500</td>
-                      <td>2011/04/25</td>
-                      <td>$320,800</td>
-                      <td><button  data-placement="top" data-toggle="tooltip" title="Edit" class="btn btn-primary"><i class="fa fa-pencil-square-o"></i> Edit</button></td>
-                      <td><button  data-placement="top" data-toggle="tooltip" title="Delete" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</button></td>
-                    </tr>
-
-                    <tr class ="table-primary">
-                      <td>Sulphuric Acid</td>
-                      <td>1000</td>
-                      <td>500</td>
-                      <td>500</td>
-                      <td>2011/04/25</td>
-                      <td>$320,800</td>
-                      <td><button  data-placement="top" data-toggle="tooltip" title="Edit" class="btn btn-primary"><i class="fa fa-pencil-square-o"></i> Edit</button></td>
-                      <td><button  data-placement="top" data-toggle="tooltip" title="Delete" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</button></td>
-                    </tr>
-                <tr class ="table-danger">
-                      <td>Sulphuric Acid</td>
-                      <td>1000</td>
-                      <td>500</td>
-                      <td>500</td>
-                      <td>2011/04/25</td>
-                      <td>$320,800</td>
-                      <td><button  data-placement="top" data-toggle="tooltip" title="Edit" class="btn btn-primary"><i class="fa fa-pencil-square-o"></i> Edit</button></td>
-                      <td><button  data-placement="top" data-toggle="tooltip" title="Delete" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</button></td>
-                    </tr>
-
-                    <tr class ="table-primary">
-                      <td>Sulphuric Acid</td>
-                      <td>1000</td>
-                      <td>500</td>
-                      <td>500</td>
-                      <td>2011/04/25</td>
-                      <td>$320,800</td>
-                      <td><button  data-placement="top" data-toggle="tooltip" title="Edit" class="btn btn-primary"><i class="fa fa-pencil-square-o"></i> Edit</button></td>
-                      <td><button  data-placement="top" data-toggle="tooltip" title="Delete" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</button></td>
-                    </tr>
-                <tr class ="table-danger">
-                      <td>Sulphuric Acid</td>
-                      <td>1000</td>
-                      <td>500</td>
-                      <td>500</td>
-                      <td>2011/04/25</td>
-                      <td>$320,800</td>
-                      <td><button  data-placement="top" data-toggle="tooltip" title="Edit" class="btn btn-primary"><i class="fa fa-pencil-square-o"></i> Edit</button></td>
-                      <td><button  data-placement="top" data-toggle="tooltip" title="Delete" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</button></td>
-                    </tr>
-
-                    <tr class ="table-primary">
-                      <td>Sulphuric Acid</td>
-                      <td>1000</td>
-                      <td>500</td>
-                      <td>500</td>
-                      <td>2011/04/25</td>
-                      <td>$320,800</td>
-                      <td><button  data-placement="top" data-toggle="tooltip" title="Edit" class="btn btn-primary"><i class="fa fa-pencil-square-o"></i> Edit</button></td>
-                      <td><button  data-placement="top" data-toggle="tooltip" title="Delete" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</button></td>
-                    </tr>
-                <tr class ="table-danger">
-                      <td>Sulphuric Acid</td>
-                      <td>1000</td>
-                      <td>500</td>
-                      <td>500</td>
-                      <td>2011/04/25</td>
-                      <td>$320,800</td>
-                      <td><button  data-placement="top" data-toggle="tooltip" title="Edit" class="btn btn-primary"><i class="fa fa-pencil-square-o"></i> Edit</button></td>
-                      <td><button  data-placement="top" data-toggle="tooltip" title="Delete" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</button></td>
-                    </tr>
-
-                    <tr class ="table-primary">
-                      <td>Sulphuric Acid</td>
-                      <td>1000</td>
-                      <td>500</td>
-                      <td>500</td>
-                      <td>2011/04/25</td>
-                      <td>$320,800</td>
-                      <td><button  data-placement="top" data-toggle="tooltip" title="Edit" class="btn btn-primary"><i class="fa fa-pencil-square-o"></i> Edit</button></td>
-                      <td><button  data-placement="top" data-toggle="tooltip" title="Delete" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</button></td>
-                    </tr>
-                <tr class ="table-danger">
-                      <td>Sulphuric Acid</td>
-                      <td>1000</td>
-                      <td>500</td>
-                      <td>500</td>
-                      <td>2011/04/25</td>
-                      <td>$320,800</td>
-                      <td><button  data-placement="top" data-toggle="tooltip" title="Edit" class="btn btn-primary"><i class="fa fa-pencil-square-o"></i> Edit</button></td>
-                      <td><button  data-placement="top" data-toggle="tooltip" title="Delete" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</button></td>
-                    </tr>
-
-                    <tr class ="table-primary">
-                      <td>Sulphuric Acid</td>
-                      <td>1000</td>
-                      <td>500</td>
-                      <td>500</td>
-                      <td>2011/04/25</td>
-                      <td>$320,800</td>
-                      <td><button  data-placement="top" data-toggle="tooltip" title="Edit" class="btn btn-primary"><i class="fa fa-pencil-square-o"></i> Edit</button></td>
-                      <td><button  data-placement="top" data-toggle="tooltip" title="Delete" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</button></td>
-                    </tr>
-                <tr class ="table-danger">
-                      <td>Sulphuric Acid</td>
-                      <td>1000</td>
-                      <td>500</td>
-                      <td>500</td>
-                      <td>2011/04/25</td>
-                      <td>$320,800</td>
-                      <td><button  data-placement="top" data-toggle="tooltip" title="Edit" class="btn btn-primary"><i class="fa fa-pencil-square-o"></i> Edit</button></td>
-                      <td><button  data-placement="top" data-toggle="tooltip" title="Delete" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</button></td>
-                    </tr>
-
-                    <tr class ="table-primary">
-                      <td>Sulphuric Acid</td>
-                      <td>1000</td>
-                      <td>500</td>
-                      <td>500</td>
-                      <td>2011/04/25</td>
-                      <td>$320,800</td>
-                      <td><button  data-placement="top" data-toggle="tooltip" title="Edit" class="btn btn-primary"><i class="fa fa-pencil-square-o"></i> Edit</button></td>
-                      <td><button  data-placement="top" data-toggle="tooltip" title="Delete" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</button></td>
-                    </tr>
-                <tr class ="table-danger">
-                      <td>Sulphuric Acid</td>
-                      <td>1000</td>
-                      <td>500</td>
-                      <td>500</td>
-                      <td>2011/04/25</td>
-                      <td>$320,800</td>
-                      <td><button  data-placement="top" data-toggle="tooltip" title="Edit" class="btn btn-primary"><i class="fa fa-pencil-square-o"></i> Edit</button></td>
-                      <td><button  data-placement="top" data-toggle="tooltip" title="Delete" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</button></td>
-                    </tr>
-
-                    <tr class ="table-primary">
-                      <td>Sulphuric Acid</td>
-                      <td>1000</td>
-                      <td>500</td>
-                      <td>500</td>
-                      <td>2011/04/25</td>
-                      <td>$320,800</td>
-                      <td><button  data-placement="top" data-toggle="tooltip" title="Edit" class="btn btn-primary"><i class="fa fa-pencil-square-o"></i> Edit</button></td>
-                      <td><button  data-placement="top" data-toggle="tooltip" title="Delete" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</button></td>
-                    </tr>
-                <tr class ="table-danger">
-                      <td>Sulphuric Acid</td>
-                      <td>1000</td>
-                      <td>500</td>
-                      <td>500</td>
-                      <td>2011/04/25</td>
-                      <td>$320,800</td>
-                      <td><button  data-placement="top" data-toggle="tooltip" title="Edit" class="btn btn-primary"><i class="fa fa-pencil-square-o"></i> Edit</button></td>
-                      <td><button  data-placement="top" data-toggle="tooltip" title="Delete" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</button></td>
-                    </tr>
-
-                    <tr class ="table-primary">
-                      <td>Sulphuric Acid</td>
-                      <td>1000</td>
-                      <td>500</td>
-                      <td>500</td>
-                      <td>2011/04/25</td>
-                      <td>$320,800</td>
-                      <td><button  data-placement="top" data-toggle="tooltip" title="Edit" class="btn btn-primary"><i class="fa fa-pencil-square-o"></i> Edit</button></td>
-                      <td><button  data-placement="top" data-toggle="tooltip" title="Delete" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</button></td>
-                    </tr>
-                <tr class ="table-danger">
-                      <td>Sulphuric Acid</td>
-                      <td>1000</td>
-                      <td>500</td>
-                      <td>500</td>
-                      <td>2011/04/25</td>
-                      <td>$320,800</td>
-                      <td><button  data-placement="top" data-toggle="tooltip" title="Edit" class="btn btn-primary"><i class="fa fa-pencil-square-o"></i> Edit</button></td>
-                      <td><button  data-placement="top" data-toggle="tooltip" title="Delete" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</button></td>
-                    </tr>
-
-                    <tr class ="table-primary">
-                      <td>Sulphuric Acid</td>
-                      <td>1000</td>
-                      <td>500</td>
-                      <td>500</td>
-                      <td>2011/04/25</td>
-                      <td>$320,800</td>
-                      <td><button  data-placement="top" data-toggle="tooltip" title="Edit" class="btn btn-primary"><i class="fa fa-pencil-square-o"></i> Edit</button></td>
-                      <td><button  data-placement="top" data-toggle="tooltip" title="Delete" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</button></td>
-                    </tr>
-                <tr class ="table-danger">
-                      <td>Sulphuric Acid</td>
-                      <td>1000</td>
-                      <td>500</td>
-                      <td>500</td>
-                      <td>2011/04/25</td>
-                      <td>$320,800</td>
-                      <td><button  data-placement="top" data-toggle="tooltip" title="Edit" class="btn btn-primary"><i class="fa fa-pencil-square-o"></i> Edit</button></td>
-                      <td><button  data-placement="top" data-toggle="tooltip" title="Delete" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</button></td>
-                    </tr>
-
-                    <tr class ="table-primary">
-                      <td>Sulphuric Acid</td>
-                      <td>1000</td>
-                      <td>500</td>
-                      <td>500</td>
-                      <td>2011/04/25</td>
-                      <td>$320,800</td>
-                      <td><button  data-placement="top" data-toggle="tooltip" title="Edit" class="btn btn-primary"><i class="fa fa-pencil-square-o"></i> Edit</button></td>
-                      <td><button  data-placement="top" data-toggle="tooltip" title="Delete" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</button></td>
-                    </tr>
-                <tr class ="table-danger">
-                      <td>Sulphuric Acid</td>
-                      <td>1000</td>
-                      <td>500</td>
-                      <td>500</td>
-                      <td>2011/04/25</td>
-                      <td>$320,800</td>
-                      <td><button  data-placement="top" data-toggle="tooltip" title="Edit" class="btn btn-primary"><i class="fa fa-pencil-square-o"></i> Edit</button></td>
-                      <td><button  data-placement="top" data-toggle="tooltip" title="Delete" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</button></td>
-                    </tr>
-
-                    <tr class ="table-primary">
-                      <td>Sulphuric Acid</td>
-                      <td>1000</td>
-                      <td>500</td>
-                      <td>500</td>
-                      <td>2011/04/25</td>
-                      <td>$320,800</td>
-                      <td><button  data-placement="top" data-toggle="tooltip" title="Edit" class="btn btn-primary"><i class="fa fa-pencil-square-o"></i> Edit</button></td>
-                      <td><button  data-placement="top" data-toggle="tooltip" title="Delete" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</button></td>
-                    </tr>
-
-                  </tbody>
-
-                </table>
-              </div>
-            </div>-->
-
-            <!-- Add Footer here. Footer inlcudes logout model links and emding tags -->
+            <!-- Add Footer here. Footer inlcudes logout model links and ending tags -->
 
     <div class="card-footer small text-muted"></div>
           </div>

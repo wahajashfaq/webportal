@@ -22,6 +22,7 @@ class User extends CI_Controller
 	}
     
     
+    
 	public function addUser()
 	{
 		$this->load->model('user_model');

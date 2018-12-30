@@ -44,8 +44,17 @@ class User_model extends CI_Model
 
     public function getUserData($uid)
     {
-        $this->load->database();
         $query = $this->db->query("Select * from user where u_ID ='$uid'");
+        return $query->row();    
+    }
+
+   public function getDashboardData()
+    {
+        $query = $this->db->query(" SELECT 
+                                   (SELECT count(*) FROM member where Utype = 'Supplier') as Scount,
+                                   (SELECT count(*) FROM member where Utype = 'Customer') as Ccount,
+                                   (SELECT count(*) FROM orders) as Ocount,
+                                   (SELECT count(*) FROM products) as Pcount");
         return $query->row();    
     }
     public function UpdateUser($uid,$name,$lname,$pass,$mail, $Utype,$contact,$Address,$date)

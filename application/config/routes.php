@@ -53,15 +53,16 @@ $route['default_controller'] = 'dashboard';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 $route['(:any)/Stocks'] = 'Stocks/index';
-$route['User/Dashboard'] = 'dashboard';
+$route['Dashboard'] = 'Dashboard/PrepareDashBoard';
+$route['User/Dashboard'] = 'Dashboard/PrepareDashBoard';
 $route['(:any)/getusers'] = 'User/viewusers';
 $route['(:any)/(:any)/getusers']='User/viewusers';
 $route['(:any)/(:any)/User/getusers'] = 'User/viewusers';
 $route['(:any)/(:any)/User']='User';
-$route['(:any)/(:any)/Dashboard']='Dashboard';
-$route['(:any)/Dashboard']='Dashboard';
+$route['(:any)/(:any)/Dashboard']='Dashboard/PrepareDashBoard';
+$route['(:any)/Dashboard']='Dashboard/PrepareDashBoard';
 $route['User/User'] = 'User';
-$route['User/User/Dashboard'] = 'Dashboard';
+$route['User/User/Dashboard'] = 'Dashboard/PrepareDashBoard';
 $route['User/User/User'] = 'User';
 $route['User/User/addUser'] = 'User/addUser';
 $route['(:any)/User']='User';
@@ -71,7 +72,10 @@ $route['logout']='Dashboard/logout';
 $route['Stocks/AddStockEntry']='Stocks/addStock';
 $route['Stocks/UpdateStockService']='Stocks/updateStock';
 //$route['Products']='Products/index';
-
+$route['Suppliers']='Members/getsuppliers';
+$route['Customers']='Members/getcustomers';
+$route['Orders']='Orders/ShowOrders';
+$route['Products']='Products/ProductView';
 
 
 

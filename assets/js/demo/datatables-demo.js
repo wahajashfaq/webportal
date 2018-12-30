@@ -389,7 +389,7 @@ $('#dataTable').DataTable();
 $('#MemberdataTable').DataTable();
 
   var table= $('#StockdataTable').DataTable( {
-       "order": [[ 6, "desc" ]],
+       "order": [[ 0, "desc" ]],
         orderCellsTop: true,
         fixedHeader: true
     } );

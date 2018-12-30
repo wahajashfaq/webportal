@@ -29,17 +29,15 @@
             </div>
             <div class="card-body">
               <div class="table-responsive">
-                <table class="table table-striped table-hover table-responsive " id="UserdataTable">
+                <table class="table table-striped table-hover table-responsive " id="StockdataTable">
                     <thead style="Background:silver">
                     <tr >
+                      <th style="width:15%">Entry Date</th>
                       <th>First Name</th>
-                      <th>Last Name</th>
                       <th>Password</th>
                       <th>Email</th>
                       <th>Number</th>
                       <th>Type</th>
-                      <th>Address</th>
-                      <th style="width:15%">EntryDate</th>
                       <th>Edit</th>
                       <th>Delete</th>
                     </tr>
@@ -55,14 +53,12 @@
                       }else{ ?>
                       <tr class =""> <!-- table-primary -->
                         <?php }?>
-                      <td><?=$user->Name?></td>
-                      <td><?=$user->Lname?></td>
+                      <td style="width:15%"><?=date("Y-m-d", strtotime($user->EntryDate));?></td>
+                      <td><?=$user->Name . " " . $user->Lname?></td>
                       <td><?=$user->u_pass?></td>
                       <td><?=$user->Email?></td>
                       <td><?=$user->ContactNumber?></td>
                       <td><?=$user->Utype?></td>
-                      <td><?=substr($user->uaddress,0,10)?></td>
-                      <td style="width:15%"><?=date("Y-m-d", strtotime($user->EntryDate));?></td>
                       <td><a href="<?php echo base_url()?>User/editUser?DataID=<?php echo $user->u_ID?>" data-placement="top" data-toggle="tooltip" title="Edit"style="color:White" class="btn btn-sm btn-primary"><i class="fa fa-pencil-square-o"></i> Edit</a></td>
                       <td><button data-placement="top" data-toggle="tooltip" id="<?php echo $user->u_ID?>" title="Delete" style="color:White" class="UserDelete btn btn-sm btn-danger"><i class="fa fa-trash"></i> Delete</button></td>
 

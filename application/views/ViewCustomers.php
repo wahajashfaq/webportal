@@ -29,7 +29,7 @@
             <div class="card-body">
               <div class="table-responsive">
                 <table class="table table-hover table-responsive" id="StockdataTable" width="100%" cellspacing="0">
-                    <thead>
+                    <thead style="Background:silver">
                     <tr >
                       <th>First Name</th>
                       <th>Last Name</th>
