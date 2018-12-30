@@ -56,7 +56,7 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="pagesDropdown">
             <h6 class="dropdown-header">Orders Screens:</h6>
-            <a class="dropdown-item" href="<?php echo base_url().'Orders'?>">Add Orders</a>
+            <a class="dropdown-item" href="<?php echo base_url().'AddOrder'?>">Add Orders</a>
             <a class="dropdown-item" href="<?php echo base_url().'Orders'?>">View Orders</a>
             </div>
         </li>
@@ -111,7 +111,7 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="pagesDropdown">
             <h6 class="dropdown-header">Product Screens:</h6>
-            <a class="dropdown-item" href="<?php echo base_url().'Products'?>">Add Product</a>
+            <a class="dropdown-item" href="<?php echo base_url().'AddProducts'?>">Add Product</a>
             <a class="dropdown-item" href="<?php echo base_url().'Products'?>">View Products</a>
           </div>
      </li>

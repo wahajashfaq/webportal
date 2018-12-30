@@ -26,14 +26,14 @@ var arr = null;
 
 <div class = "row">
   
-   <div class="col-md-4 ">
+   <div class="col-md-3 ">
     <div class="form-group">
       <label class="control-label" for="Reference">Order Reference</label>  
       <input id="Reference" name="Reference" type="text" placeholder="Order Reference" class="form-control input-md" required="">
     </div>
    </div>
 
-  <div class="col-md-4 ">
+  <div class="col-md-3 ">
      <div class="form-group">
      <label class="control-label" for="CustomerID">Customers</label>
         <select  required id="CustomerID" name="CustomerID" class="form-control" >
@@ -66,6 +66,13 @@ var arr = null;
 
   </div>
 
+  <div class="col-md-2">
+     <div class="form-group">
+     <label class="control-label" for="Due Payment">Due Payment</label>  
+     <input id="Due Payment" name="Due_Payment" min="0" type="number" placeholder="0" class="form-control input-md" >
+     </div>
+  </div>
+  
    
 </div>
 
@@ -150,21 +157,21 @@ var arr = null;
       
        <div class="col-md-3">
        <div class="form-group">
-       <label class="control-label"  for="QuantityAvailable">Available(KG)</label>  
+       <label class="control-label"  for="QuantityAvailable">Available</label>  
        <input id="QuantityAvailable" disabled name="QuantityAvailable" type="number" placeholder="000" class="form-control input-md" >
        </div>
        </div>
      
        <div class="col-md-3">
        <div class="form-group">
-       <label class="control-label" for="InputAmount">Amount(KG)</label>  
+       <label class="control-label" for="InputAmount">Amount</label>  
        <input id="InputAmount" name="InputAmount" type="number" placeholder="000" class="form-control input-md" >
        </div>
        </div>
      
       <div class="col-md-3">
        <div class="form-group">    
-       <label class="control-label" for="AddPoduct">Add Product</label></br>
+       <label class="control-label" for="AddPoduct">Add</label></br>
        <a name="AddPoduct" id="AddPoduct" style="border-radius:1.8rem" class="AddItem btn btn-md btn-primary"><i class="fa fa-plus"></i></a>    
        </div>
       </div>

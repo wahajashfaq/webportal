@@ -37,8 +37,8 @@
                       <th style="width:15%">Order Date</th>
                       <th style="width:15%">Deliver Date</th>
                       <th style="width:5%">Discount</th>
-                      <!--<th style="width:5%">Cost</th>-->
                       <th style="width:5%">Total</th>
+                      <th style="width:5%">Due_Payment</th>
                       <th style="width:5%">View</th>
                       <th style="width:20%">Cancel</th>
                     </tr>
@@ -51,12 +51,12 @@
                       <tr> 
                       <td style="width:5%"><?=$p->OrderID?></td>
                       <td style="width:20%"><?=$p->Reference?></td>
-                      <td style="width:20%"><?=$p->CustomerID?></td>
+                      <td style="width:20%"><?=$p->Cname?></td>
                       <td style="width:15%"><?=date("jS M,Y", strtotime($p->OrderDate));?></td>
                       <td style="width:15%"><?=date("jS M,Y", strtotime($p->DeliverDate));?></td>
                       <td style="width:5%"><?=$p->Discount?></td>
                       <td style="width:5%"><?=$p->GrandTotal?></td>
-                    <!--  <td style="width:5%"><?=$p->Selling_Price?></td>-->
+                      <td style="width:5%"><?=$p->Due_Payment?></td>
                       <td style="width:5%"><a href="<?php echo base_url();?>Orders/ViewOrderDetail?DataID=<?php echo $p->OrderID?>" data-placement="top" data-toggle="tooltip" title="View"style="color:White" class="btn btn-sm btn-primary"><i class="fa fa-eye"></i> View</a></td>     
                       <td style="width:20%"><button data-placement="top" data-toggle="tooltip" id="<?=$p->OrderID?>" title="Cancel" style="color:White" class="OrderDelete btn btn-sm btn-danger"><i class="fa fa-trash"></i> Cancel</button></td>
                       

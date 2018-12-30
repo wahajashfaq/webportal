@@ -54,7 +54,7 @@ public function Get_Data_From_OrderDetails($oid)
  public function getSelectedProducts($oid)
  {
            $query = $this->db->query("
-                                    Select name, SUM(NetWeight) as amount, SUM(NetValue) as SubTotal
+                                    Select name, SUM(NetWeight) as amount, SUM(NetValue) as SubTotal, price
                                     from orderdetails
                                     where oid = '$oid'
                                     group by name
@@ -81,8 +81,10 @@ public function addOrderDetails($Details)
 public function getOrders()
 { 
   $query = $this->db->query("
-                           Select *
-                           from orders
+                           Select o.* , 
+                           (Select concat(m.Name,' ',m.Lname) from member as m where m.Utype ='Customer' and m.ID = o.CustomerID)
+                            as Cname
+                            from orders as o
                             ");
         return $query->result();
 }

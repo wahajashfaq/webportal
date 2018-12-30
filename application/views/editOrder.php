@@ -63,14 +63,14 @@ var arr = <?php echo json_encode($SelectedData)?>;
       <?php
       }
      ?>
-     <span style="color:red" class="Error3">Must Select Valid Products to proceed</span>
+     <span style="color:red" class="Error3">Must Select Customer to proceed</span>
 
   </div>
 
   <div class="col-md-2">
      <div class="form-group">
-     <label class="control-label" for="Selling Price">Price</label>  
-     <input id="Selling_Price" name="Selling_Price" value="<?= $Order->Selling_Price?>" min=0 type="number" placeholder="0" class="form-control input-md" >
+     <label class="control-label" for="Due Payment">Due Payment</label>  
+     <input id="Due Payment" name="Due_Payment" value="<?= $Order->Due_Payment?>" min=0 type="number" placeholder="0" class="form-control input-md" >
      </div>
   </div>
   
@@ -96,7 +96,7 @@ var arr = <?php echo json_encode($SelectedData)?>;
     <div class="col-md-2">
      <div class="form-group">
      <label class="control-label"  for="Discount">Discount</label>  
-     <input id="Discount" name="Discount" value="<?= $Order->Discount?>" min=0 type="number" placeholder="0" class="form-control input-md" >
+     <input id="Discount" name="Discount" value="<?= $Order->Discount?>" min="0" type="number" placeholder="0" class="form-control input-md" >
      </div>
     </div>
      
@@ -147,23 +147,32 @@ var arr = <?php echo json_encode($SelectedData)?>;
      
      <div class="row">
       
-       <div class="col-md-4">
+       <div class="col-md-3">
        <div class="form-group">
-       <label class="control-label"  for="QuantityAvailable">Available(KG)</label>  
+       <label class="control-label"  for="SPrice">Price</label>  
+       <input id="SPrice" name="SPrice" type="number" min="0" placeholder="000" class="form-control input-md" >
+       </div>
+       </div>
+     
+
+
+       <div class="col-md-3">
+       <div class="form-group">
+       <label class="control-label"  for="QuantityAvailable">Available</label>  
        <input id="QuantityAvailable" disabled name="QuantityAvailable" type="number" placeholder="000" class="form-control input-md" >
        </div>
        </div>
      
-       <div class="col-md-4">
+       <div class="col-md-3">
        <div class="form-group">
-       <label class="control-label"  for="InputAmount">Amount(KG)</label>  
-       <input id="InputAmount" name="InputAmount"  type="number" placeholder="000" class="form-control input-md" >
+       <label class="control-label"  for="InputAmount">Amount</label>  
+       <input id="InputAmount" name="InputAmount" min="0" type="number" placeholder="000" class="form-control input-md" >
        </div>
        </div>
      
-     <div class="col-md-4">
+     <div class="col-md-3">
        <div class="form-group">    
-       <label class="control-label" for="AddPoduct">Add Product</label></br>
+       <label class="control-label" for="Add Poduct">Add</label></br>
        <a name="AddPoduct" id="AddPoduct" style="border-radius:1.8rem" class="AddItem btn btn-md btn-primary"><i class="fa fa-plus"></i></a>    
        </div>
        </div>
@@ -188,6 +197,7 @@ var arr = <?php echo json_encode($SelectedData)?>;
                         <tr >
                           <th>Name</th>
                           <th>Selected Amount</th>
+                          <th>Selling Rate</th>
                           <th>Remove</th>
                         </tr>
                       </thead>
@@ -201,6 +211,8 @@ var arr = <?php echo json_encode($SelectedData)?>;
                       <td><?=$stock->name?></td>
                       <input type="hidden" id="name" name="sweight[]" value="<?php echo $stock->amount;?>">
                       <td><?=$stock->amount?></td>
+                      <input type="hidden" id="name" name="sprice[]" value="<?php echo $stock->price;?>">
+                      <td><?=$stock->price?></td>
                       <td>
                       <a  style="border-radius:1.8rem" id="<?php echo preg_replace('/[^A-Za-z0-9\-]/', '', str_replace(' ','', $stock->name));?>" class="BtnRemove btn btn-danger"><i class="fa fa-minus"></i></a>
                       </td> 

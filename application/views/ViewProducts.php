@@ -31,11 +31,11 @@
                 <table class="table table-striped table-hover table-responsive " id="StockdataTable"  `>
                     <thead style="Background:silver">
                     <tr >
-                      <th>ProductName</th>
+                      <th>Completed On</th>
+                      <th>Product Name</th>
                       <th>Produced(KG)</th>
                       <th>Issued(KG)</th>
                       <th>CostPer(KG)</th>
-                      <th>CompletedOn</th>
                       <th>Edit</th>
                       <th>Delete</th>
                     </tr>
@@ -46,12 +46,12 @@
                          foreach ($Products as $p):
                         ?>
                       <tr>
+                       <td style="width:15%"><?=date("Y-m-d", strtotime($p->date));?></td>
                       <td><?=$p->pName?></td>
                       <td><?=$p->QP?></td>
                       <td><?=$p->Qissue?></td>
                       <td><?=$p->Price?></td>
-                      <td style="width:15%"><?=date("Y-m-d", strtotime($p->date));?></td>
-                      <td><a href="<?php echo base_url()?>Products/editProduct?DataID=<?php echo $p->pid?>" data-placement="top" data-toggle="tooltip" title="Edit"style="color:White" class="btn btn-sm btn-primary"><i class="fa fa-pencil-square-o"></i> Edit</a></td>
+                     <td><a href="<?php echo base_url()?>Products/editProduct?DataID=<?php echo $p->pid?>" data-placement="top" data-toggle="tooltip" title="Edit"style="color:White" class="btn btn-sm btn-primary"><i class="fa fa-pencil-square-o"></i> Edit</a></td>
                       <td><button data-placement="top" data-toggle="tooltip" id="<?php echo $p->pid?>" title="Delete" style="color:White" class="ProductDelete btn btn-sm btn-danger"><i class="fa fa-trash"></i> Delete</button></td>
 
                     </tr>
