@@ -70,7 +70,7 @@ var arr = <?php echo json_encode($SelectedData)?>;
   <div class="col-md-2">
      <div class="form-group">
      <label class="control-label" for="Due Payment">Due Payment</label>  
-     <input id="Due Payment" name="Due_Payment" value="<?= $Order->Due_Payment?>" min=0 type="number" placeholder="0" class="form-control input-md" >
+     <input id="Due Payment" name="Due_Payment" value="<?= $Order->Due_Payment?>" min="0" type="number" placeholder="0" class="form-control input-md" >
      </div>
   </div>
   

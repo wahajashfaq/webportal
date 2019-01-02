@@ -104,6 +104,20 @@ public function UpdateProductEntry()
 
 }
 
+public function CreateProductValuationReport()
+{
+	$this->load->model('product_model','pd');
+    $Records = $this->pd->GetProductValuationForReport();
+    $Sum=0;
+    // echo "<pre>";
+    // print_r($Records);exit;
+    foreach ($Records as $key => $r) 
+    {
+    	$Sum += $r->total;
+    }
+    $this->load->view('ReportProducts',['Records'=>$Records,'Total'=>$Sum]);
+}
+
 public function Release_Stocks_From_Product($pid)
 {
 	$this->load->model('product_model','pd');

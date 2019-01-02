@@ -6,20 +6,20 @@ class Dashboard extends CI_Controller
 
      function __construct()
     {
+       // echo "Husnain";exit;
          parent::__construct();
          $this->load->model('user_model');
          $this->output->set_header('Last-Modified:'.gmdate('D, d M Y H:i:s').'GMT');
          $this->output->set_header('Cache-Control: no-store, no-cache, must-revalidate');
          $this->output->set_header('Cache-Control: post-check=0, pre-check=0',false);
          $this->output->set_header('Pragma: no-cache');
-         if ($this->session->has_userdata('Login') && (!$this->session->userData('Login'))) 
+/*
+         if (!$this->session->has_userdata('Login') && (!$this->session->userData('Login'))) 
          {
-           redirect('login', 'refresh');	
+           //redirect('login', 'refresh');	
+         $this->login();
          }
-         elseif ( $this->session->userData('Login')) 
-         {
-           $this->PrepareDashBoard();    
-         }
+*/        
         
     }
 
@@ -72,7 +72,8 @@ public function LoginUtil()
 
 	public function index()
 	{
-		//$this->load->view('login');
+           $this->PrepareDashBoard();
+		// $this->load->view('login');
 	}
      public function login()
 	{

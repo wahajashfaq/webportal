@@ -122,10 +122,10 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="pagesDropdown">
             <h6 class="dropdown-header">Report Screens:</h6>
-            <a class="dropdown-item" href="#">Stock Report</a>
-            <a class="dropdown-item" href="#">Product Report</a>
+            <a class="dropdown-item" href="<?php echo base_url()?>GetStockReport">Stock Report</a>
+            <a class="dropdown-item" href="<?php echo base_url()?>GetProductReport">Product Report</a>
             <a class="dropdown-item" href="#">Creditors Report</a>
-            <a class="dropdown-item" href="#">Debtors Report</a>
+            <a class="dropdown-item" href="<?php echo base_url()?>GetDebtorsReport">Debtors Report</a>
           </div>
      </li>
 

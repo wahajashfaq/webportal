@@ -34,6 +34,19 @@ class product_model extends CI_Model
        return $query->row();  
     }
     
+    public function GetProductValuationForReport()
+    {
+          $query = $this->db->query("
+                                SELECT p.ProductName as Name,p.QuantityAvailable as qa,
+                                p.PriceperKG as price,
+                                (p.QuantityAvailable * p.PriceperKG) as total
+                                FROM products as p 
+                                WHERE p.QuantityAvailable != 0
+                                GROUP by p.ProductID
+                                ");
+        
+       return $query->result();  
+    }
     public function getSelectedStocks($pid)
     {
         $query = $this->db->query("

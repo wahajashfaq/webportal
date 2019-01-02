@@ -100,6 +100,8 @@ public function deleteOrder()
          $oid = $product['DataID'];
 		 $InputItems = $this->SetProductPostData($product);
          unset($product['DataID']); 
+         // echo "<pre>";
+         // print_r($InputItems);exit;
      	 $this->load->model('order_model','pd');
          $this->Release_Products_From_Order($oid);
          
@@ -144,7 +146,7 @@ public function deleteOrder()
 		foreach($UpdateItem as $item)
 		{
 			unset($item->purchased);
-			unset($item->price);
+			//unset($item->price);
 			unset($item->available);
 			unset($item->issued);
 			$item->oid=$oid;
@@ -153,6 +155,18 @@ public function deleteOrder()
        redirect('Orders/ShowOrders', 'refresh');	
 
  }    
+
+ public function CreateDebtorsReport()
+ {
+ 	$this->load->model('order_model','pd');
+    $Records = $this->pd->GetDuePaymentsForReport();
+    $Sum=0;
+    foreach ($Records as $key => $r) 
+    {
+    	$Sum += $r->Due;
+    }
+    $this->load->view('ReportDebtors',['Records'=>$Records,'Total'=>$Sum]);     
+ }
 	public function tempView()
 	{
 	  $this->load->view('OrderDetails');

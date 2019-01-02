@@ -19,6 +19,19 @@ class order_model extends CI_Model
         $this->db->where('OrderID', $oid);
         $this->db->update('orders', $order);
   }
+
+ public function GetDuePaymentsForReport()
+  {
+     $query = $this->db->query("
+                              SELECT o.Reference as OrderName,
+                              (SELECT Concat(m.Name,' ',m.Lname) from member as m where m.ID= o.CustomerID) 
+                              as Name,SUM(o.Due_Payment) as Due
+                              from orders as o 
+                              GROUP by o.CustomerID
+                              ");
+        return $query->result();
+  }
+
  public function getProductsForOrders()
   {
      $query = $this->db->query("

@@ -77,7 +77,11 @@ $route['Customers']='Members/getcustomers';
 $route['Orders']='Orders/ShowOrders';
 $route['Products']='Products/ProductView';
 $route['AddOrder']='Orders';
+$route['GetDebtorsReport']='Orders/CreateDebtorsReport';
 $route['AddProducts']='Products';
+$route['GetProductReport']='Products/CreateProductValuationReport';
+
+
 
 
 
