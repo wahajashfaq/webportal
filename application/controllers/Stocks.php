@@ -40,6 +40,7 @@ public function editStock()
 		}
        //echo $u_id;
 	}
+
 	public function updateStock()
 	{
        	 $this->load->model('stock_model','st');
@@ -59,6 +60,19 @@ public function editStock()
 		 $this->viewStock();
 	}
 
+public function CreateStockValuationReport()
+{
+	$this->load->model('stock_model','st');
+    $Records = $this->st->GetStockValuationForReport();
+    $Sum=0;
+    // echo "<pre>";
+    // print_r($Records);exit;
+    foreach ($Records as $key => $r) 
+    {
+    	$Sum += $r->total;
+    }
+    $this->load->view('ReportStocks',['Records'=>$Records,'Total'=>$Sum]);
+}
 
     public function addStockView()
 	{

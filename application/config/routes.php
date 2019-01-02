@@ -67,7 +67,7 @@ $route['User/User/User'] = 'User';
 $route['User/User/addUser'] = 'User/addUser';
 $route['(:any)/User']='User';
 $route['LoginService']='Dashboard/LoginUtil';
-$route['login']='Dashboard/login';
+$route['login']='Dashboard/funclogin';
 $route['logout']='Dashboard/logout';
 $route['Stocks/AddStockEntry']='Stocks/addStock';
 $route['Stocks/UpdateStockService']='Stocks/updateStock';
@@ -80,6 +80,7 @@ $route['AddOrder']='Orders';
 $route['GetDebtorsReport']='Orders/CreateDebtorsReport';
 $route['AddProducts']='Products';
 $route['GetProductReport']='Products/CreateProductValuationReport';
+$route['GetStockReport']='Stocks/CreateStockValuationReport';
 
 
 

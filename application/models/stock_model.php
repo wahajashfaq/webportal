@@ -21,6 +21,19 @@ class stock_model extends CI_Model
         return $query->result();
     }
 
+public function GetStockValuationForReport()
+{
+          $query = $this->db->query("
+                                    SELECT s.StockName as Name,s.QuantityAvailable as qa,
+                                    s.PriceperKG as price,(s.QuantityAvailable * s.PriceperKG) as total
+                                    FROM stocks as s 
+                                    WHERE s.QuantityAvailable != 0
+                                    GROUP by s.StockID
+                                           ");
+        
+       return $query->result();  
+      
+}
     public function getStockData($sid)
     {
         $query = $this->db->query("

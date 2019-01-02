@@ -13,13 +13,8 @@ class Dashboard extends CI_Controller
          $this->output->set_header('Cache-Control: no-store, no-cache, must-revalidate');
          $this->output->set_header('Cache-Control: post-check=0, pre-check=0',false);
          $this->output->set_header('Pragma: no-cache');
-/*
-         if (!$this->session->has_userdata('Login') && (!$this->session->userData('Login'))) 
-         {
-           //redirect('login', 'refresh');	
-         $this->login();
-         }
-*/        
+
+       
         
     }
 
@@ -60,7 +55,7 @@ public function LoginUtil()
     $this->session->sess_destroy();
     $this->cache->clean();
     ob_clean();
-    redirect('Dashboard/login');
+  $this->funclogin();
   }
 
 
@@ -72,10 +67,19 @@ public function LoginUtil()
 
 	public function index()
 	{
-           $this->PrepareDashBoard();
-		// $this->load->view('login');
+    
+         if ($this->session->has_userdata('Login') )
+          {
+           if($this->session->userData('Login'))
+              {
+                     //redirect('login', 'refresh');  
+                   $this->PrepareDashBoard();
+              }
+          }
+          else{$this->funclogin();}
+
 	}
-     public function login()
+     public function funclogin()
 	{
 		$this->load->view('login');
 	}
