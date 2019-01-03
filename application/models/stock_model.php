@@ -34,13 +34,26 @@ public function GetStockValuationForReport()
        return $query->result();  
       
 }
+
+ public function GetOwingPaymentsForReport()
+  {
+     $query = $this->db->query("
+                              SELECT s.StockName as OrderName,
+                             (SELECT Concat(m.Name,' ',m.Lname) from member as m where m.ID= s.SupplierID) 
+                              as Name,SUM(s.owe) as Due
+                             from stocks as s 
+                             GROUP by s.SupplierID
+                              ");
+        return $query->result();
+  }
+
     public function getStockData($sid)
     {
         $query = $this->db->query("
                                 Select s.StockID as s_ID,s.StockName as StockName,s.SupplierID as id,
                                 CONCAT (m.Name,m.Lname) as SupplierName,s.QuantityPurchased as QP,
                                 s.QuantityIssued as Qissue,s.PriceperKG as Price,s.TotalPrice as bill,
-                                s.StockDate as date,s.comments as comment
+                                s.StockDate as date,s.comments as comment, s.owe as owe
                                 from member as m,stocks as s
                                 where m.ID = s.SupplierID and  s.StockID ='$sid'
                                 ");

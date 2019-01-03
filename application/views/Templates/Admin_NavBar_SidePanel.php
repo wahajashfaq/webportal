@@ -124,7 +124,7 @@
             <h6 class="dropdown-header">Report Screens:</h6>
             <a class="dropdown-item" href="<?php echo base_url()?>GetStockReport">Stock Report</a>
             <a class="dropdown-item" href="<?php echo base_url()?>GetProductReport">Product Report</a>
-            <a class="dropdown-item" href="#">Creditors Report</a>
+            <a class="dropdown-item" href="<?php echo base_url()?>GetCreditorsReport">Creditors Report</a>
             <a class="dropdown-item" href="<?php echo base_url()?>GetDebtorsReport">Debtors Report</a>
           </div>
      </li>

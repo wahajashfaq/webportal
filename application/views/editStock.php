@@ -25,17 +25,15 @@
 <!-- Text input-->
 
 <div class = "row">
-   <div class="col-md-8 ">
+   <div class="col-md-3 ">
     <div class="form-group">
       <label class="control-label" for="StockName">Stock Name</label>  
       <input id="StockName" name="StockName" value="<?php echo $stock->StockName?>" type="text" placeholder="Stock Name" class="form-control input-md" required="">
       <?php echo form_hidden('DataID', $stock->s_ID, 'id="DataID"'); ?>
     </div>
    </div>
-</div>
 
-<div class = "row">
-   <div class="col-md-8 ">
+  <div class="col-md-3 ">
     <div class="form-group">
         <label class="control-label" for="SupplierID">Supplier</label>
         <select id="SupplierID" name="SupplierID" class="form-control" >
@@ -51,6 +49,15 @@
         </select>
     </div>
   </div>
+
+
+   <div class="col-md-2">
+      <div class="form-group">
+      <label class="control-label" for="owe">Owing Amount</label>  
+      <input id="owe" name="owe" value="<?php echo $stock->owe?>" type="number" min="0" placeholder="e.g 1000 PKR" class="form-control input-md" required="">      
+      </div>
+   </div>
+
 </div>
 
 
@@ -104,12 +111,23 @@
 
 
 <div class = "row">
-   <div class="col-md-4 ">
-    <div class="form-group">    
-    <input name="submit" class="btn btn-md btn-primary" type="submit" value="Update Stock">     
-    </div>
-   </div>
-</div>
+      <div class="col-md-1">
+      <div class="form-group">    
+      <input name="submit" class="btn btn-md btn-primary" type="submit" value="Update Stock">     
+      </div>
+    
+     </div>
+    &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
+      <div class="col-md-1">
+       <a href="<?php echo base_url().'Stocks'?>" data-toggle="tooltip" title="Back" style="color:White"
+          class="btn btn-md btn-info pull-right mb-1">
+           <i class="fa fa-arrow-left" aria-hidden="true"></i>
+            Back
+       </a>
+      </div>
+  
+  
+ </div>
 
 
 </fieldset>

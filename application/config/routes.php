@@ -78,6 +78,7 @@ $route['Orders']='Orders/ShowOrders';
 $route['Products']='Products/ProductView';
 $route['AddOrder']='Orders';
 $route['GetDebtorsReport']='Orders/CreateDebtorsReport';
+$route['GetCreditorsReport']='Stocks/CreateCreditorsReport';
 $route['AddProducts']='Products';
 $route['GetProductReport']='Products/CreateProductValuationReport';
 $route['GetStockReport']='Stocks/CreateStockValuationReport';

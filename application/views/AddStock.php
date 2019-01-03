@@ -25,16 +25,15 @@
 <!-- Text input-->
 
 <div class = "row">
-   <div class="col-md-8 ">
+   <div class="col-md-3 ">
     <div class="form-group">
       <label class="control-label" for="StockName">Stock Name</label>  
       <input id="StockName" name="StockName" type="text" placeholder="Stock Name" class="form-control input-md" required="">
     </div>
    </div>
-</div>
 
-<div class = "row">
-   <div class="col-md-8 ">
+
+   <div class="col-md-3">
     <div class="form-group">
         <label class="control-label" for="SupplierID">Supplier</label>
         <select id="SupplierID" name="SupplierID" class="form-control" >
@@ -43,9 +42,18 @@
           <option value="<?php echo $Supplier->ID;?>"><?php echo $Supplier->Name." ".$Supplier->Lname;?></option>
           <?php endforeach;?>
         </select>
+     </div>
     </div>
-  </div>
+
+    <div class="col-md-2">
+      <div class="form-group">
+      <label class="control-label" for="owe">Owing Amount</label>  
+      <input id="owe" name="owe" type="number" min="0" placeholder="e.g 1000 PKR" class="form-control input-md" required="">      
+      </div>
+   </div>
+
 </div>
+
 
 
 

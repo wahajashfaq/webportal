@@ -24,22 +24,30 @@ class Stocks extends CI_Controller {
 		 $this->viewStock();
 	}
 
+ public function CreateCreditorsReport()
+ {
+ 	$this->load->model('stock_model','pd');
+    $Records = $this->pd->GetOwingPaymentsForReport();
+    $Sum=0;
+    foreach ($Records as $key => $r) 
+    {
+    	$Sum += $r->Due;
+    }
+    $this->load->view('ReportCreditors',['Records'=>$Records,'Total'=>$Sum]);     
+ }
 public function editStock()
 	{
 		if(isset($_GET['DataID']))
 		{
          $this->load->model('stock_model','st');
          $sid = $_GET['DataID'];
-         //echo $sid;
          $stock = $this->st->getStockData($sid);
          $suppliers = $this->st->getsuppliers();
-    //       echo $sid;
     //       echo "<pre>";
 		  // print_r($stock);exit;
 	     $this->load->view('editStock',['stock'=>$stock,'suppliers'=>$suppliers,'supplierID'=>$stock->id]);
 		}
-       //echo $u_id;
-	}
+ 	}
 
 	public function updateStock()
 	{

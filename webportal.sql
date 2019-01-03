@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 29, 2018 at 04:28 PM
+-- Generation Time: Jan 03, 2019 at 10:35 PM
 -- Server version: 10.1.25-MariaDB
 -- PHP Version: 7.1.7
 
@@ -77,9 +77,14 @@ CREATE TABLE `orderdetails` (
 --
 
 INSERT INTO `orderdetails` (`oid`, `pid`, `Name`, `NetWeight`, `NetValue`, `price`) VALUES
-(9, 8, 'Head&Shoulder', 10, 1000, 100),
+(10, 12, 'AlfhaBeta', 11, 1100, 100),
+(10, 13, 'Head&Shoulder', 10, 10000, 1000),
 (9, 10, 'AlfhaBeta', 10, 2000, 200),
-(9, 12, 'AlfhaBeta', 5, 1000, 200);
+(9, 12, 'AlfhaBeta', 5, 1000, 200),
+(9, 8, 'Head&Shoulder', 10, 1000, 100),
+(9, 11, 'Brighto Paints', 2, 200, 100),
+(11, 12, 'AlfhaBeta', 2, 2000, 1000),
+(11, 14, 'PaintFant', 10, 10000, 1000);
 
 -- --------------------------------------------------------
 
@@ -95,7 +100,7 @@ CREATE TABLE `orders` (
   `DeliverDate` datetime DEFAULT NULL,
   `Discount` float DEFAULT NULL,
   `GrandTotal` float NOT NULL,
-  `Selling_Price` float NOT NULL,
+  `Due_Payment` float NOT NULL,
   `comments` varchar(600) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -103,8 +108,10 @@ CREATE TABLE `orders` (
 -- Dumping data for table `orders`
 --
 
-INSERT INTO `orders` (`OrderID`, `Reference`, `CustomerID`, `OrderDate`, `DeliverDate`, `Discount`, `GrandTotal`, `Selling_Price`, `comments`) VALUES
-(9, 'Raffaan Order', 32, '2018-11-29 00:00:00', '2019-01-04 00:00:00', 0, 4000, 0, 'No Comments');
+INSERT INTO `orders` (`OrderID`, `Reference`, `CustomerID`, `OrderDate`, `DeliverDate`, `Discount`, `GrandTotal`, `Due_Payment`, `comments`) VALUES
+(9, 'Raffaan Order', 32, '2018-11-29 00:00:00', '2019-01-04 00:00:00', 0, 4200, 0, 'No Comments'),
+(10, 'Arham Production 101', 48, '2019-01-05 00:00:00', '2019-01-25 00:00:00', 200, 10900, 6000, 'No Comments'),
+(11, 'Texas order', 48, '2018-12-30 00:00:00', '2019-02-02 00:00:00', 200, 11800, 4000, 'No Comments');
 
 -- --------------------------------------------------------
 
@@ -177,10 +184,10 @@ INSERT INTO `products` (`ProductID`, `ProductName`, `QuantityProduced`, `Quantit
 (8, 'Head&Shoulder', 10, 10, 0, 446.4, '2018-12-06 00:00:00', 'No Comments'),
 (9, 'Sunsilk', 120, 0, 120, 34.0833, '2018-12-07 00:00:00', 'No Comments'),
 (10, 'AlfhaBeta', 10, 10, 0, 314, '2018-12-05 00:00:00', 'No Comments'),
-(11, 'Brighto Paints', 10, 0, 10, 132.6, '2018-12-14 00:00:00', 'No Comments'),
-(12, 'AlfhaBeta', 20, 5, 15, 28.5, '2018-12-07 00:00:00', 'No Comments'),
-(13, 'Head&Shoulder', 15, 0, 15, 35.3333, '2018-12-07 00:00:00', 'No Comments'),
-(14, 'PaintFant', 120, 0, 120, 7.5, '2018-12-14 00:00:00', 'No Comments');
+(11, 'Brighto Paints', 10, 2, 8, 132.6, '2018-12-14 00:00:00', 'No Comments'),
+(12, 'AlfhaBeta', 20, 18, 2, 28.5, '2018-12-07 00:00:00', 'No Comments'),
+(13, 'Head&Shoulder', 15, 10, 5, 35.3333, '2018-12-07 00:00:00', 'No Comments'),
+(14, 'PaintFant', 120, 10, 110, 7.5, '2018-12-14 00:00:00', 'No Comments');
 
 -- --------------------------------------------------------
 
@@ -197,6 +204,7 @@ CREATE TABLE `stocks` (
   `QuantityAvailable` int(12) DEFAULT NULL,
   `PriceperKG` float DEFAULT NULL,
   `TotalPrice` float DEFAULT NULL,
+  `owe` int(11) DEFAULT NULL,
   `StockDate` datetime DEFAULT CURRENT_TIMESTAMP,
   `comments` varchar(500) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -205,18 +213,18 @@ CREATE TABLE `stocks` (
 -- Dumping data for table `stocks`
 --
 
-INSERT INTO `stocks` (`StockID`, `SupplierID`, `StockName`, `QuantityPurchased`, `QuantityIssued`, `QuantityAvailable`, `PriceperKG`, `TotalPrice`, `StockDate`, `comments`) VALUES
-(8, 35, 'Sulphuric Acid', 50, 50, 0, 12, 600, '2018-11-08 00:00:00', 'y6gtfrdyhgtfredy6gtfred            '),
-(9, 13, 'Sulphuric Acid', 12, 12, 0, 10, 120, '2018-11-17 00:00:00', 'vrfcdbtvrcfex'),
-(10, 45, 'Liquid Nitrogen', 10, 10, 0, 10, 100, '2018-11-24 00:00:00', 'hbtgvcrfedx'),
-(11, 51, 'Sodium carbonate Pentahidrate', 12, 12, 0, 20, 240, '2018-11-01 00:00:00', 'No Comments'),
-(12, 36, 'Liquid Nitrogen', 30, 30, 0, 100, 3000, '2018-11-01 00:00:00', 'No Comments                  '),
-(13, 13, 'Liquid Nitrogen', 12, 12, 0, 5, 60, '2018-11-14 00:00:00', 'No Comments'),
-(14, 13, 'Alumunium', 100, 100, 0, 100, 10000, '2018-12-19 00:00:00', 'No Comments'),
-(15, 13, 'Salt(NACL)', 30, 30, 0, 10, 300, '2018-12-12 00:00:00', 'No Comments'),
-(16, 13, 'KOH', 20, 0, 20, 20, 400, '2018-12-22 00:00:00', 'No Comments'),
-(17, 45, 'Salt(NACL)', 50, 20, 30, 20, 1000, '2018-12-29 00:00:00', 'No Comments'),
-(18, 35, 'KOH', 20, 20, 0, 20, 400, '2018-12-21 00:00:00', 'No Comments');
+INSERT INTO `stocks` (`StockID`, `SupplierID`, `StockName`, `QuantityPurchased`, `QuantityIssued`, `QuantityAvailable`, `PriceperKG`, `TotalPrice`, `owe`, `StockDate`, `comments`) VALUES
+(8, 35, 'Sulphuric Acid', 50, 50, 0, 12, 600, 1050, '2018-11-08 00:00:00', 'y6gtfrdyhgtfredy6gtfred            '),
+(9, 13, 'Sulphuric Acid', 12, 12, 0, 10, 120, 1000, '2018-11-17 00:00:00', 'vrfcdbtvrcfex'),
+(10, 45, 'Liquid Nitrogen', 10, 10, 0, 10, 100, 1050, '2018-11-24 00:00:00', 'hbtgvcrfedx'),
+(11, 51, 'Sodium carbonate Pentahidrate', 12, 12, 0, 20, 240, 1000, '2018-11-01 00:00:00', 'No Comments'),
+(12, 36, 'Liquid Nitrogen', 30, 30, 0, 100, 3000, 1050, '2018-11-01 00:00:00', 'No Comments                  '),
+(13, 13, 'Liquid Nitrogen', 12, 12, 0, 5, 60, 1000, '2018-11-14 00:00:00', 'No Comments'),
+(14, 13, 'Alumunium', 100, 100, 0, 100, 10000, 1050, '2018-12-19 00:00:00', 'No Comments'),
+(15, 13, 'Salt(NACL)', 30, 30, 0, 10, 300, 1000, '2018-12-12 00:00:00', 'No Comments'),
+(16, 13, 'KOH', 20, 0, 20, 20, 400, 1050, '2018-12-22 00:00:00', 'No Comments'),
+(17, 45, 'Salt(NACL)', 50, 20, 30, 20, 1000, 5000, '2018-12-29 00:00:00', 'No Comments      '),
+(18, 35, 'KOH', 20, 20, 0, 20, 400, 1050, '2018-12-21 00:00:00', 'No Comments');
 
 -- --------------------------------------------------------
 
@@ -308,7 +316,7 @@ ALTER TABLE `member`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `OrderID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `OrderID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `products`
 --
