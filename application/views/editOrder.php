@@ -249,7 +249,7 @@ var arr = <?php echo json_encode($SelectedData)?>;
 <div class = "row">
    <div class="col-md-4 ">
     <div class="form-group">    
-    <input name="submit" class="AddProduct AddProductBtn btn btn-md btn-primary" type="submit" value="Add Order">     
+    <input name="submit" class="AddProduct AddProductBtn btn btn-md btn-primary" type="submit" value="Update Order">     
     </div>
    </div>
 </div>

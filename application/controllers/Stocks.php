@@ -116,8 +116,25 @@ public function CreateStockValuationReport()
      {
      	$this->load->model('stock_model','st');
 	    $stocks = $this->st->getStocks();
-	 //     echo "<pre>";
-		//  print_r($stocks);exit;
+	    $UsedStocks = $this->st->getUsedStocks();
+        foreach ($stocks as $skey => $s)
+        {
+            foreach ($UsedStocks as $key => $u) 
+            {
+                if ($s->s_ID == $u->ID) 
+                {
+                    $s->DontDelete = 1;
+                    break;
+                }
+                else
+                { 
+                      $s->DontDelete = 0;   
+                }
+            }
+        }
+      //  echo "<pre>";
+        // print_r($stocks);
+          // print_r($UsedStocks);exit;
 	 $this->load->view('ViewStocks',['Stocks'=>$stocks]);
      }
 

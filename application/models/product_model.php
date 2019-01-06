@@ -11,6 +11,22 @@ class product_model extends CI_Model
          return  $insert_id;
     }
 
+    public function getUsedProducts()
+    {
+        $query = $this->db->query("
+                             Select DISTINCT(ProductID) as ID 
+                             FROM products where ProductID in(
+                                                              Select pid 
+                                                              from orderdetails
+                                                             )
+                                   ");
+        return $query->result();
+    }
+public function DeleteProduct($oid)
+{
+      $this->db->where("ProductID",$oid);
+      $this->db->delete("products");
+}
     public function UpdateProductDetails($pid,$item)
     {
       $this->db->where('pid', $pid);

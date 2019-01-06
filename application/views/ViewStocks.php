@@ -56,8 +56,13 @@
                       <td style="width:5%"><?=$stock->Qissue?></td>
                       <td style="width:5%"><?=$stock->Price?></td>
                       <td style="width:5%"><?=$stock->bill?></td>
-                      <td style="width:10%"><a href="<?php echo base_url()?>Stocks/editStock?DataID=<?php echo $stock->s_ID?>" data-placement="top" data-toggle="tooltip" title="Edit"style="color:White" class="btn btn-sm btn-primary"><i class="fa fa-pencil-square-o"></i> Edit</a></td>
-                      <td style="width:15%"><button data-placement="top" data-toggle="tooltip" id="<?php echo $stock->s_ID?>" title="Delete" style="color:White" class="StockDelete btn btn-sm btn-danger"><i class="fa fa-trash"></i> Delete</button></td>
+                      <?php
+                      $Isdisabled='';
+                      if ($stock->DontDelete ==1) {
+                        $Isdisabled='disabled';
+                      }?>
+                      <td style="width:10%"><a  href="<?php echo base_url()?>Stocks/editStock?DataID=<?php echo $stock->s_ID?>" data-placement="top" data-toggle="tooltip" title="Edit"style="color:White" class="btn btn-sm btn-primary"><i class="fa fa-pencil-square-o"></i> Edit</a></td>
+                      <td style="width:15%"><button <?php echo $Isdisabled?> data-placement="top" data-toggle="tooltip" id="<?php echo $stock->s_ID?>" title="Delete" style="color:White" class="StockDelete btn btn-sm btn-danger"><i class="fa fa-trash"></i> Delete</button></td>
 
                     </tr>
                           <?php

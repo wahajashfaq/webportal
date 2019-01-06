@@ -51,8 +51,13 @@
                       <td><?=$p->QP?></td>
                       <td><?=$p->Qissue?></td>
                       <td><?=$p->Price?></td>
+                       <?php
+                      $Isdisabled='';
+                      if ($p->DontDelete ==1) {
+                        $Isdisabled='disabled';
+                      }?>
                      <td><a href="<?php echo base_url()?>Products/editProduct?DataID=<?php echo $p->pid?>" data-placement="top" data-toggle="tooltip" title="Edit"style="color:White" class="btn btn-sm btn-primary"><i class="fa fa-pencil-square-o"></i> Edit</a></td>
-                      <td><button data-placement="top" data-toggle="tooltip" id="<?php echo $p->pid?>" title="Delete" style="color:White" class="ProductDelete btn btn-sm btn-danger"><i class="fa fa-trash"></i> Delete</button></td>
+                      <td><button <?php echo $Isdisabled?> data-placement="top" data-toggle="tooltip" id="<?php echo $p->pid?>" title="Delete" style="color:White" class="ProductDelete btn btn-sm btn-danger"><i class="fa fa-trash"></i> Delete</button></td>
 
                     </tr>
                           <?php

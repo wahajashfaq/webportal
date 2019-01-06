@@ -60,6 +60,8 @@ public function UpdateProductEntry()
 		//Setting Post Data for Use. This Function call Sets Post data and 
 		// Return us Selected $InputItems of user
 		$InputItems = $this->SetProductPostData($product);
+		// echo "<pre>";
+		// print_r($InputItems);exit;
 		unset($product['DataID']);
         
         //Getting all Valid Stocks
@@ -305,12 +307,36 @@ $product['PriceperKG']=$PriceperKG;
     redirect('Products/ProductView', 'refresh');	
 }
 
-	
-
+	public function DeleteProduct()
+	{
+	$this->load->model('product_model','pd');
+	$pid = $this->input->post('uid');
+	$this->Release_Stocks_From_Product($pid);
+    $this->pd->DeleteProductDetails($pid);
+    $this->pd->DeleteProduct($pid);
+    //return true;
+}
     public function ProductView()
 	{
 		$this->load->model('product_model','pd');
 		$Products = $this->pd->getProducts();
+		$UsedProducts = $this->pd->getUsedProducts();
+		foreach ($Products as $skey => $p)
+        {
+            foreach ($UsedProducts as $key => $u) 
+            {
+                if ($p->pid == $u->ID) 
+                {
+                    $p->DontDelete = 1;
+                    break;
+                }
+                else
+                { 
+                      $p->DontDelete = 0;   
+                }
+            }
+        }
+		
 		$this->load->view('ViewProducts',['Products'=>$Products]);
 	}
      

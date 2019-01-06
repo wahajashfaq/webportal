@@ -8,11 +8,24 @@ class stock_model extends CI_Model
     	return $query->result();
     }
 
+    public function getUsedStocks()
+    {
+        $query = $this->db->query("
+                                Select DISTINCT(StockID) as ID 
+                                FROM stocks where StockID in(
+                                                            Select sid 
+                                                            from 
+                                                            productdetails 
+                                                            )
+                                 ");
+        return $query->result();
+    }
+
     public function getStocks()
     {
         $query = $this->db->query("
                                 Select s.StockID as s_ID,s.StockName as StockName,s.SupplierID as id,
-                                CONCAT (m.Name,m.Lname) as SupplierName,s.QuantityPurchased as QP,
+                                CONCAT (m.Name,' ',m.Lname) as SupplierName,s.QuantityPurchased as QP,
                                 s.QuantityIssued as Qissue,s.PriceperKG as Price,s.TotalPrice as bill,
                                 s.StockDate as date from member as m,stocks as s
                                 where m.ID = s.SupplierID
