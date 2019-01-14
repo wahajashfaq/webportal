@@ -28,6 +28,9 @@
 //require_once('tcpdf_include.php');
 
 // create new PDF document
+  // echo "<pre>";
+  // print_r($products);exit;
+
 $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 
 // set document information
@@ -58,118 +61,87 @@ $pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
 // ---------------------------------------------------------
 
 // set font
-$pdf->SetFont('times', 'BI', 20);
+//$pdf->SetFont('times', '', 15);
 
 // add a page
 $pdf->AddPage();
 
-$html ='
-<div class="container">
-    <div class="row">
-        <div class="col-12">
-            <div class="card">
-                <div class="card-body p-1">
-                    <div class="row p-1">   <!--Ref https://www.w3schools.com/php/func_date_date_format.asp-->
-                        <div class="col-md-6"> <!--dS gives 11th M gives month name and Y gives year-->
-                           <h3><p class="font-weight-bold mb-1">Order#<?= $Order->oid?></p></h3>
-                            <p class="text-muted">Due to: <?=date("dS M,Y", strtotime($Order->dDate));?></p>
-                        </div>
-                    </div>
-
-                    <hr class="my-3">
-
-                    <div class="row pb-4 p-4">
-
-                    <div class="col-md-6">
-                            <p class="font-weight-bold mb-4">Customer Details</p>
-                            <p class="mb-1"><span class="text-muted"><b>NAME:</b></span> <?=$Order->CName?></p>
-                            <p class="mb-1"><span class="text-muted"><b>EMAIL ID: </b></span><?=$Order->email?></p>
-                            <p class="mb-1"><span class="text-muted"><b>CONTACT: </b></span><?=$Order->number?></p>
-                            <p class="mb-1" style="width:500px"><span class="text-muted"><b>ADDRESS:</b></span>
-                                <?=$Order->Caddr?>
-                            </p>
-                        </div>
-                        <div class="col-md-6 text-right">
-                            <p class="font-weight-bold mb-4">Order Details</p>
-                            <p class="mb-1"><span class="text-muted"><b>Order ID: </b></span><?= $Order->oid?></p>
-                            <p class="mb-1"><span class="text-muted"><b>REFERENCE: </b></span> <?= $Order->ref?></p>
-                            <p class="mb-1"><span class="text-muted"><b>Payment Type: </b></span> Root</p>
-                            <p class="mb-1"><span class="text-muted"><b>DATE: </b></span><?=date("jS M,Y", strtotime($Order->oDate));?></p>
-                        </div>
-                    </div>
-
-                    <div class="row p-5">
-                        <div class="col-md-12">
-                            <table class="table table-striped table-hover">
-                              <thead>
-                                <tr>
-                                  <th class="border-0 text-uppercase small font-weight-bold">No#</th>
-                                  <th class="border-0 text-uppercase small font-weight-bold">Item</th>
-                                  <th class="border-0 text-uppercase small font-weight-bold">Quantity</th>
-                                  <th class="border-0 text-uppercase small font-weight-bold">Unit Price</th>
-                                  <th class="border-0 text-uppercase small font-weight-bold">Total</th>
-                                 </tr>
-                              </thead>
-                              <tbody>';
-                                
-                                    if ($products)
-                                    {
-                                        foreach ($products as $key => $p)
-                                        {
-                                   
-                                    $html.= "
-                                    <tr>
-                                        <td>". $key ."</td>
-                                        <td>". $p->Name ."</td>
-                                        <td>". $p->amount ."</td>
-                                        <td>". $p->PerKg ."</td>
-                                        <td>". $p->SubTotal ."</td>
-                                    </tr>
-                                    ";
-                                    
-                                   
-                                         }//End Of ForEach
-                                    } //End of if
-                                    else{
-                                    	$html .="
-                                    <tr>
-                                      <td colspan=9>
-                                        No Records Found..!!
-                                      </td>
-                                   </tr>
-                                   ";
-                                    } //Enf of Else
-                                   $html.='
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-
-                    <div class="d-flex flex-row-reverse bg-dark text-white p-1">
-
-                            <div class="py-3 px-4 text-right">
-                            <div class="mb-2"></div>
-                            <div class="h2 font-weight-light"></div>
-                        </div>
-                        <div class="py-3 px-5 text-right">
-                            <div class="mb-1">Grand Total&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
-                            <div class="h3 font-weight-light"><?=$Order->Total?> PKR</div>
-                        </div>
-
-                        <div class="py-3 px-5 text-right">
-                            <div class="mb-1">Discount &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
-                            <div class="h3 font-weight-light"><?=$Order->disc?> PKR</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+$pdf->SetFont('helveticaBI','I',20);
+$pdf->Cell(40,3,'T',0,0,'C', 0, '', 2);
 
 
-</div>';
+$pdf->Cell(25,5,'',0,0);
 
-$pdf->writeHTML($html, true, false, true, false, '');
+$pdf->SetFont('timesB','B',20);
+$pdf->Cell(70,3,'TIMETEX INDUSTRIES',0,0,'C', 0, '', 2);
+
+$pdf->Cell(25,5,'',0,0);
+
+$pdf->SetFont('timesB','B',10);
+// MultiCell($w, $h, $txt, $border=0, $align='J', $fill=0, $ln=1, $x='', $y='', $reseth=true, $stretch=0, $ishtml=false, $autopadding=true, $maxh=0)
+$pdf->MultiCell(30, 2, utf8_decode("Original" . chr(10) ."___________". chr(10). "Duplicate"), 0, 'L', 0, 0, '', '', true);
+
+$pdf->Ln(10);
+
+$pdf->SetFont('helveticaBI','I',20);
+$pdf->Cell(40,3,'T',0,0,'C', 0, '', 2);
+
+
+$pdf->Cell(20,5,'',0,0);
+
+$txt = "Canal Bank Housing Scheme, 29-Latif Block, St # 5 Near Mehar Feyaaz Colony Fateh Garh, Lahore\n";
+$txt .= "NTN 3607541- B : STRN 0300360754110\n";
+$txt .= "Ph: 042-707557 :tti.info@yahoo.com";
+
+$pdf->SetFont('timesB','B',10);
+$pdf->MultiCell(80,2,$txt, 0, 'C', 0, 0, '', '', true);
+
+$pdf->Ln(10);
+$pdf->SetFont('helveticaBI','I',18);
+$pdf->Cell(10,1,'',0,0);
+$pdf->Cell(20,3,'I',0,0,'C', 0, '', 2);
+
+$pdf->Ln(12);
+
+$pdf->Cell(70,1,'',0,0);
+$pdf->SetFont('timesB','B',18);
+$pdf->Cell(60,5,'SALES TAX INVOICE',0,1,'C');
+
+$pdf->Ln(12);
+$pdf->SetFont('timesB','B',10);
+$pdf->Cell(30 ,5,'Sold To',1,0,'L');
+$pdf->SetFont('times','',10);
+$pdf->Cell(80 ,5,$Order->CName,1,0,'L');//end of line
+$pdf->SetFont('timesB','B',10);
+$pdf->Cell(30,1,'',0,0);
+$pdf->Cell(30 ,5,'Seriel #',0,0,'L');
+$pdf->Cell(80 ,5,$Order->oid,0,1,'L');//end of line
+
+
+$pdf->Cell(30 ,10,'Address',1,0,'L');
+$pdf->SetFont('times','',10);
+$pdf->Cell(80 ,10,$Order->Caddr,1,0,'L');//end of line
+
+$pdf->SetFont('timesB','B',10);
+$pdf->Cell(30,1,'',0,0);
+$pdf->Cell(25 ,10,'Date',0,0,'L');
+$pdf->Cell(60 ,10,date("dS M,Y", strtotime($Order->oDate)),0,1,'L');//end of line
+
+$pdf->SetFont('timesB','B',10);
+$pdf->Cell(30 ,5,'Sales Tax Reg No',1,0,'L');
+$pdf->SetFont('times','',10);
+$pdf->Cell(50 ,5,'03-11-5205-002-28',1,0,'L');//end of line
+$pdf->SetFont('timesB','B',10);
+$pdf->Cell(60,1,'',0,0);
+$pdf->Cell(30 ,5,'PO#',0,0,'L');
+$pdf->Cell(80 ,5,'',0,1,'L');//end of line
+
+
+$pdf->SetFont('timesB','B',10);
+$pdf->Cell(30 ,5,'NTN',1,0,'L');
+$pdf->SetFont('times','',10);
+$pdf->Cell(50 ,5,'1125487-4',1,0,'L');//end of line
+
 // set some text to print
 /*
 $txt = <<<EOD
@@ -182,6 +154,55 @@ EOD;
 $pdf->Write(0, $txt, '', 0, 'C', true, 0, false, false, 0);
 */
 // ---------------------------------------------------------
+
+//make a dummy empty cell as a vertical spacer
+$pdf->Cell(189 ,10,'',0,1);//end of line
+//Cell($w, $h=0, $txt='', $border=0, $ln=0, $align='', $fill=0, $link='', $stretch=0, $ignore_min_height=false, $calign='T', $valign='M')
+
+//invoice contents
+$pdf->SetFont('times','B',12);
+$pdf->Cell(10 ,20,'Sr',1,0,'C');
+$pdf->Cell(50 ,20,'Description',1,0,'C');
+$pdf->Cell(20 ,20,'Quantity',1,0,'C');
+$pdf->Cell(20 ,20,'Unit',1,0,'C');
+$pdf->Cell(20 ,20,'Rate',1,0,'C');
+$txt  = "Value Exclusive of\nSales Tax";
+$pdf->MultiCell(25,20,$txt, 1, 'C', 0, 0, '', '', true);
+
+$txt  = "Sales Tax Percentage\n17%";
+$pdf->MultiCell(25,20,$txt, 1, 'C', 0, 0, '', '', true);
+
+$txt  = "Value Inclusive of \nSales Tax";
+$pdf->MultiCell(25,20,$txt, 1, 'C', 0, 1, '', '', true);
+$pdf->SetFillColor(249, 249, 249);
+
+
+$pdf->SetFont('times','',10);
+   // echo "<pre>";
+   // print_r($products);exit;
+
+if ($products) 
+{
+   foreach ($products as $key => $p) 
+   {
+      $pdf->Cell(10 ,5,$key +1,1,0,'C');
+      $pdf->Cell(50 ,5,$p->Name,1,0,'C');
+      $pdf->Cell(20 ,5,$p->amount,1,0,'C');
+      $pdf->Cell(20 ,5,'Liter',1,0,'C');
+      $pdf->Cell(20 ,5,$p->PerKg,1,0,'C');
+      $pdf->Cell(25,5,$p->SubTotal, 1,0, 'C' );
+      $pdf->Cell(25,5,($p->SubTotal * 0.17), 1,0, 'C');
+      $pdf->Cell(25,5,$p->SubTotal + ($p->SubTotal *0.17), 1,1, 'C');
+   }
+} 
+else
+{
+
+}
+
+
+
+
 
 //Close and output PDF document
 $pdf->Output('Invoice.pdf', 'I');
