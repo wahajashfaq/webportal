@@ -36,7 +36,7 @@
                       <th>Last Name</th>
                       <th>Email</th>
                       <th>Number</th>
-                      <th>View</th>
+                      <!--<th>View</th>-->
                       <th>Edit</th>
                       <th>Delete</th>
                     </tr>
@@ -57,7 +57,8 @@
                       <td><?=$user->Lname?></td>
                       <td><?=$user->Email?></td>
                       <td><?=$user->ContactNumber?></td>
-                      <td><a href="<?php echo base_url()?>Members/editMember?DataID=<?php echo $user->ID?>" data-placement="top" data-toggle="tooltip" id="Editbtn" title="Edit" style="color:White" class="btn btn-sm btn-success"><i class="fa fa-eye"></i> View</a></td>
+                    <!--  <td><a href="<?php echo base_url()?>Members/editMember?DataID=<?php echo $user->ID?>" data-placement="top" data-toggle="tooltip" id="Editbtn" title="Edit" style="color:White" class="btn btn-sm btn-success"><i class="fa fa-eye"></i> View</a></td>
+                      -->
                       <td><a href="<?php echo base_url()?>Members/editMember?DataID=<?php echo $user->ID?>" data-placement="top" data-toggle="tooltip" id="Editbtn" title="Edit" style="color:White" class="btn btn-sm btn-primary"><i class="fa fa-pencil-square-o"></i> Edit</a></td>
                       <td><button data-placement="top"  id="<?php echo $user->ID?>" title="Delete" style="color:White" class=" Delete btn btn-sm btn-danger"><i class="fa fa-trash"></i> Delete</button></td>
                     </tr>

@@ -120,7 +120,7 @@ var option=[];
 	    	//The Value of This becomes undefined in Ajax Success or error section
 	    	//So we Need to Store Table and Row objects
 	    	var obj = $(this).parents('tr');
-	    	var table = $('#MemberdataTable').DataTable();
+	    	var table = $('#StockdataTable').DataTable();
 	    	//Base_URL is not available in external JS file(here) So we need to Generate it from URL
 	    	var domain = window.location.origin; //To get the domain part from url
 	    	var pathArray = window.location.pathname.split('/'); // to split all string after domain

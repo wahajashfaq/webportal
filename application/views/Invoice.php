@@ -28,8 +28,9 @@
 //require_once('tcpdf_include.php');
 
 // create new PDF document
-  // echo "<pre>";
-  // print_r($products);exit;
+  
+   // echo "<pre>";
+   // print_r($Order);exit;
 
 $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 
@@ -162,6 +163,8 @@ $pdf->Cell(189 ,10,'',0,1);//end of line
 //invoice contents
 $pdf->SetFont('times','B',12);
 $pdf->Cell(10 ,20,'Sr',1,0,'C');
+$pdf->SetFillColor(249, 249, 249);
+
 $pdf->Cell(50 ,20,'Description',1,0,'C');
 $pdf->Cell(20 ,20,'Quantity',1,0,'C');
 $pdf->Cell(20 ,20,'Unit',1,0,'C');
@@ -173,9 +176,9 @@ $txt  = "Sales Tax Percentage\n17%";
 $pdf->MultiCell(25,20,$txt, 1, 'C', 0, 0, '', '', true);
 
 $txt  = "Value Inclusive of \nSales Tax";
-$pdf->MultiCell(25,20,$txt, 1, 'C', 0, 1, '', '', true);
+$pdf->MultiCell(25,20,$txt, 1, 'C', 0, 0, '', '', true);
 $pdf->SetFillColor(249, 249, 249);
-
+$pdf->Cell(200 ,20,' ',0,1,'');
 
 $pdf->SetFont('times','',10);
    // echo "<pre>";
@@ -200,9 +203,35 @@ else
 
 }
 
+$pdf->Cell(10 ,10,'',1,0,'C');
+$pdf->Cell(50 ,10,'Total==>',1,0,'C');
+$pdf->Cell(20 ,10,'',1,0,'C');
+$pdf->Cell(20 ,10,'',1,0,'C');
+$pdf->Cell(20 ,10,'',1,0,'C');
+$pdf->MultiCell(25,10,$Order->Total, 1, 'C', 0, 0, '', '', true);
 
 
+$pdf->MultiCell(25,10,$Order->Total * 0.17, 1, 'C', 0, 0, '', '', true);
 
+
+$pdf->MultiCell(25,10,$Order->Total *(1+0.17), 1, 'C', 0, 0, '', '', true);
+$pdf->SetFillColor(249, 249, 249);
+$pdf->Cell(200 ,20,' ',0,1,'');
+
+$pdf->Cell(200 ,70,' ',0,1,'');
+$pdf->SetFont('times','B',12);
+
+$txt  = "...................................\nPrepared By";
+$pdf->MultiCell(40,20,$txt, 0, 'L', 0, 0, '', '', true);
+$pdf->Cell(20 ,5,' ',0,0,'');
+
+$txt  = "...................................\nChecked By";
+$pdf->MultiCell(40,20,$txt, 0, 'L', 0, 0, '', '', true);
+$pdf->Cell(20 ,5,' ',0,0,'');
+
+
+$txt  = ".........................................\nAuthorized Signature ";
+$pdf->MultiCell(60,20,$txt, 0, 'L', 0, 0, '', '', true);
 
 //Close and output PDF document
 $pdf->Output('Invoice.pdf', 'I');

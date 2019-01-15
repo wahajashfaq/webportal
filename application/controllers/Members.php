@@ -30,9 +30,19 @@ class Members extends CI_Controller
 		$post =$this->input->post();
 		$this->load->model('member_model');
 		unset($post['submit']);
-		$this->member_model->addMember($post);
-		$members=$this->member_model->getmembers();
-        $this->load->view('ViewMembers',['users'=>$members]);
+    // echo "<pre>";
+    // print_r($post);exit;
+    $this->member_model->addMember($post);
+    if ($post['UType'] == 'Supplier') 
+    {
+        return redirect('Members/getsuppliers');
+    }
+    else
+    {
+   return redirect('Members/getcustomers');
+   
+    }
+		    
 	}
 	public function editMember()
 	{
