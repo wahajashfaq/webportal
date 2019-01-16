@@ -27,9 +27,11 @@ class Orders extends CI_Controller {
    
 public function GenerateInvoice()
 {
+	$oid = $this->input->get('DataID');
+	// echo $oid;exit;
 	$this->load->library('Pdf');
 	$this->load->model('order_model','obj');    
-	$oid = 9;
+	//$oid = 9;
 	$OrderedProducts = $this->obj->getOrderedProducts($oid);
     $OrderDetail = $this->obj->getOrderData($oid);
     $this->load->view('Invoice',['products'=>$OrderedProducts,'Order'=>$OrderDetail]);	

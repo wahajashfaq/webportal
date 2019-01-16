@@ -48,11 +48,11 @@
                         </div>
 
                         <div class="col-md-2 pull-right">
-                         <button data-placement="top" data-toggle="tooltip" title="Print" style="color:White"
+                         <a href="<?php echo base_url()?>Orders/GenerateInvoice?DataID=<?php echo $Order->oid?>" data-placement="top" data-toggle="tooltip" title="Print" style="color:White"
                          class="OrderPDFBtn btn btn-md btn-info pull-right mb-1">
                           <i class="fa fa-file-pdf-o" aria-hidden="true"  ></i>
                            Export PDF
-                         </button>
+                         </a>
 
                         </div>
                       </div>

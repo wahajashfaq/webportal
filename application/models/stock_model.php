@@ -56,6 +56,7 @@ public function GetStockValuationForReport()
                               as Name,SUM(s.owe) as Due
                              from stocks as s 
                              GROUP by s.SupplierID
+                             Having Due > 0
                               ");
         return $query->result();
   }

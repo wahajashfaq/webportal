@@ -28,6 +28,7 @@ class order_model extends CI_Model
                               as Name,SUM(o.Due_Payment) as Due
                               from orders as o 
                               GROUP by o.CustomerID
+                              Having Due > 0
                               ");
         return $query->result();
   }
