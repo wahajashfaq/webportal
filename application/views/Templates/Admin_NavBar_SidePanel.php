@@ -122,6 +122,7 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="pagesDropdown">
             <h6 class="dropdown-header">Report Screens:</h6>
+            <a class="dropdown-item" href="<?php echo base_url()?>GetOrdersReport">Order Report</a>
             <a class="dropdown-item" href="<?php echo base_url()?>GetStockReport">Stock Report</a>
             <a class="dropdown-item" href="<?php echo base_url()?>GetProductReport">Product Report</a>
             <a class="dropdown-item" href="<?php echo base_url()?>GetCreditorsReport">Creditors Report</a>

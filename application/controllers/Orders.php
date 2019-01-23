@@ -17,6 +17,27 @@ class Orders extends CI_Controller {
          
     }
 
+public function OrdersReport()
+{
+	$this->load->model('order_model','model');
+		$Customers = $this->model->getCustomersForOrders();
+		
+	$this->load->view('ReportOrders',['Customers'=>$Customers]);
+}
+
+public function CreateOrdersReport()
+{
+	$post = $this->input->post();
+	$From = $post['FromDate'];
+	$To = $post['ToDate'];
+	$c_id = $post['CustomerID'];
+	$this->load->model('order_model','model');
+	$data = $this->model->GetOrdersByCustomer($From,$To,$c_id);
+	$this->load->view('ReportOrderView',['data'=>$data]);
+
+	//   echo "<pre>";
+ // print_r($data);exit;
+}
 	public function index()
 	{
 		$this->load->model('order_model','model');
