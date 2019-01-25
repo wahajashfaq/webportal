@@ -78,11 +78,13 @@ $route['Orders']='Orders/ShowOrders';
 $route['Products']='Products/ProductView';
 $route['AddOrder']='Orders';
 $route['GetDebtorsReport']='Orders/CreateDebtorsReport';
+$route['GetCustomerOrders']='Orders/CreateOrdersReport';
+$route['GetOrdersReport']='Orders/OrdersReport';
+
 $route['GetCreditorsReport']='Stocks/CreateCreditorsReport';
 $route['AddProducts']='Products';
 $route['GetProductReport']='Products/CreateProductValuationReport';
 $route['GetStockReport']='Stocks/CreateStockValuationReport';
-
 
 
 

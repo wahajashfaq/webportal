@@ -20,6 +20,34 @@ class order_model extends CI_Model
         $this->db->update('orders', $order);
   }
 
+public function GetOrdersByCustomer($From,$To,$c_id)
+{
+  $temp ="";
+  if (isset($c_id) and !empty($c_id)) 
+  {
+        $query = $this->db->query("
+                              SELECT *,(Select concat(Name , ' ',Lname) from member where ID ='$c_id') as Name
+                               FROM orders WHERE CustomerID ='$c_id' and
+                               OrderDate BETWEEN CAST('$From' AS DATE) and CAST('$To' as DATE)  
+                               ");
+        $temp="Husnain";
+  
+  }
+  else{
+        $query = $this->db->query("
+                              SELECT *,(Select concat(Name , ' ',Lname) from member where ID ='$c_id' ) as Name
+                               FROM orders WHERE
+                               OrderDate BETWEEN CAST('$From' AS DATE) and CAST('$To' as DATE)  
+                               ");
+          $temp="Ajmal";
+  }
+  // echo "<pre>";
+  // echo $From . " <br>";
+  // echo $To . "<br>";
+  // print_r($c_id);exit;
+        return $query->result();
+ 
+}
  public function GetDuePaymentsForReport()
   {
      $query = $this->db->query("
