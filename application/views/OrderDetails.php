@@ -30,7 +30,19 @@
                             <p class="text-muted">Due to: <?=date("dS M,Y", strtotime($Order->dDate));?></p>
                         </div>
                         <div class="col-md-6" >
-
+                         <?php 
+                          if ($flag ==true) 
+                          {?>
+                         <div class="col-md-2 pull-right">
+                        <a href="javascript:history.go(-2)" data-toggle="tooltip" title="Back" style="color:White"
+                        class="btn btn-md btn-info pull-right mb-1">
+                          <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                          Back
+                         </a>
+                        </div>
+                        <?php
+                          } else {
+                            ?>
                         <div class="col-md-2 pull-right">
                         <a href="<?php echo base_url().'Orders/ShowOrders'?>" data-toggle="tooltip" title="Back" style="color:White"
                         class="btn btn-md btn-info pull-right mb-1">
@@ -46,7 +58,9 @@
                           Edit
                          </a>
                         </div>
-
+                          <?php
+                          }
+                         ?>
                         <div class="col-md-2 pull-right">
                          <a href="<?php echo base_url()?>Orders/GenerateInvoice?DataID=<?php echo $Order->oid?>" data-placement="top" data-toggle="tooltip" title="Print" style="color:White"
                          class="OrderPDFBtn btn btn-md btn-info pull-right mb-1">

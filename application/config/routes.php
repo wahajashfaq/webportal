@@ -74,6 +74,9 @@ $route['Stocks/UpdateStockService']='Stocks/updateStock';
 //$route['Products']='Products/index';
 $route['Suppliers']='Members/getsuppliers';
 $route['Customers']='Members/getcustomers';
+$route['Members/GetMemberDetails']='Members/ViewMemberDetails';
+
+
 $route['Orders']='Orders/ShowOrders';
 $route['Products']='Products/ProductView';
 $route['AddOrder']='Orders';

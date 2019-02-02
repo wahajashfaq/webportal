@@ -15,12 +15,15 @@
             <li class="breadcrumb-item">
               <a href="Dashboard" class="MyBreadCrumps">Dashboard</a>
             </li>
-            <li class="breadcrumb-item active">Cuurent Page</li>
+            <li class="breadcrumb-item active">DataBase Error</li>
           </ol>
 
            <!-- Start Coding From here -->
-          
-
+             <!-- Page Content -->
+          <h1 class="display-1">DataBase Error</h1>
+          <p class="lead">The Error <?=$error?> Occured while performing actions. 
+            <a href="javascript:history.back()">go back</a>to the previous page, or
+           
       <div class="card-footer small text-muted"></div>
       </div>
 

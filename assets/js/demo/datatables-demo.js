@@ -259,7 +259,24 @@ $('.ProductDelete').click(function()
 	    }
 
     });
+ $('.AddNumber').click(function()
+   {
+   	//alert("Husnian");
+   	var value = document.getElementById('ContactNumber').value;
+   	if (value !==null && value !== '') 
+   		{
+   		 document.getElementById('ContactNumber').value ='';
+          var html ='<tr ><div class="col-md-4"><td style="padding-bottom: 1em;"><input id="ContactNumber" min="0" value="'+value+'" name="ContactNumber[]" type="number" placeholder="" class="form-control input-md" ></td> </div><td><div class="col-md-4"><a style="border-radius:1.8rem" class="ContactRemove btn btn-danger"><i class="fa fa-minus"></i></a></div></td></tr><br>';
+   		  $('#Contacts').append(html);
+   		}else{alert("Must Add Proper number");}
+   	
+  });
 
+
+
+ $(document).on('click','.ContactRemove',(function(){
+  $(this).closest('tr').remove();
+}));
 
 //Add Items to Product or Order
  $('.AddItem').click(function()

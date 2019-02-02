@@ -48,25 +48,6 @@
 <!-- Text input-->
 
 <div class = "row">
-   <div class="col-md-4 ">
-    <div class="form-group">
-    <label class="control-label" for="Email">Email Address</label>  
-    <input id="Email" name="Email" type="text" placeholder="" class="form-control input-md" required="">
-        
-    </div>
-
-   </div>
-    <div class="col-md-4 ">
-    <div class="form-group">
-    <label class="control-label" for="ContactNumber">Contact</label>  
-    <input id="ContactNumber" name="ContactNumber" type="number" placeholder="" class="form-control input-md" required="">
-    </div>
-   </div>
-
-</div>
-
-
-<div class = "row">
   <div class="col-md-4 ">
     <div class="form-group">
       <label class="control-label" for="User Type">User Type</label>
@@ -76,13 +57,50 @@
         </select>
     </div>
   </div>
+  <div class="col-md-4 ">
+    <div class="form-group">
+    <label class="control-label" for="Email">Email Address</label>  
+    <input id="Email" name="Email" type="text" placeholder="" class="form-control input-md" >    
+     </div>
+   </div>
+   
 </div>
+
+
+
+<div class = "row">
+
+    <div class="col-md-4 ">
+    <div class="form-group">
+    <label class="control-label" for="ContactNumber">Contact</label>  
+    <input id="ContactNumber" name="ContactNumber[]" min="0" type="number" placeholder="" class="form-control input-md" >
+    </div>
+   </div>
+
+   <div class="col-md-3">
+    <div class="form-group">    
+    <label class="control-label" for="AddNumber">Add</label></br>
+     <a name="AddNumber" id="AddNumber" style="border-radius:1.8rem" class="AddNumber btn btn-md btn-primary"><i class="fa fa-plus"></i></a>    
+    </div>
+   </div>
+
+</div>
+
+<table id="Contacts" style="width:45%;">
+      <tbody>
+    <div class="form-group">
+   
+    </div>   
+   </tbody>
+</table>
+
+<br>
 
 <div class = "row">
    <div class="col-md-8 ">
     <div class="form-group">
     <label class="control-label" for="uaddress">Address</label>  
-    <input id="uaddress" name="uaddress" type="text" placeholder="Address" class="form-control input-md" required="">
+    <input id="uaddress" name="uaddress" type="text" placeholder="Address" class="form-control input-md" >
     </div>
    </div>
 
@@ -93,7 +111,7 @@
    <div class="col-md-4 ">
       <div class="form-group"> <!-- Date input -->
         <label class="control-label" for="EntryDate">Date</label>
-        <input class="form-control" id="EntryDate" name="EntryDate" placeholder="MM/DD/YYY" type="date" required=""s/>
+        <input class="form-control" id="EntryDate" name="EntryDate" placeholder="MM/DD/YYY" type="date" />
       </div>
    </div>
 </div>

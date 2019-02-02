@@ -27,6 +27,8 @@ public function OrdersReport()
 
 public function CreateOrdersReport()
 {
+	if ($this->input->post()!==null) 
+	{
 	$post = $this->input->post();
 	$From = $post['FromDate'];
 	$To = $post['ToDate'];
@@ -34,7 +36,10 @@ public function CreateOrdersReport()
 	$this->load->model('order_model','model');
 	$data = $this->model->GetOrdersByCustomer($From,$To,$c_id);
 	$this->load->view('ReportOrderView',['data'=>$data]);
-
+     } else {
+       redirect('/OrdersReport', 'refresh');
+	}
+	
 	//   echo "<pre>";
  // print_r($data);exit;
 }
@@ -93,31 +98,21 @@ public function GenerateInvoice()
         	$product['Discount']=0;
         	$product['GrandTotal'] = $price;
         }
-	  $oid = $this->pd->addOrder($product);
-	  
-	   foreach ($UpdateItem as  $item) 
-	   { 
-		  	$pid=$item->pid;
-		  	$issued = $item->issued;
-		  	$available = $item->available;
-		//  	echo "Pid : ". $pid . " Issued : " . $issued . " Available " . $available ." <br>";
-		  	$this->pd->UpdateProductsAfterOrderEntry($pid,$issued,$available);  
-	   }
-	//   exit;
-		foreach($UpdateItem as $item)
-		{
-			unset($item->purchased);
-			//unset($item->price);
-			unset($item->available);
-			unset($item->issued);
-			$item->oid=$oid;
-			$this->pd->addOrderDetails($item);
-		}
-       redirect('Orders/ShowOrders', 'refresh');	
+	 $result = $this->pd->GetNextOrderID();
+	 $oid = $result->id;
+	$status = $this->pd->addOrder($product,$UpdateItem,$oid);
 
-     }
+$status === (true) ? redirect('Orders/ShowOrders', 'refresh') :redirect('Orders/ShowError', 'refresh');	
+  
+   }
 
-
+public function ShowError()
+{   $error ="";
+	if (isset($_SESSION['error'])) {
+		$error = $this->session->userdata('error');
+	}
+	$this->load->view('DBErrors',['error'=>$error]);
+}
 public function deleteOrder()
 {
 	$this->load->model('order_model','od');
@@ -168,25 +163,9 @@ public function deleteOrder()
         	$product['GrandTotal'] = $price;
         }
 	 // $oid = $this->pd->addOrder($product);
-	      $this->pd->UpdateOrder($oid,$product);
-	   foreach ($UpdateItem as  $item) 
-	   { 
-		  	$pid=$item->pid;
-		  	$issued = $item->issued;
-		  	$available = $item->available;
-		  	$this->pd->UpdateProductsAfterOrderEntry($pid,$issued,$available);  
-	   }
-		foreach($UpdateItem as $item)
-		{
-			unset($item->purchased);
-			//unset($item->price);
-			unset($item->available);
-			unset($item->issued);
-			$item->oid=$oid;
-			$this->pd->addOrderDetails($item);
-		}
-       redirect('Orders/ShowOrders', 'refresh');	
-
+	    $status= $this->pd->UpdateOrder($oid,$product,$UpdateItem);
+	  $status === (true) ? redirect('Orders/ShowOrders', 'refresh') :redirect('Orders/ShowError', 'refresh');	
+ 
  }    
 
  public function CreateDebtorsReport()
@@ -283,15 +262,18 @@ public function editOrder()
 	   
    public function ViewOrderDetail()
    {
+   
      if(isset($_GET['DataID']))
 		{
-         $this->load->model('order_model','obj');
+          $this->load->model('order_model','obj');
          $oid = $_GET['DataID'];
          $OrderedProducts = $this->obj->getOrderedProducts($oid);
          $OrderDetail = $this->obj->getOrderData($oid);
-         
-         $this->load->view('OrderDetails',['products'=>$OrderedProducts,'Order'=>$OrderDetail]);	
-		} 
+         if(isset($_GET['flag']))
+         { $this->load->view('OrderDetails',['products'=>$OrderedProducts,'Order'=>$OrderDetail,'flag'=>true]);}
+         else
+        { $this->load->view('OrderDetails',['products'=>$OrderedProducts,'Order'=>$OrderDetail,'flag'=>false]);}
+     } 
    }
 
 

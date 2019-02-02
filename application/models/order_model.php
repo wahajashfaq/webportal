@@ -3,26 +3,87 @@
 class order_model extends CI_Model
 {
   
-  public function addOrder($Order)
+  public function addOrder($Order,$UpdateItem,$oid)
   {
+   
+     $this->db->trans_start();
      $this->db->insert('orders',$Order);
-     $insert_id = $this->db->insert_id();
-
-     return  $insert_id;
+     $this->UpdateProductsAfterOrderEntry($UpdateItem);
+     $this->addOrderDetails($UpdateItem,$oid);
+     $this->db->trans_complete();
+     
+     if ($this->db->trans_status() === FALSE) 
+     {
+       $this->session->set_userdata('error', $this->db->_error_message()); 
+       return false;
+     } else {return true; }
+     
   }
 
-  public function UpdateOrder($oid,$order)
+  public function UpdateOrder($oid,$order,$UpdateItem)
   {
 
     // echo "<pre>";
     // print_r($order);exit;
-        $this->db->where('OrderID', $oid);
-        $this->db->update('orders', $order);
+     $this->db->trans_start();
+    
+     $this->db->where('OrderID', $oid);
+     $this->db->update('orders', $order);
+     $this->UpdateProductsAfterOrderEntry($UpdateItem);
+     $this->addOrderDetails($UpdateItem,$oid);
+     $this->db->trans_complete();
+     
+     if ($this->db->trans_status() === FALSE) 
+     {
+       $this->session->set_userdata('error', $this->db->_error_message()); 
+       return false;
+     } else {return true; }
+     
+
   }
+
+  public function GetNextOrderID()
+  {
+     $query = $this->db->query("
+                                SELECT max(OrderID) + 1 as id from orders 
+                                ");
+        return $query->row();
+  }
+   
+ public function UpdateProductsAfterOrderEntry($UpdateItem)
+ {
+ $data = array();
+  foreach ($UpdateItem as  $item) 
+     {   $data []= array( 
+                  'ProductID'=>$item->pid,
+                  'QuantityIssued'  =>$item->issued, 
+                  'QuantityAvailable'=>$item->available
+                 );
+    //    echo "Pid : ". $pid . " Issued : " . $issued . " Available " . $available ." <br>";
+     }
+       
+  return $this->db->update_batch('products', $data,'ProductID');
+  }
+
+public function addOrderDetails($UpdateItem,$oid)
+{
+  $Details = array();
+    foreach($UpdateItem as $item)
+    {
+      unset($item->purchased);
+      unset($item->available);
+      unset($item->issued);
+      $item->oid=$oid;
+      array_push($Details,$item);
+    }
+ return $this->db->insert_batch('orderdetails',$Details);
+}
+
+
 
 public function GetOrdersByCustomer($From,$To,$c_id)
 {
-  $temp ="";
+ 
   if (isset($c_id) and !empty($c_id)) 
   {
         $query = $this->db->query("
@@ -30,16 +91,16 @@ public function GetOrdersByCustomer($From,$To,$c_id)
                                FROM orders WHERE CustomerID ='$c_id' and
                                OrderDate BETWEEN CAST('$From' AS DATE) and CAST('$To' as DATE)  
                                ");
-        $temp="Husnain";
+        
   
   }
   else{
         $query = $this->db->query("
-                              SELECT *,(Select concat(Name , ' ',Lname) from member where ID ='$c_id' ) as Name
+                              SELECT *
                                FROM orders WHERE
                                OrderDate BETWEEN CAST('$From' AS DATE) and CAST('$To' as DATE)  
                                ");
-          $temp="Ajmal";
+         
   }
   // echo "<pre>";
   // echo $From . " <br>";
@@ -104,21 +165,7 @@ public function Get_Data_From_OrderDetails($oid)
         return $query->result();
     
  }
- public function UpdateProductsAfterOrderEntry($sid,$issued,$available)
- {
- 
-   $data = array( 
-                  'QuantityIssued'  =>$issued, 
-                  'QuantityAvailable'=>  $available 
-                 );
-            $this->db->where('ProductID', $sid);
-            $this->db->update('products', $data);
-  }
 
-public function addOrderDetails($Details)
-{
-  $this->db->insert('orderdetails',$Details);
-}
 
 public function getOrders()
 { 
@@ -165,9 +212,16 @@ public function Update_Products_States_After_Release($pid,$NetWeight)
                       'QuantityAvailable'=>$CurrentState[0]->avlb + $NetWeight 
                       );
          
-
+  $this->db->trans_start();
             $this->db->where('ProductID', $pid);
             $this->db->update('products', $data);
+     $this->db->trans_complete();
+     
+     if ($this->db->trans_status() === FALSE) 
+     {
+       $this->session->set_userdata('error', $this->db->_error_message()); 
+       return false;
+     } else {return true; }
   
     
 }

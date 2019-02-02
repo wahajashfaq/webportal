@@ -35,7 +35,7 @@
 
                           <div class="col-md-4" style="align:right;"> <!--dS gives 11th M gives month name and Y gives year-->
                            <h2><p class="font-weight-bold mb-1">Customer</p></h2>
-                            <p class="text-muted">Name : <?=$data[0]->Name;?></p>
+                      <p class="text-muted">Name : <?=(isset($data[0]->Name)) ? $data[0]->Name:"No Record";?></p>
                         </div>
 
                     </div>
@@ -58,7 +58,7 @@
                                   <th class="border-0 text-uppercase small font-weight-bold">Discount</th>
                                   <th class="border-0 text-uppercase small font-weight-bold">Grand Total</th>
                                   <th class="border-0 text-uppercase small font-weight-bold">Due Payment</th>
-                                 
+                                  <th class="border-0 text-uppercase small font-weight-bold">View</th>
                                  </tr>
                               </thead>
                               <tbody>
@@ -71,12 +71,13 @@
                                     <tr>
                                         <td><?=$p->OrderID?></td>
                                         <td><?=$p->Reference?></td>
-                                        <td><?=$p->OrderDate?></td>
-                                        <td><?=$p->DeliverDate?></td>
+                                        <td><?=date("jS M,Y", strtotime($p->OrderDate));?></td>
+                                        <td><?=date("jS M,Y", strtotime($p->DeliverDate));?></td>
                                         <td><?=$p->Discount?></td>
                                         <td><?=$p->GrandTotal?></td>
                                         <td><?=$p->Due_Payment?></td>
-                                   
+                                        <td style="width:5%"><a href="<?php echo base_url();?>Orders/ViewOrderDetail?DataID=<?php echo $p->OrderID?>&flag=1" data-placement="top" data-toggle="tooltip" title="View"style="color:White" class="btn btn-sm btn-primary"><i class="fa fa-eye"></i> View</a></td>     
+                     
                                     </tr>
                                     <?php
                                          }//End Of ForEach

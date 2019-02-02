@@ -30,9 +30,16 @@ class Members extends CI_Controller
 		$post =$this->input->post();
 		$this->load->model('member_model');
 		unset($post['submit']);
-    // echo "<pre>";
-    // print_r($post);exit;
-    $this->member_model->addMember($post);
+    $Contacts= $this->SetMemberPostData($post);
+     $Contacts = array_filter($Contacts);
+     $result  =$this->member_model->GetNextMemberID();
+     $id = $result->id;
+     // echo "<pre>";
+     //  print_r($id);
+     //  print_r($Contacts);
+     //   print_r($post);exit;
+    
+    $this->member_model->addMember($post,$Contacts,$id);
     if ($post['UType'] == 'Supplier') 
     {
         return redirect('Members/getsuppliers');
@@ -44,6 +51,19 @@ class Members extends CI_Controller
     }
 		    
 	}
+  public function SetMemberPostData(&$post)
+  {
+     (!empty($post['Email'])) ?  : $post['Email']="Not Set";
+     (!empty($post['ContactNumber'])) ?  : $post['ContactNumber']="XXXX-XXXXXXX";
+     (!empty($post['uaddress'])) ?  : $post['uaddress']="Not Set";
+     (!empty($post['EntryDate'])) ?  : $post['EntryDate']=date("Y-m-d");
+     (!empty($post['comments'])) ?  : $post['comments']="No comments";
+
+     $Contacts = $post['ContactNumber'];
+     unset($post['ContactNumber']);
+   //  print_r($Contacts);
+  return  $Contacts;
+   }
 	public function editMember()
 	{
 		if(isset($_GET['DataID']))
@@ -51,7 +71,9 @@ class Members extends CI_Controller
          $this->load->model('member_model');
          $uid = $_GET['DataID'];
          $user = $this->member_model->getMemberData($uid);
-	     $this->load->view('editMember',['user'=>$user]);
+         $numbers = $this->member_model->getMemberContacts($uid);
+      
+	     $this->load->view('editMember',['user'=>$user,'numbers'=>$numbers]);
 		}
        //echo $u_id;
 	}
@@ -64,19 +86,36 @@ class Members extends CI_Controller
        //Than we can pass whole post array after unsetting Submit and Hidden field reducing the effort
         //Making an array of Variable name same as member table fields name
         //We will pass this array of data and id to model where active records will generate and run query
-       $uid= $this->input->post("info_id");
-       $data = array(
-               'Name' => $this->input->post("name"),
-               'lname' => $this->input->post("lname"),
-               'Email' => $this->input->post("emailaddress"),
-               'ContactNumber' => $this->input->post("contact"),
-               'Utype' =>$this->input->post("UserType"),
-               'uaddress' => $this->input->post("Address"),
-               'EntryDate' => $this->input->post("date"),
-               'comments' => $this->input->post("comments")
-            );
-        $this->member_model->UpdateUser($uid,$data);
-       $this->getmembers();
+     $post =$this->input->post();
+     $Contacts=$this->SetMemberPostData($post);
+       $uid= $this->input->post("ID");
+       // $data = array(
+       //         'Name' =>$post['name'],
+       //         'lname' =>$post['lname'],
+       //         'Email' =>$post['emailaddress'],
+       //         'Utype' =>$post['UserType'],
+       //         'uaddress' =>$post['Address'],
+       //         'EntryDate' =>$post['date'],
+       //         'comments' =>$post['comments']
+       //      );
+      unset($post['date']);
+      unset($post['submit']);
+      $Contacts = array_filter($Contacts);
+    
+     unset($post['ContactNumber']);
+       //  echo "<pre>";
+       //  print_r($post);
+       // print_r($Contacts);exit;
+        $this->member_model->UpdateUser($uid,$post,$Contacts);
+    if ($post['Utype'] == 'Supplier') 
+    {
+        return redirect('Members/getsuppliers');
+    }
+    else
+    {
+   return redirect('Members/getcustomers');
+   
+    }
 	}
 
 	public function deleteMember()
@@ -102,10 +141,23 @@ public function getsuppliers()
         $this->load->view('ViewSuppliers',['users'=>$users]);
 
 }
-	public function foo()
-	{
-    $this->load->view('response');
 
-	}
+public function ViewMemberDetails()
+{
+  if(isset($_GET['DataID']))
+    {
+         $this->load->model('member_model');
+         $uid = $_GET['DataID'];
+         $user = $this->member_model->getMemberData($uid);
+         $numbers = $this->member_model->getMemberContacts($uid);
+         //    echo "<pre>";
+         //  print_r($user);
+         // print_r($numbers);exit;
+       $this->load->view('MemberDetails',['user'=>$user,'numbers'=>$numbers]);
+    }
+       
+        
+}
+
 
 }
