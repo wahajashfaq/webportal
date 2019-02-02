@@ -94,11 +94,12 @@ public function getMemberContacts($id)
          $this->db->trans_start();
         $this->db->where("ID",$uid);
         $this->db->update('member', $data);
-
+        
+      if (isset($InputItems)) {
          $this->db->where("m_id",$uid);
-         $this->db->delete("member_contacts");
-         
+         $this->db->delete("member_contacts");    
         $this->db->insert_batch('member_contacts',$InputItems);
+      }
         
         
         $this->db->trans_complete();

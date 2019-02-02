@@ -136,9 +136,9 @@
 <div class = "row">
    <div class="col-md-4 ">
       <div class="form-group"> <!-- Date input -->
-        <label class="control-label" for="date">Date</label>
+        <label class="control-label" for="EntryDate">Date</label>
 
-        <input class="form-control" id="EntryDate" name="date"  type="date" value="<?php echo date("Y-m-d", strtotime($user->EntryDate ));?>" required="">
+        <input class="form-control" id="EntryDate" name="EntryDate"  type="date" value="<?php echo date("Y-m-d", strtotime($user->EntryDate ));?>" required="">
       </div>
    </div>
 </div>

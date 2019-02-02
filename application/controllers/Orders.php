@@ -93,7 +93,7 @@ public function GenerateInvoice()
 		}
         else
         {
-        	//If User Enters Discount Greated than the grandtotal itself The Dicount will get set to 0
+        	//If User Enters Discount Greater than the grandtotal itself The Dicount will get set to 0
         	// causing no change in Grandtotal
         	$product['Discount']=0;
         	$product['GrandTotal'] = $price;

@@ -183,7 +183,7 @@ public function getOrderData($oid)
  $query = $this->db->query("
                            Select o.OrderID as oid, o.Reference as ref,o.OrderDate as oDate,
                            o.DeliverDate as dDate,o.Discount as disc ,o.GrandTotal as Total,
-                           concat(m.Name,' ',m.Lname) as CName, m.Email as email,m.ContactNumber as number,
+                           concat(m.Name,' ',m.Lname) as CName, m.Email as email,
                            m.uaddress as Caddr 
                            from orders as o,member as m 
                            where o.OrderID = '$oid' and o.CustomerID = m.ID and m.Utype = 'Customer'

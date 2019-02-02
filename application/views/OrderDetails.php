@@ -81,7 +81,7 @@
                             <p class="font-weight-bold mb-4">Customer Details</p>
                             <p class="mb-1"><span class="text-muted"><b>NAME:</b></span> <?=$Order->CName?></p>
                             <p class="mb-1"><span class="text-muted"><b>EMAIL ID: </b></span><?=$Order->email?></p>
-                            <p class="mb-1"><span class="text-muted"><b>CONTACT: </b></span><?=$Order->number?></p>
+                           <!-- <p class="mb-1"><span class="text-muted"><b>CONTACT: </b></span><?=$Order->number?></p>-->
                             <p class="mb-1" style="width:500px"><span class="text-muted"><b>ADDRESS:</b></span>
                                 <?=$Order->Caddr?>
                             </p>
