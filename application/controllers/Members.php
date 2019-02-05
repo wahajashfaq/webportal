@@ -34,10 +34,10 @@ class Members extends CI_Controller
      $Contacts = array_filter($Contacts);
      $result  =$this->member_model->GetNextMemberID();
      $id = $result->id;
-     // echo "<pre>";
-     //  print_r($id);
-     //  print_r($Contacts);
-     //   print_r($post);exit;
+      // echo "<pre>";
+      //  print_r($id);
+      //  print_r($Contacts);
+      //   print_r($post);exit;
     
     $this->member_model->addMember($post,$Contacts,$id);
     if ($post['UType'] == 'Supplier') 
@@ -56,7 +56,7 @@ class Members extends CI_Controller
      (!empty($post['Email'])) ?  : $post['Email']="Not Set";
      (!empty($post['ContactNumber'])) ?  : $post['ContactNumber']="XXXX-XXXXXXX";
      (!empty($post['uaddress'])) ?  : $post['uaddress']="Not Set";
-     (isset($post['EntryDate']) or !empty($post['EntryDate'])) ?  : $post['EntryDate']=date("Y-m-d");
+     (isset($post['EntryDate']) && !empty($post['EntryDate'])) ?  : $post['EntryDate']=date("Y-m-d");
      (!empty($post['comments'])) ?  : $post['comments']="No comments";
 
      $Contacts = $post['ContactNumber'];

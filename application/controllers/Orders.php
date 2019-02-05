@@ -61,9 +61,8 @@ public function GenerateInvoice()
 	$OrderedProducts = $this->obj->getOrderedProducts($oid);
     $OrderDetail = $this->obj->getOrderData($oid);
     $this->load->view('Invoice',['products'=>$OrderedProducts,'Order'=>$OrderDetail]);	
-		
-	//$this->load->view('Invoice');
 }
+
  public function AddOrder()
  {
          $product = $this->input->post();
