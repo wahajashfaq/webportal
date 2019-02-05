@@ -254,7 +254,7 @@ public function getOrderedProducts($oid)
                           SUM(o.NetValue) as SubTotal,
                           (Select p.PriceperKg from products as p WHERE p.ProductID = o.pid) as cost
                           FROM orderdetails as o 
-                          WHERE oid='10'
+                          WHERE oid='$oid'
                           GROUP BY o.Name
                             ");
         return $query->result();

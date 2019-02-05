@@ -99,6 +99,9 @@ public function GenerateInvoice()
         }
 	 $result = $this->pd->GetNextOrderID();
 	 $oid = $result->id;
+	 if (!$oid) { $oid =1;}  //Order id is null when table is empty..Set it to 1 when null
+
+	 //echo $oid;exit;
 	$status = $this->pd->addOrder($product,$UpdateItem,$oid);
 
 $status === (true) ? redirect('Orders/ShowOrders', 'refresh') :redirect('Orders/ShowError', 'refresh');	
