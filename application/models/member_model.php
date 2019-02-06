@@ -13,7 +13,10 @@ class member_model extends CI_Model
         return $query->result();
     }
 
-
+public function SetMemberAutoIncrement()
+{
+   $this->db->query('ALTER TABLE member AUTO_INCREMENT 1');
+}
 public function GetNextMemberID()
 {
   $query = $this->db->query("SELECT max(ID)+1 as id FROM member WHERE ID != '-1' ");

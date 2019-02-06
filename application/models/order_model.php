@@ -20,6 +20,11 @@ class order_model extends CI_Model
      
   }
 
+public function SetOrderAutoIncrement()
+{
+   $this->db->query('ALTER TABLE orders AUTO_INCREMENT 1');
+}
+
   public function UpdateOrder($oid,$order,$UpdateItem)
   {
 
