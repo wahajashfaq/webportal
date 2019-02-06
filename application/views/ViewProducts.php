@@ -53,7 +53,7 @@
                       <td><?=$p->Price?></td>
                        <?php
                       $Isdisabled='';
-                      if ($p->DontDelete ==1) {
+                      if (isset($p->DontDelete) && $p->DontDelete ==1) {
                         $Isdisabled='disabled';
                       }?>
                      <td><a href="<?php echo base_url()?>Products/editProduct?DataID=<?php echo $p->pid?>" data-placement="top" data-toggle="tooltip" title="Edit"style="color:White" class="btn btn-sm btn-primary"><i class="fa fa-pencil-square-o"></i> Edit</a></td>

@@ -1,44 +1,14 @@
 <?php
 //============================================================+
-// File name   : example_002.php
-// Begin       : 2008-03-04
-// Last Update : 2013-05-14
-//
-// Description : Example 002 for TCPDF class
-//               Removing Header and Footer
-//
-// Author: Nicola Asuni
-//
-// (c) Copyright:
-//               Nicola Asuni
-//               Tecnick.com LTD
-//               www.tecnick.com
-//               info@tecnick.com
-//============================================================+
 
-/**
- * Creates an example PDF TEST document using TCPDF
- * @package com.tecnick.tcpdf
- * @abstract TCPDF - Example: Removing Header and Footer
- * @author Nicola Asuni
- * @since 2008-03-04
- */
-
-// Include the main TCPDF library (search for installation path).
-//require_once('tcpdf_include.php');
-
-// create new PDF document
-  
-   // echo "<pre>";
-   // print_r($Order);exit;
 
 $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 
 // set document information
 $pdf->SetCreator(PDF_CREATOR);
 $pdf->SetAuthor('Nicola Asuni');
-$pdf->SetTitle('TCPDF Example 002');
-$pdf->SetSubject('TCPDF Tutorial');
+$pdf->SetTitle('Order Invoice');
+$pdf->SetSubject('Order Invoice');
 $pdf->SetKeywords('TCPDF, PDF, example, test, guide');
 
 // remove default header/footer

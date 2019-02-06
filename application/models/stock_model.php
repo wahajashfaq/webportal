@@ -92,11 +92,11 @@ public function GetStockValuationForReport()
 
     public function UpdateStocksIds($uid)
     {
-      $this->db->set('SupplierID', '1111111111');
+      $this->db->set('SupplierID', '-1');
      $this->db->where('SupplierID', $uid);
      $this->db->update('stocks');
 //         Update stocks
-// set SupplierID = 1111111111
+// set SupplierID = -1
 // where  = 13
      }
 }

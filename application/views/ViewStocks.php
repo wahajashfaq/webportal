@@ -58,7 +58,7 @@
                       <td style="width:5%"><?=$stock->bill?></td>
                       <?php
                       $Isdisabled='';
-                      if ($stock->DontDelete ==1) {
+                      if (isset($stock->DontDelete) && $stock->DontDelete ==1) {
                         $Isdisabled='disabled';
                       }?>
                       <td style="width:10%"><a  href="<?php echo base_url()?>Stocks/editStock?DataID=<?php echo $stock->s_ID?>" data-placement="top" data-toggle="tooltip" title="Edit"style="color:White" class="btn btn-sm btn-primary"><i class="fa fa-pencil-square-o"></i> Edit</a></td>

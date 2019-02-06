@@ -16,11 +16,12 @@ class member_model extends CI_Model
 
 public function GetNextMemberID()
 {
-  $query = $this->db->query("SELECT max(ID)+1 as id FROM member WHERE ID != '1111111111' and Name !='Default' ");
+  $query = $this->db->query("SELECT max(ID)+1 as id FROM member WHERE ID != '-1' ");
         return $query->row();
     }
     public function addMember($member,$Contacts,$id)
     {
+        // echo $id;exit;
          //$InputItems[] = array();
          foreach ($Contacts as $key => $value) 
          {
@@ -36,7 +37,9 @@ public function GetNextMemberID()
          // print_r($InputItems);exit;
          $this->db->trans_start();
     	 $this->db->insert('member',$member);
+         if ($InputItems) {
         $this->db->insert_batch('member_contacts',$InputItems);
+         }
          $this->db->trans_complete();
     }
 
@@ -54,7 +57,7 @@ public function getMemberContacts($id)
     public function DeleteMemberData($uid)
     {
          $this->load->model("stock_model","sm");
-        // SetSupplierId to be deleted ,Default In Stocks Default is 1111111111
+        // SetSupplierId to be deleted ,Default In Stocks Default is -1
          $this->db->trans_start();
          $this->sm->UpdateStocksIds($uid);
          $this->db->where("ID",$uid);
@@ -94,11 +97,11 @@ public function getMemberContacts($id)
          $this->db->trans_start();
         $this->db->where("ID",$uid);
         $this->db->update('member', $data);
-        
-      if (isset($InputItems)) {
          $this->db->where("m_id",$uid);
          $this->db->delete("member_contacts");    
-        $this->db->insert_batch('member_contacts',$InputItems);
+     
+      if (isset($InputItems)) {
+       $this->db->insert_batch('member_contacts',$InputItems);
       }
         
         

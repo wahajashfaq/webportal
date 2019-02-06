@@ -37,12 +37,26 @@ public function editProduct()
          $pid = $_GET['DataID'];
          $product = $this->pd->getProductData($pid);
          $SelectedData = $this->pd->getSelectedStocks($pid);
-         
-            // echo "<pre>";
-            // echo "<br>The Selected Stocks Are<br>";
-            // print_r($SelectedData);exit;
-         $this->Release_Stocks_From_Product($pid);
-         $Stocks = $this->pd->getStocksDataForProduct();
+          $Stocks = $this->pd->getStocksDataForProduct();
+        
+          //    echo "<pre>";
+          //   echo "<br>The Selected Stocks Are<br>";
+          // print_r($SelectedData);
+        
+        foreach ($SelectedData as $s) 
+        {
+        	foreach ($Stocks as $p) 
+        	{
+        		if($p->s_Name == $s->name)
+        		{
+                      $p->quantity += $s->amount;
+        		}
+        	}
+        }
+
+         // echo "<br>The Updated Stocks Are<br>";
+         //  print_r($Stocks); exit;
+
          $this->load->view('editProduct',['product'=>$product,'Stocks'=>$Stocks,'SelectedData'=>$SelectedData]);	
 		} 
        
@@ -53,7 +67,9 @@ public function UpdateProductEntry()
 	    //Getting Data from POST Request
 		$product = $this->input->post();
 		$pid = $product['DataID'];
-		 $this->load->model('product_model','pd');
+		$this->load->model('product_model','pd');
+       
+        $this->Release_Stocks_From_Product($pid);
        
 	    $this->pd->DeleteProductDetails($pid);
     

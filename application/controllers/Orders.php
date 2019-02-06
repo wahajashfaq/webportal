@@ -61,9 +61,8 @@ public function GenerateInvoice()
 	$OrderedProducts = $this->obj->getOrderedProducts($oid);
     $OrderDetail = $this->obj->getOrderData($oid);
     $this->load->view('Invoice',['products'=>$OrderedProducts,'Order'=>$OrderDetail]);	
-		
-	//$this->load->view('Invoice');
 }
+
  public function AddOrder()
  {
          $product = $this->input->post();
@@ -100,6 +99,9 @@ public function GenerateInvoice()
         }
 	 $result = $this->pd->GetNextOrderID();
 	 $oid = $result->id;
+	 if (!$oid) { $oid =1;}  //Order id is null when table is empty..Set it to 1 when null
+
+	 //echo $oid;exit;
 	$status = $this->pd->addOrder($product,$UpdateItem,$oid);
 
 $status === (true) ? redirect('Orders/ShowOrders', 'refresh') :redirect('Orders/ShowError', 'refresh');	
