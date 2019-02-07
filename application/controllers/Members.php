@@ -34,7 +34,10 @@ class Members extends CI_Controller
      $Contacts = array_filter($Contacts);
      $result  =$this->member_model->GetNextMemberID();
      $id = $result->id;
-     if (!$id) {$id =1;}
+     if (!$id) {
+      $id =1;
+      $this->member_model->SetMemberAutoIncrement();
+       }
       // echo "<pre>";
       //  print_r($id);
       //  print_r($Contacts);
