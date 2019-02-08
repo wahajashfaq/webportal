@@ -255,11 +255,21 @@ public function DeleteOrder($oid)
 public function getOrderedProducts($oid)
 {
    $query = $this->db->query("
-                   SELECT Name, o.NetWeight as amount,o.NetValue / o.NetWeight as PerKg,
-                          o.NetValue as SubTotal,
-                          (Select p.PriceperKg from products as p WHERE p.ProductID = o.pid) as cost
-                          FROM orderdetails as o 
-                          WHERE oid='$oid'
+                  SELECT Name, (sum(o.NetWeight)) as amount,(SUM(o.NetValue) / SUM(o.NetWeight) ) as PerKg,
+                          SUM(o.NetValue) as SubTotal,
+                          (SELECT sum(o.NetWeight*t.priceperkg)/sum(o.NetWeight) 
+                            from (  select ProductID ,priceperkg 
+                                    FROM products 
+                                    where ProductID IN 
+                                    (SELECT pid 
+                                     FROM orderdetails 
+                                     WHERE oid = '$oid'
+                                     )
+                           ) as t, orderdetails as o 
+                            WHERE o.pid = t.productid) as cost
+                            FROM orderdetails as o 
+                            WHERE oid='$oid'
+                            GROUP BY o.Name
                                   ");
         return $query->result();
 
