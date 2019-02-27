@@ -31,7 +31,13 @@ var arr = <?php echo json_encode($Stocks)?>;
    <div class="col-md-8 ">
     <div class="form-group">
       <label class="control-label" for="ProductName">Product Name</label>  
-      <input id="ProductName" name="ProductName" type="text" placeholder="Product Name" class="form-control input-md" required="">
+      <!--input id="ProductName" name="ProductName" type="text" placeholder="Product Name" class="form-control input-md" required=""-->
+      <select id="ProductName" name="ProductName" class="form-control" >
+         <option value="" selected>Select one</option>
+          <?php foreach ($Productsname as $Productname):?>
+          <option value="<?php echo $Productname->name;?>"><?php echo  $Productname->name;?></option>
+          <?php endforeach;?>
+      </select>
     </div>
    </div>
 </div>

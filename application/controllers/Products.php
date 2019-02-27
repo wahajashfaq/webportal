@@ -23,11 +23,36 @@ class Products extends CI_Controller {
 		
 		$this->load->model('product_model','pt');
 		$stocks = $this->pt->getStocksDataForProduct();
+		$productsname = $this->pt->GetProductsName();
 		// echo "<pre>";
 		// print_r($stocks);exit;
-		$this->load->view('AddProduct',['Stocks'=>$stocks]);
+		$this->load->view('AddProduct',['Stocks'=>$stocks,'Productsname'=>$productsname]);
 		// $this->viewStock();
 	}
+
+	public function addProductNameView()
+	{
+		$this->load->view('AddProductName');
+	}
+	
+	public function AddProductNameEntry(){
+        $this->load->model('product_model','pr');
+         $post =$this->input->post();
+         
+         unset($post['submit']);
+         if (!isset($post['ProductName']) or empty($post['ProductName']) ) 
+         {
+            $this->load->view('AddProductName',['error' => 'please enter product name']);
+         }
+         $product['name'] = $post['ProductName'];
+        if(!$this->pr->addProductName($product))
+        {
+            $this->load->view('AddProductName',['error' => 'Product Name Already Exist']);
+        }
+        else{
+            $this->load->view('AddProductName',['error' => 'Product Name Added']);
+        }
+    }
 
 public function editProduct()
 	{

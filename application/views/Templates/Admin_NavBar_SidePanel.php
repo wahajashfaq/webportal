@@ -112,6 +112,7 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="pagesDropdown">
             <h6 class="dropdown-header">Product Screens:</h6>
+            <a class="dropdown-item" href="<?php echo base_url().'Products/addProductNameView'?>">Add Product <br>Name</a>
             <a class="dropdown-item" href="<?php echo base_url().'AddProducts'?>">Add Product</a>
             <a class="dropdown-item" href="<?php echo base_url().'Products'?>">View Products</a>
           </div>

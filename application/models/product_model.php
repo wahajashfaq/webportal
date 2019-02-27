@@ -22,6 +22,28 @@ class product_model extends CI_Model
                                    ");
         return $query->result();
     }
+
+    public function addProductName($Product)
+    {
+        $this->db->where('name',$Product['name']);
+        $query = $this->db->get('productsname');
+        if ($query->num_rows() > 0){
+            return false;
+        }
+        else{
+            return $this->db->insert('productsname',$Product);
+        }
+        
+    }
+
+    public function GetProductsName(){
+        $query = $this->db->query("
+        SELECT *
+        from productsname  
+        ");
+        return $query->result();
+     }
+
 public function DeleteProduct($oid)
 {
       $this->db->where("ProductID",$oid);
