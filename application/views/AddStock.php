@@ -28,7 +28,13 @@
    <div class="col-md-3 ">
     <div class="form-group">
       <label class="control-label" for="StockName">Stock Name</label>  
-      <input id="StockName" name="StockName" type="text" placeholder="Stock Name" class="form-control input-md" required="">
+      <!--input id="StockName" name="StockName" type="text" placeholder="Stock Name" class="form-control input-md" required=""-->
+      <select id="StockName" name="StockName" class="form-control" >
+         <option value="" selected>Select one</option>
+          <?php foreach ($stocksname as $Stockname):?>
+          <option value="<?php echo $Stockname->name;?>"><?php echo  $Stockname->name;?></option>
+          <?php endforeach;?>
+      </select>
     </div>
    </div>
 

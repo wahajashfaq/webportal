@@ -85,9 +85,33 @@ public function CreateStockValuationReport()
     public function addStockView()
 	{
 		$this->load->model('stock_model','st');
-		$suppliers = $this->st->getsuppliers();
-		$this->load->view('AddStock',['suppliers'=>$suppliers]);
-	}
+        $suppliers = $this->st->getsuppliers();
+        $stocksname = $this->st->GetStocksName();
+		$this->load->view('AddStock',['suppliers'=>$suppliers,'stocksname'=>$stocksname]);
+    }
+    
+    public function addStockNameView()
+	{
+		$this->load->view('AddStockName');
+    }
+    public function AddStockNameEntry(){
+        $this->load->model('stock_model','st');
+         $post =$this->input->post();
+         
+         unset($post['submit']);
+         if (!isset($post['StockName']) or empty($post['StockName']) ) 
+         {
+            $this->load->view('AddStockName',['error' => 'please enter stock name']);
+         }
+         $stock['name'] = $post['StockName'];
+        if(!$this->st->addStockName($stock))
+        {
+            $this->load->view('AddStockName',['error' => 'Stock Name Already Exist']);
+        }
+        else{
+            $this->load->view('AddStockName',['error' => 'Stock Name Added']);
+        }
+    }
 
     public function addStock()
 	{
@@ -103,8 +127,9 @@ public function CreateStockValuationReport()
 
 		 $this->st->addStock($post);
 		 $this->viewStock();
-	}
-        public function deleteStock()
+    }
+    
+    public function deleteStock()
     {
         $this->load->model('stock_model');
         $uid = $this->input->post('uid');

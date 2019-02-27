@@ -84,6 +84,19 @@ public function GetStockValuationForReport()
         return $this->db->insert('stocks',$Stock);
     }
 
+    public function addStockName($Stock)
+    {
+        $this->db->where('name',$Stock['name']);
+        $query = $this->db->get('stocksname');
+        if ($query->num_rows() > 0){
+            return false;
+        }
+        else{
+            return $this->db->insert('stocksname',$Stock);
+        }
+        
+    }
+
     public function DeleteStockData($sid)
     {
         $this->db->where("StockID",$sid);
@@ -98,5 +111,13 @@ public function GetStockValuationForReport()
 //         Update stocks
 // set SupplierID = -1
 // where  = 13
+     }
+
+     public function GetStocksName(){
+        $query = $this->db->query("
+        SELECT *
+        from stocksname  
+        ");
+        return $query->result();
      }
 }
