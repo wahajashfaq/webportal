@@ -187,6 +187,40 @@ var option=[];
 
     });
 
+   $('.UnitDelete').click(function()
+   {
+	    if (confirm("Do you want to delete this record?"))
+	    {
+	    	//The Value of This becomes undefined in Ajax Success or error section
+	    	//So we Need to Store Table and Row objects
+	    	var obj = $(this).parents('tr');
+	    	var table = $('#StockdataTable').DataTable();
+	    	//Base_URL is not available in external JS file(here) So we need to Generate it from URL
+	    	var domain = window.location.origin; //To get the domain part from url
+	    	var pathArray = window.location.pathname.split('/'); // to split all string after domain
+	    	var host = pathArray[1]; //This will return the host or root in Url part
+	    	var base_url = domain +'/'+ host + '/'; //Combinng all to get base_url same as codeigniter
+	    	var name = $(this).attr("name");//Getiing the ID to Delete on server side
+	        $.ajax({
+	            url:  base_url+ 'Units/deleteUnit',
+	            type: 'POST',
+	            data: {uname:name},
+	            dataSrc : "",
+	            success: function ()
+	            {
+	            	table.row(obj).remove().draw(false);
+	            },
+	            error: function ()
+	                   {
+	                    alert('Request failure');
+	                   }
+
+	                });
+
+	    }
+
+    });
+
 
 //OrderDelete / Order Cancel
 $('.OrderDelete').click(function()

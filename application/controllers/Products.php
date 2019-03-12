@@ -81,8 +81,8 @@ public function editProduct()
 
          // echo "<br>The Updated Stocks Are<br>";
          //  print_r($Stocks); exit;
-
-         $this->load->view('editProduct',['product'=>$product,'Stocks'=>$Stocks,'SelectedData'=>$SelectedData]);	
+         $productsname = $this->pd->GetProductsName();
+         $this->load->view('editProduct',['product'=>$product,'Stocks'=>$Stocks,'SelectedData'=>$SelectedData,'Productsname'=>$productsname]);	
 		} 
        
 	}

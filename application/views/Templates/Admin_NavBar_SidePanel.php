@@ -89,6 +89,17 @@
           </div>
      </li>
 
+    <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-fw fa-folder"></i>
+            <span>Units</span>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="pagesDropdown">
+            <h6 class="dropdown-header">Unit Screens:</h6>
+            <a class="dropdown-item" href="<?php echo base_url().'Units/addunitView'?>">Add Units</a>
+            <a class="dropdown-item" href="<?php echo base_url().'Units'?>">View Units</a>
+          </div>
+     </li>
 
     <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

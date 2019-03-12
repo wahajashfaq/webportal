@@ -28,7 +28,15 @@
    <div class="col-md-3 ">
     <div class="form-group">
       <label class="control-label" for="StockName">Stock Name</label>  
-      <input id="StockName" name="StockName" value="<?php echo $stock->StockName?>" type="text" placeholder="Stock Name" class="form-control input-md" required="">
+      <select id="StockName" name="StockName" class="form-control" >
+         <option value="" selected><?php echo $stock->StockName ?></option>
+          <?php foreach ($stocksname as $Stockname):
+            if ($Stockname->name!=$stock->StockName) 
+            {?>
+          <option value="<?php echo $Stockname->name;?>"><?php echo  $Stockname->name;?></option>
+          <?php }
+            endforeach;?>
+      </select>
       <?php echo form_hidden('DataID', $stock->s_ID, 'id="DataID"'); ?>
     </div>
    </div>

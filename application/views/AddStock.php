@@ -66,21 +66,21 @@
 <div class = "row">
     <div class="col-md-3 ">
     <div class="form-group">
-    <label class="control-label" for="QuantityPurchased">Quantity Purchased(KG)</label>  
+    <label class="control-label" for="QuantityPurchased">Quantity Purchased(UNIT)</label>  
     <input id="QuantityPurchased" name="QuantityPurchased" type="number" placeholder="e.g 10" class="form-control input-md" required="">      
     </div>
    </div>
 
     <div class="col-md-3 ">
     <div class="form-group">
-    <label class="control-label" for="QuantityIssued">Quantity Issued(KG)</label>  
+    <label class="control-label" for="QuantityIssued">Quantity Issued(UNIT)</label>  
     <input id="QuantityIssued" name="QuantityIssued" type="number" placeholder="000" class="form-control input-md" >      
     </div>
    </div>
 
     <div class="col-md-2">
     <div class="form-group">
-    <label class="control-label" for="PriceperKG">Cost Per(KG)</label>  
+    <label class="control-label" for="PriceperKG">Cost Per(UNIT)</label>  
     <input id="PriceperKG" name="PriceperKG" type="number" placeholder="e.g 1000 PKR" class="form-control input-md" required="">      
      <?php echo form_hidden('TotalPrice', 0, 'id="TotalPrice"'); ?>
     </div>

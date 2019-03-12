@@ -43,9 +43,11 @@ public function editStock()
          $sid = $_GET['DataID'];
          $stock = $this->st->getStockData($sid);
          $suppliers = $this->st->getsuppliers();
-    //       echo "<pre>";
-		  // print_r($stock);exit;
-	     $this->load->view('editStock',['stock'=>$stock,'suppliers'=>$suppliers,'supplierID'=>$stock->id]);
+         $stocksname = $this->st->GetStocksName();
+
+         //echo "<pre>";
+		 //print_r($stock);exit;
+	     $this->load->view('editStock',['stock'=>$stock,'suppliers'=>$suppliers,'supplierID'=>$stock->id,'stocksname'=>$stocksname]);
 		}
  	}
 

@@ -1,3 +1,4 @@
+
 <?php include_once('Templates/Admin_header.php');?>   
    
     <title>Edit Products</title>
@@ -31,7 +32,16 @@ var arr = <?php echo json_encode($SelectedData)?>;
    <div class="col-md-8 ">
     <div class="form-group">
       <label class="control-label" for="ProductName">Product Name</label>  
-      <input id="ProductName" name="ProductName" type="text" value="<?php echo $product->ProductName;?>" placeholder="Product Name" class="form-control input-md" required="">
+      <!--input id="ProductName" name="ProductName" type="text" value="<?php echo $product->ProductName;?>" placeholder="Product Name" class="form-control input-md" required=""-->
+      <select id="ProductName" name="Product0Name" class="form-control" >
+         <option value="" selected><?php echo $product->ProductName ?></option>
+          <?php foreach ($Productsname as $Productname):
+            if ($Productname->name!=$product->ProductName) 
+            {?>
+          <option value="<?php echo $Productname->name;?>"><?php echo  $Productname->name;?></option>
+          <?php }
+            endforeach;?>
+      </select>
       <?php echo form_hidden('DataID', $product->ProductID, 'id="DataID"'); ?>
       <?php echo form_hidden('QuantityIssued', $product->QuantityIssued, 'id="QuantityIssued"'); ?>
    
