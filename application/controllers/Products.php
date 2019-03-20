@@ -26,7 +26,9 @@ class Products extends CI_Controller {
 		$productsname = $this->pt->GetProductsName();
 		// echo "<pre>";
 		// print_r($stocks);exit;
-		$this->load->view('AddProduct',['Stocks'=>$stocks,'Productsname'=>$productsname]);
+		$this->load->model('unit_model','ut');
+		$units = $this->ut->getUnit();
+		$this->load->view('AddProduct',['Stocks'=>$stocks,'Productsname'=>$productsname,"units"=>$units]);
 		// $this->viewStock();
 	}
 
@@ -59,6 +61,8 @@ public function editProduct()
 		if(isset($_GET['DataID']))
 		{
          $this->load->model('product_model','pd');
+         $this->load->model('unit_model','ut');
+		$units = $this->ut->getUnit();
          $pid = $_GET['DataID'];
          $product = $this->pd->getProductData($pid);
          $SelectedData = $this->pd->getSelectedStocks($pid);
@@ -82,7 +86,7 @@ public function editProduct()
          // echo "<br>The Updated Stocks Are<br>";
          //  print_r($Stocks); exit;
          $productsname = $this->pd->GetProductsName();
-         $this->load->view('editProduct',['product'=>$product,'Stocks'=>$Stocks,'SelectedData'=>$SelectedData,'Productsname'=>$productsname]);	
+         $this->load->view('editProduct',['product'=>$product,'Stocks'=>$Stocks,'SelectedData'=>$SelectedData,'Productsname'=>$productsname,'units'=>$units]);	
 		} 
        
 	}
@@ -377,10 +381,39 @@ $product['PriceperKG']=$PriceperKG;
                 }
             }
         }
-		
 		$this->load->view('ViewProducts',['Products'=>$Products]);
 	}
      
-   
+   	public function ViewProductNames()
+    {
+        $this->load->model('product_model','ut');
+        $units = $this->ut->GetProductsName();
+        $this->load->view('ViewProductNames',['Units'=>$units]);
+    }
+
+    public function DeleteProductName()
+    {
+       $this->load->model('product_model');
+        $uname = $this->input->post('uname');
+        $this->product_model->deleteProductName($uname);
+        return true;
+    }
+
+    public function Productdetails()
+    {
+       if(isset($_GET['DataID']))
+        {
+             $this->load->model('product_model','pd');
+             $pid = $_GET['DataID'];
+             $product = $this->pd->getProductData($pid);
+             $SelectedData = $this->pd->getSelectedStocksproductdetails($pid);
+             $Sum=0;
+             foreach ($SelectedData as $key => $p) {
+                 $Sum=$Sum+($p->PriceperKG*$p->issued);
+             }
+             $product->total=$Sum;
+             $this->load->view('Productdetails',['product'=>$product,'SelectedData'=>$SelectedData]);  
+        }
+    }
 
 }

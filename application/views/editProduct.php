@@ -29,7 +29,7 @@ var arr = <?php echo json_encode($SelectedData)?>;
 <!-- Text input-->
 
 <div class = "row">
-   <div class="col-md-8 ">
+   <div class="col-md-4 ">
     <div class="form-group">
       <label class="control-label" for="ProductName">Product Name</label>  
       <!--input id="ProductName" name="ProductName" type="text" value="<?php echo $product->ProductName;?>" placeholder="Product Name" class="form-control input-md" required=""-->
@@ -47,6 +47,20 @@ var arr = <?php echo json_encode($SelectedData)?>;
    
     </div>
    </div>
+   <div class="col-md-4 ">
+    <div class="form-group">
+      <label class="control-label" for="unit">Product Unit</label>  
+      <select id="unit" name="unit" class="form-control" >
+         <option value="<?=$product->unit?>" selected><?=$product->unit?></option>
+          <?php foreach ($units as $unit):
+            if ($unit->name != $product->unit) 
+            {?>
+          <option value="<?php echo $unit->name;?>"><?php echo  $unit->name;?></option>
+          <?php }
+            endforeach;?>
+      </select>
+    </div>
+   </div>
 </div>
 
 
@@ -55,7 +69,7 @@ var arr = <?php echo json_encode($SelectedData)?>;
 <div class = "row">
     <div class="col-md-4 ">
     <div class="form-group">
-    <label class="control-label" for="QuantityProduced">Quantity Produced(KG)</label>  
+    <label class="control-label" for="QuantityProduced">Quantity Produced(Unit)</label>  
     <input id="QuantityProduced" name="QuantityProduced"  value="<?php echo $product->QuantityProduced;?>" type="number" placeholder="e.g 10" class="form-control input-md" required="">      
     </div>
    </div>
@@ -90,14 +104,14 @@ var arr = <?php echo json_encode($SelectedData)?>;
       
        <div class="col-md-4">
        <div class="form-group">
-       <label class="control-label"  for="QuantityAvailable">Available(KG)</label>  
+       <label class="control-label"  for="QuantityAvailable">Available(Unit)</label>  
        <input id="QuantityAvailable" disabled value="<?php echo $product->QuantityAvailable?>" name="QuantityAvailable" type="number" placeholder="000" class="form-control input-md" >
        </div>
        </div>
      
        <div class="col-md-4">
        <div class="form-group">
-       <label class="control-label" for="InputAmount">Amount(KG)</label>  
+       <label class="control-label" for="InputAmount">Amount(Unit)</label>  
        <input id="InputAmount" name="InputAmount" type="number" placeholder="000" class="form-control input-md" >
        </div>
        </div>

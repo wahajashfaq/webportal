@@ -67,10 +67,10 @@ var arr = null;
   </div>
 
   <div class="col-md-2">
-     <div class="form-group">
+     <!--div class="form-group">
      <label class="control-label" for="Due Payment">Due Payment</label>  
      <input id="Due Payment" name="Due_Payment" min="0" type="number" placeholder="0" class="form-control input-md" >
-     </div>
+     </div-->
   </div>
   
    

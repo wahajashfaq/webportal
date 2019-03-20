@@ -60,6 +60,11 @@ public function GenerateInvoice()
 	//$oid = 9;
 	$OrderedProducts = $this->obj->getOrderedProducts($oid);
     $OrderDetail = $this->obj->getOrderData($oid);
+    foreach ($OrderedProducts as $key => $p) {
+             $unit = $this->obj->getOrderedProductUnit($p->pid);
+             $p->unit=$unit;
+    }
+
     $this->load->view('Invoice',['products'=>$OrderedProducts,'Order'=>$OrderDetail]);	
 }
 
@@ -97,6 +102,7 @@ public function GenerateInvoice()
         	$product['Discount']=0;
         	$product['GrandTotal'] = $price;
         }
+        $product['Due_Payment']=$product['GrandTotal'];
 	 $result = $this->pd->GetNextOrderID();
 	 $oid = $result->id;
 	 if (!$oid) { 
@@ -179,7 +185,12 @@ public function deleteOrder()
     $Records = $this->pd->GetDuePaymentsForReport();
     $Sum=0;
     foreach ($Records as $key => $r) 
-    {
+    {	
+    	$paid = $this->pd->getDebitPaymentpaid($r->ID);
+        if(is_null($paid[0]->paid)){
+            $paid[0]->paid=0;
+        }
+        $r->Due = $r->Due - $paid[0]->paid;
     	$Sum += $r->Due;
     }
     $this->load->view('ReportDebtors',['Records'=>$Records,'Total'=>$Sum]);     
@@ -256,6 +267,15 @@ public function editOrder()
 	{
 		$this->load->model('order_model','obj');
 		$Orders = $this->obj->getOrders();
+        
+        foreach ($Orders as $key => $r) 
+        {   
+            $paid = $this->obj->getDebitPaymentpaid($r->OrderID);
+            if(is_null($paid[0]->paid)){
+                $paid[0]->paid=0;
+            }
+            $r->Due_Payment = $r->Due_Payment - $paid[0]->paid;
+        }
 		$this->load->view('ViewOrders',['Orders'=>$Orders]);
 	}
 
@@ -274,6 +294,10 @@ public function editOrder()
          $oid = $_GET['DataID'];
          $OrderedProducts = $this->obj->getOrderedProducts($oid);
          $OrderDetail = $this->obj->getOrderData($oid);
+         foreach ($OrderedProducts as $key => $p) {
+             $unit = $this->obj->getOrderedProductUnit($p->pid);
+             $p->unit=$unit;
+         }
          if(isset($_GET['flag']))
          { $this->load->view('OrderDetails',['products'=>$OrderedProducts,'Order'=>$OrderDetail,'flag'=>true]);}
          else
@@ -395,6 +419,78 @@ public function OldUpdateOrderEntry()
 
 }
 
+public function DebitPaymentDetails($id){
 
+        $this->load->model('order_model','st');
+        $Records = $this->st->getDebitPaymentDetails($id);
+        $Name = $this->st->getDebitPaymentName($id);
+        $due = $this->st->getDebitPaymentDue($id);
+        
+        $paid = $this->st->getDebitPaymentpaid($id);
+        if(is_null($paid[0]->paid)){
+            $paid[0]->paid=0;
+        }
+        $owe = $due[0]->Due_Payment -$paid[0]->paid;
+        $oname = $due[0]->Reference;
+        $odate = $due[0]->OrderDate;
+        $this->load->view('DebitPaymentdetails',['Records' => $Records,'Name'=> $Name,'Owe'=> $owe,'ID'=> $id,'Error'=>" ",'oname'=>$oname,'odate'=>$odate]);
+     }
+
+     public function AddDebitEntery($id)
+    {
+         $this->load->model('order_model','st');
+         $post =$this->input->post();
+
+         unset($post['submit']);
+
+                $Records = $this->st->getDebitPaymentDetails($id);
+                $Name = $this->st->getDebitPaymentName($id);
+                $due = $this->st->getDebitPaymentDue($id);
+                $paid = $this->st->getDebitPaymentpaid($id);
+                if(is_null($paid[0]->paid)){
+                    $paid[0]->paid=0;
+                }
+                $owe = $due[0]->Due_Payment -$paid[0]->paid;
+                $oname = $due[0]->Reference;
+                $odate = $due[0]->OrderDate;
+         if (!isset($post['PayAmount']) or empty($post['PayAmount']) ) { 
+                $error = 'Enter ammount!';
+
+                $this->load->view('DebitPaymentdetails',['Records' => $Records,'Name'=> $Name,'Owe'=> $owe,'ID'=> $id,'Error'=>$error,'oname'=>$oname,'odate'=>$odate ]);
+
+         }
+         if (!isset($post['PayDate']) or empty($post['PayDate'])) {
+            $error = 'Enter Date!';
+
+                $this->load->view('DebitPaymentdetails',['Records' => $Records,'Name'=> $Name,'Owe'=> $owe,'ID'=> $id,'Error'=>$error,'oname'=>$oname,'odate'=>$odate ]);
+         }
+         if($post['PayAmount']>$owe){
+            $error = 'Amount greater than due amount!';
+
+                $this->load->view('DebitPaymentdetails',['Records' => $Records,'Name'=> $Name,'Owe'=> $owe,'ID'=> $id,'Error'=>$error,'oname'=>$oname,'odate'=>$odate ]);
+         }
+         else{
+             $orders['OID'] = $id;
+             $orders['date'] =$post['PayDate'];
+             $orders['amount'] =$post['PayAmount'];
+             $error = 'Amount Added!';
+             $this->st->AddDebitEntery($orders);
+             $Records = $this->st->getDebitPaymentDetails($id);
+             $due = $this->st->getDebitPaymentDue($id);
+             $paid = $this->st->getDebitPaymentpaid($id);
+             if(is_null($paid[0]->paid)){
+                $paid[0]->paid=0;
+             }
+             $owe = $due[0]->Due_Payment -$paid[0]->paid;       
+             $this->load->view('DebitPaymentdetails',['Records' => $Records,'Name'=> $Name,'Owe'=> $owe,'ID'=> $id,'Error'=>$error,'oname'=>$oname,'odate'=>$odate]);
+        }
+    }
+
+    public function DeleteDebitEntery($id = 0, $ID = 0)
+    {
+         $this->load->model('order_model','st');
+         $this->st->DeleteDebitEntery($id);
+         $this->DebitPaymentDetails($ID);
+    }
 
 }

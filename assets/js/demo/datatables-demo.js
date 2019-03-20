@@ -87,7 +87,7 @@ var option=[];
 	    	var pathArray = window.location.pathname.split('/'); // to split all string after domain
 	    	var host = pathArray[1]; //This will return the host or root in Url part
 	    	var base_url = domain +'/'+ host + '/'; //Combinng all to get base_url same as codeigniter
-	    	var id = $(this).attr("id");//Getiing the ID to Delete on server side
+	    	var id = $(this).attr("name");//Getiing the ID to Delete on server side
 
 	        $.ajax({
 	            url:  base_url+ 'User/deleteUser',
@@ -96,7 +96,7 @@ var option=[];
 	            dataSrc : "",
 	            success: function ()
 	            {
-	            	table.row(obj).remove().draw(false);
+	            	location.reload();
 	                //$('#dataTable').DataTable().ajax.reload(); require a json object a parameter
 	                // and that was throwing JSON parse error.
 	                //SO we are just removing that particular row after successful Ajax delete
@@ -104,6 +104,83 @@ var option=[];
 	            error: function ()
 	                   {
 	                    alert('Request failure');
+	                   }
+
+	                });
+
+	    }
+
+    });
+
+
+   $('.PnameDelete').click(function()
+   {
+	    if (confirm("Do you want to delete this record?"))
+	    {
+	    	//The Value of This becomes undefined in Ajax Success or error section
+	    	//So we Need to Store Table and Row objects
+	    	var obj = $(this).parents('tr');
+	    	var table = $('#UserdataTable').DataTable();
+	    	//Base_URL is not available in external JS file(here) So we need to Generate it from URL
+	    	var domain = window.location.origin; //To get the domain part from url
+	    	var pathArray = window.location.pathname.split('/'); // to split all string after domain
+	    	var host = pathArray[1]; //This will return the host or root in Url part
+	    	var base_url = domain +'/'+ host + '/'; //Combinng all to get base_url same as codeigniter
+	    	var name = $(this).attr("name");//Getiing the ID to Delete on server side
+	        $.ajax({
+	            url:  base_url+ 'Products/DeleteProductName',
+	            type: 'POST',
+	            data: {uname:name},
+	            dataSrc : "",
+	            success: function ()
+	            {
+	            	location.reload();
+	                //$('#dataTable').DataTable().ajax.reload(); require a json object a parameter
+	                // and that was throwing JSON parse error.
+	                //SO we are just removing that particular row after successful Ajax delete
+	            },
+	            error: function ()
+	                   {
+	                    alert('Request failure');
+	                   }
+
+	                });
+
+	    }
+
+    });
+
+
+   	$('.SnameDelete').click(function()
+   {
+	    if (confirm("Do you want to delete this record?"))
+	    {
+	    	//The Value of This becomes undefined in Ajax Success or error section
+	    	//So we Need to Store Table and Row objects
+	    	var obj = $(this).parents('tr');
+	    	var table = $('#UserdataTable').DataTable();
+	    	//Base_URL is not available in external JS file(here) So we need to Generate it from URL
+	    	var domain = window.location.origin; //To get the domain part from url
+	    	var pathArray = window.location.pathname.split('/'); // to split all string after domain
+	    	var host = pathArray[1]; //This will return the host or root in Url part
+	    	var base_url = domain +'/'+ host + '/'; //Combinng all to get base_url same as codeigniter
+	    	var name = $(this).attr("name");//Getiing the ID to Delete on server side
+	        $.ajax({
+	            url:  base_url+ 'Stocks/DeleteStockName',
+	            type: 'POST',
+	            data: {uname:name},
+	            dataSrc : "",
+	            success: function ()
+	            {
+	            	location.reload();
+	                //$('#dataTable').DataTable().ajax.reload(); require a json object a parameter
+	                // and that was throwing JSON parse error.
+	                //SO we are just removing that particular row after successful Ajax delete
+	            },
+	            error: function ()
+	                   {
+	                    alert('Request failure');
+	                    
 	                   }
 
 	                });
@@ -135,7 +212,7 @@ var option=[];
 	            dataSrc : "",
 	            success: function ()
 	            {
-	            	table.row(obj).remove().draw(false);
+	            	location.reload();
 	                //$('#dataTable').DataTable().ajax.reload(); require a json object a parameter
 	                // and that was throwing JSON parse error.
 	                //SO we are just removing that particular row after successful Ajax delete
@@ -174,7 +251,7 @@ var option=[];
 	            dataSrc : "",
 	            success: function ()
 	            {
-	            	table.row(obj).remove().draw(false);
+	            	location.reload();
 	            },
 	            error: function ()
 	                   {
@@ -208,7 +285,7 @@ var option=[];
 	            dataSrc : "",
 	            success: function ()
 	            {
-	            	table.row(obj).remove().draw(false);
+	            	location.reload();
 	            },
 	            error: function ()
 	                   {
@@ -220,6 +297,9 @@ var option=[];
 	    }
 
     });
+
+
+   
 
 
 //OrderDelete / Order Cancel
@@ -420,6 +500,8 @@ $('select').on('change', function() {
 var	Stock= document.getElementById('StockID').value;
    	item = Stock.split('/');
    	var available=item[0];
+   	var unit=item[2];
+  
     document.getElementById('QuantityAvailable').value=available;
     });
 

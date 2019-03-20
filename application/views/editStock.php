@@ -29,7 +29,7 @@
     <div class="form-group">
       <label class="control-label" for="StockName">Stock Name</label>  
       <select id="StockName" name="StockName" class="form-control" >
-         <option value="" selected><?php echo $stock->StockName ?></option>
+         <option value="<?php echo $stock->StockName ?>" selected><?php echo $stock->StockName ?></option>
           <?php foreach ($stocksname as $Stockname):
             if ($Stockname->name!=$stock->StockName) 
             {?>
@@ -60,10 +60,7 @@
 
 
    <div class="col-md-2">
-      <div class="form-group">
-      <label class="control-label" for="owe">Owing Amount</label>  
-      <input id="owe" name="owe" value="<?php echo $stock->owe?>" type="number" min="0" placeholder="e.g 1000 PKR" class="form-control input-md" required="">      
-      </div>
+      
    </div>
 
 </div>
@@ -73,24 +70,21 @@
 <div class = "row">
     <div class="col-md-3 ">
     <div class="form-group">
-    <label class="control-label" for="QuantityPurchased">Quantity Purchased(KG)</label>  
+    <label class="control-label" for="QuantityPurchased">Quantity Purchased(Unit)</label>  
     <input id="QuantityPurchased" value="<?php echo $stock->QP?>" name="QuantityPurchased" type="number" placeholder="e.g 10" class="form-control input-md" required="">      
     </div>
    </div>
 
     <div class="col-md-3 ">
     <div class="form-group">
-    <label class="control-label" for="QuantityIssued">Quantity Issued(KG)</label>  
-    <input id="QuantityIssued" name="QuantityIssued" value="<?php echo $stock->Qissue?>" type="number" placeholder="000" class="form-control input-md" >      
+    <label class="control-label" for="PriceperKG">Cost Per(Unit)</label>  
+    <input id="PriceperKG" name="PriceperKG" value="<?php echo $stock->Price?>" type="number" placeholder="e.g 1000 PKR" class="form-control input-md" required="">      
+     <?php echo form_hidden('TotalPrice',0, 'id="TotalPrice"'); ?>
     </div>
    </div>
 
     <div class="col-md-2">
-    <div class="form-group">
-    <label class="control-label" for="PriceperKG">Cost Per(KG)</label>  
-    <input id="PriceperKG" name="PriceperKG" value="<?php echo $stock->Price?>" type="number" placeholder="e.g 1000 PKR" class="form-control input-md" required="">      
-     <?php echo form_hidden('TotalPrice',0, 'id="TotalPrice"'); ?>
-    </div>
+    
    </div>
 
 </div>
@@ -103,6 +97,22 @@
         <input class="form-control" id="StockDate" value="<?php echo date("Y-m-d", strtotime($stock->date ));?>" name="StockDate" placeholder="MM/DD/YYY" type="date" required="">
       </div>
    </div>
+   <div class="col-md-3 ">
+    <div class="form-group">
+        <label class="control-label" for="unit">Unit</label>
+        <select id="unit" name="unit" class="form-control" >
+         <option value="<?php echo $stock->unit ?>" selected><?php echo $stock->unit?></option>
+          <?php foreach ($units as $unit):
+           if ($unit->name !=$stock->unit) 
+           {
+          ?>
+          <option value="<?php echo $unit->name;?>"><?php echo $unit->name?></option>
+          <?php 
+            }
+          endforeach;?>
+        </select>
+    </div>
+  </div>
 </div>
 
 <div class = "row">

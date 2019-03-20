@@ -119,9 +119,8 @@ public function GetOrdersByCustomer($From,$To,$c_id)
      $query = $this->db->query("
                               SELECT o.Reference as OrderName,
                               (SELECT Concat(m.Name,' ',m.Lname) from member as m where m.ID= o.CustomerID) 
-                              as Name,SUM(o.Due_Payment) as Due
+                              as Name,o.Due_Payment as Due,o.OrderID as ID,o.OrderDate as date
                               from orders as o 
-                              GROUP by o.CustomerID
                               Having Due > 0
                               ");
         return $query->result();
@@ -255,7 +254,7 @@ public function DeleteOrder($oid)
 public function getOrderedProducts($oid)
 {
    $query = $this->db->query("
-                  SELECT Name, (sum(o.NetWeight)) as amount,(SUM(o.NetValue) / SUM(o.NetWeight) ) as PerKg,
+                  SELECT Name,pid, (sum(o.NetWeight)) as amount,(SUM(o.NetValue) / SUM(o.NetWeight) ) as PerKg,
                           SUM(o.NetValue) as SubTotal,
                           (SELECT sum(o.NetWeight*t.priceperkg)/sum(o.NetWeight) 
                             from (  select ProductID ,priceperkg 
@@ -270,6 +269,16 @@ public function getOrderedProducts($oid)
                             FROM orderdetails as o 
                             WHERE oid='$oid'
                             GROUP BY o.Name
+                                  ");
+        return $query->result();
+
+}
+
+public function getOrderedProductUnit($pid)
+{
+   $query = $this->db->query("
+                  SELECT unit from products
+                  where ProductID = $pid
                                   ");
         return $query->result();
 
@@ -306,6 +315,53 @@ public function getCustomersForOrders()
                                 Order by ProductDate
                                 ");
         return $query->result();
+    }
+
+    public function getDebitPaymentDetails($id){
+        $query = $this->db->query("
+        SELECT *
+        from orderpayments
+        where OID = $id;  
+        ");
+        return $query->result();
+     }
+
+     public function getDebitPaymentName($id){
+        $query = $this->db->query("
+        SELECT *
+        from member
+        where Utype = 'Customer' and ID = (Select CustomerID from orders where OrderID = $id);  
+        ");
+        return $query->result();
+     }
+
+     public function getDebitPaymentDue($id){
+        $query = $this->db->query("
+        SELECT *
+        from orders
+        where OrderID = $id;  
+        ");
+        return $query->result();
+     }
+
+     public function getDebitPaymentpaid($id){
+        $query = $this->db->query("
+        SELECT SUM(amount) as paid
+        from orderpayments
+        where OID = $id;  
+        ");
+        return $query->result();
+     }
+
+    public function AddDebitEntery($order)
+    {
+        return $this->db->insert('orderpayments',$order);
+    }
+
+    public function DeleteDebitEntery($id)
+    {
+        $this->db->where("id",$id);
+        $this->db->delete("orderpayments");
     }
 
 } 

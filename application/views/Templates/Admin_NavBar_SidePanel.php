@@ -109,6 +109,7 @@
           <div class="dropdown-menu" aria-labelledby="pagesDropdown">
             <h6 class="dropdown-header">Stock Screens:</h6>
             <a class="dropdown-item" href="<?php echo base_url().'Stocks/addStockNameView'?>">Add Stock Name</a>
+            <a class="dropdown-item" href="<?php echo base_url().'Stocks/ViewStockNames'?>">View Stocks<br> Name</a>
             <a class="dropdown-item" href="<?php echo base_url().'Stocks/addStockView'?>">Add Stock</a>
             <a class="dropdown-item" href="<?php echo base_url().'Stocks'?>">View Stocks</a>
           </div>
@@ -124,6 +125,7 @@
           <div class="dropdown-menu" aria-labelledby="pagesDropdown">
             <h6 class="dropdown-header">Product Screens:</h6>
             <a class="dropdown-item" href="<?php echo base_url().'Products/addProductNameView'?>">Add Product <br>Name</a>
+            <a class="dropdown-item" href="<?php echo base_url().'Products/ViewProductNames'?>">View Products<br> Name</a>
             <a class="dropdown-item" href="<?php echo base_url().'AddProducts'?>">Add Product</a>
             <a class="dropdown-item" href="<?php echo base_url().'Products'?>">View Products</a>
           </div>

@@ -96,11 +96,22 @@ public function DeleteProduct($oid)
         return $query->result();
         
     }
+
+    public function getSelectedStocksproductdetails($pid)
+    {
+        $query = $this->db->query("
+                                    Select *
+                                    from productdetails,stocks
+                                    where pid = '$pid' and productdetails.sid = stocks.StockID
+                                  ");
+        return $query->result();
+        
+    }
     
     public function getProducts()
     {  
         $query = $this->db->query("
-                                Select ProductID as pid, ProductName as pName,QuantityProduced as QP,QuantityIssued as Qissue,
+                                Select ProductID as pid,unit as unit, ProductName as pName,QuantityProduced as QP,QuantityIssued as Qissue,
                                 PriceperKG as Price,ProductDate as date
                                 from products  
                                 ");
@@ -127,7 +138,7 @@ public function DeleteProduct($oid)
     public function getStocksDataForProduct()
     {  
         $query = $this->db->query("
-                                Select s.StockName as s_Name, sum(s.QuantityAvailable) as quantity
+                                Select s.StockName as s_Name,s.unit as unit, sum(s.QuantityAvailable) as quantity
                                 from stocks as s 
                                 where s.QuantityIssued <= s.QuantityPurchased and QuantityAvailable !=0
                                 Group by s_Name
@@ -199,5 +210,21 @@ public function DeleteProduct($oid)
 
        return $query->row();  
     }
+
+     public function deleteProductName($uname)
+    {
+        $this->db->where('name',$uname);
+        $query = $this->db->get('productsname');
+        if ($query->num_rows() < 0){
+            return false;
+        }
+        else{
+            $this->db->where('name',$uname);
+            $this->db->delete('productsname');
+            return true;
+        }
+        
+    }
+
     
 } 

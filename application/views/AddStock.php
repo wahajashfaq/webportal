@@ -52,10 +52,10 @@
     </div>
 
     <div class="col-md-2">
-      <div class="form-group">
+      <!--div class="form-group">
       <label class="control-label" for="owe">Owing Amount</label>  
       <input id="owe" name="owe" type="number" min="0" placeholder="e.g 1000 PKR" class="form-control input-md" required="">      
-      </div>
+      </div-->
    </div>
 
 </div>
@@ -72,18 +72,19 @@
    </div>
 
     <div class="col-md-3 ">
-    <div class="form-group">
+    <!--div class="form-group">
     <label class="control-label" for="QuantityIssued">Quantity Issued(UNIT)</label>  
     <input id="QuantityIssued" name="QuantityIssued" type="number" placeholder="000" class="form-control input-md" >      
-    </div>
-   </div>
-
-    <div class="col-md-2">
+    </div-->
     <div class="form-group">
     <label class="control-label" for="PriceperKG">Cost Per(UNIT)</label>  
     <input id="PriceperKG" name="PriceperKG" type="number" placeholder="e.g 1000 PKR" class="form-control input-md" required="">      
      <?php echo form_hidden('TotalPrice', 0, 'id="TotalPrice"'); ?>
     </div>
+   </div>
+
+    <div class="col-md-2">
+    
    </div>
 
 </div>
@@ -94,6 +95,17 @@
       <div class="form-group"> <!-- Date input -->
         <label class="control-label" for="StockDate">Purchaes Date</label>
         <input class="form-control" id="StockDate" name="StockDate" placeholder="MM/DD/YYY" type="date" required="">
+      </div>
+   </div>
+   <div class="col-md-3 ">
+      <div class="form-group"> <!-- Date input -->
+        <label class="control-label" for="unit">Unit</label>
+        <select id="unit" name="unit" class="form-control" >
+         <option value="" selected>Select one</option>
+          <?php foreach ($units as $unit):?>
+          <option value="<?php echo $unit->name ?>"><?php echo $unit->name ?></option>
+          <?php endforeach;?>
+        </select>
       </div>
    </div>
 </div>

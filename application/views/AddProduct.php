@@ -28,7 +28,7 @@ var arr = <?php echo json_encode($Stocks)?>;
 <!-- Text input-->
 
 <div class = "row">
-   <div class="col-md-8 ">
+   <div class="col-md-4 ">
     <div class="form-group">
       <label class="control-label" for="ProductName">Product Name</label>  
       <!--input id="ProductName" name="ProductName" type="text" placeholder="Product Name" class="form-control input-md" required=""-->
@@ -36,6 +36,17 @@ var arr = <?php echo json_encode($Stocks)?>;
          <option value="" selected>Select one</option>
           <?php foreach ($Productsname as $Productname):?>
           <option value="<?php echo $Productname->name;?>"><?php echo  $Productname->name;?></option>
+          <?php endforeach;?>
+      </select>
+    </div>
+   </div>
+   <div class="col-md-4 ">
+    <div class="form-group">
+      <label class="control-label" for="unit">Product Unit</label>  
+      <select id="unit" name="unit" class="form-control" >
+         <option value="" selected>Select one</option>
+          <?php foreach ($units as $unit):?>
+          <option value="<?php echo $unit->name;?>"><?php echo  $unit->name;?></option>
           <?php endforeach;?>
       </select>
     </div>
@@ -48,7 +59,7 @@ var arr = <?php echo json_encode($Stocks)?>;
 <div class = "row">
     <div class="col-md-4 ">
     <div class="form-group">
-    <label class="control-label" for="QuantityProduced">Quantity Produced(KG)</label>  
+    <label class="control-label" for="QuantityProduced">Quantity Produced(Unit)</label>  
     <input id="QuantityProduced" name="QuantityProduced" type="number" placeholder="e.g 10" class="form-control input-md" required="">      
     </div>
    </div>
@@ -70,9 +81,9 @@ var arr = <?php echo json_encode($Stocks)?>;
           if ($Stocks) 
           {
            ?>
-           <option value="0" selected>Select one</option>
+           <option value="<?php echo "0";?>" selected>Select one</option>
           <?php foreach ($Stocks as $Stock):?>
-          <option  value="<?php echo $Stock->quantity."/".$Stock->s_Name;?>" class="StockOption <?php echo preg_replace('/[^A-Za-z0-9\-]/', '', str_replace(' ','', $Stock->s_Name));?>"><?php echo $Stock->s_Name?></option>
+          <option  value="<?php echo $Stock->quantity."/".$Stock->s_Name;?>" class="StockOption <?php echo preg_replace('/[^A-Za-z0-9\-]/', '', str_replace(' ','', $Stock->s_Name));?>" ><?php echo $Stock->s_Name?></option>
           <?php endforeach;
            }else
            {?>
@@ -103,14 +114,14 @@ var arr = <?php echo json_encode($Stocks)?>;
       
        <div class="col-md-4">
        <div class="form-group">
-       <label class="control-label"  for="QuantityAvailable">Available(KG)</label>  
+       <label class="control-label"  for="QuantityAvailable">Available(Unit)</label>  
        <input id="QuantityAvailable" disabled name="QuantityAvailable" type="number" placeholder="000" class="form-control input-md" >
        </div>
        </div>
      
        <div class="col-md-4">
        <div class="form-group">
-       <label class="control-label" for="InputAmount">Amount(KG)</label>  
+       <label class="control-label" for="InputAmount">Amount(Unit)</label>  
        <input id="InputAmount" name="InputAmount" type="number" placeholder="000" class="form-control input-md" >
        </div>
        </div>

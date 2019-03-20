@@ -9,8 +9,8 @@ class member_model extends CI_Model
     }
     public function getsupplier()
     {
-     $query = $this->db->query("Select * from member where Utype = 'Supplier' and Name !='Default' ");
-        return $query->result();
+     $query = $this->db->query("Select * from member where Utype = 'Supplier' and Name != 'Default'");
+     return $query->result();
     }
 
 public function SetMemberAutoIncrement()

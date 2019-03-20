@@ -48,7 +48,8 @@
                                 <tr>
                                   <th class="border-0 text-uppercase small font-weight-bold">No#</th>
                                   <th class="border-0 text-uppercase small font-weight-bold">Customer Name</th>
-                                  <th class="border-0 text-uppercase small font-weight-bold">Order</th>
+                                  <th class="border-0 text-uppercase small font-weight-bold">Order Reference</th>
+                                  <th class="border-0 text-uppercase small font-weight-bold">Order Date</th>
                                   <th class="border-0 text-uppercase small font-weight-bold">Due Amount</th>
                                  </tr>
                               </thead>
@@ -63,7 +64,9 @@
                                         <td><?=$key+1?></td>
                                         <td><?=$p->Name?></td>
                                         <td><?=$p->OrderName?></td>
+                                        <td><?=date("jS M,Y", strtotime($p->date));?></td>
                                         <td><?=$p->Due?></td>
+                                        <td><a href="<?= base_url('Orders/DebitPaymentDetails/'.$p->ID); ?>">Payment Details</a></td>
                                     </tr>
                                     <?php
                                          }//End Of ForEach

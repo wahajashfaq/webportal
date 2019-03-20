@@ -35,10 +35,10 @@
                       <th style="width:20%">Reference</th>
                       <th style="width:20%"> Name</th>
                       <th style="width:20%">Order Date</th>
-                      <th style="width:20%">Deliver Date</th>
+                      <th style="width:20%">Delivery Date</th>
                       <th style="width:5%">Discount</th>
                       <th style="width:5%">Total</th>
-                      <th style="width:5%">Due_Payment</th>
+                      <th style="width:5%">Due Amount</th>
                       <th style="width:5%">View</th>
                       <th style="width:10%">Cancel</th>
                     </tr>

@@ -4,7 +4,7 @@ class stock_model extends CI_Model
 {
     public function getsuppliers()
     {
-    	$query = $this->db->query("Select * from member where Utype = 'Supplier'");
+    	$query = $this->db->query("Select * from member where Utype = 'Supplier' and Name != 'Default'");
     	return $query->result();
     }
 
@@ -24,7 +24,7 @@ class stock_model extends CI_Model
     public function getStocks()
     {
         $query = $this->db->query("
-                                Select s.StockID as s_ID,s.StockName as StockName,s.SupplierID as id,
+                                Select s.unit as unit, s.StockID as s_ID,s.StockName as StockName,s.SupplierID as id,
                                 CONCAT (m.Name,' ',m.Lname) as SupplierName,s.QuantityPurchased as QP,
                                 s.QuantityIssued as Qissue,s.PriceperKG as Price,s.TotalPrice as bill,
                                 s.StockDate as date from member as m,stocks as s
@@ -51,11 +51,10 @@ public function GetStockValuationForReport()
  public function GetOwingPaymentsForReport()
   {
      $query = $this->db->query("
-                              SELECT s.StockName as OrderName,
+                              SELECT s.StockName as OrderName,s.StockID as ID,
                              (SELECT Concat(m.Name,' ',m.Lname) from member as m where m.ID= s.SupplierID) 
-                              as Name,SUM(s.owe) as Due
+                              as Name,s.owe as Due,s.StockDate as date
                              from stocks as s 
-                             GROUP by s.SupplierID
                              Having Due > 0
                               ");
         return $query->result();
@@ -64,7 +63,7 @@ public function GetStockValuationForReport()
     public function getStockData($sid)
     {
         $query = $this->db->query("
-                                Select s.StockID as s_ID,s.StockName as StockName,s.SupplierID as id,
+                                Select s.unit as unit,s.StockID as s_ID,s.StockName as StockName,s.SupplierID as id,
                                 CONCAT (m.Name,m.Lname) as SupplierName,s.QuantityPurchased as QP,
                                 s.QuantityIssued as Qissue,s.PriceperKG as Price,s.TotalPrice as bill,
                                 s.StockDate as date,s.comments as comment, s.owe as owe
@@ -120,4 +119,67 @@ public function GetStockValuationForReport()
         ");
         return $query->result();
      }
+
+
+     public function getCreditPaymentDetails($id){
+        $query = $this->db->query("
+        SELECT *
+        from stockpayments
+        where SID = $id;  
+        ");
+        return $query->result();
+     }
+
+     public function getCreditPaymentName($id){
+        $query = $this->db->query("
+        SELECT *
+        from member
+        where Utype = 'Supplier' and ID = (Select SupplierID from stocks where StockID = $id);  
+        ");
+        return $query->result();
+     }
+
+     public function getCreditPaymentDue($id){
+        $query = $this->db->query("
+        SELECT *
+        from stocks
+        where StockID = $id;  
+        ");
+        return $query->result();
+     }
+
+     public function getCreditPaymentpaid($id){
+        $query = $this->db->query("
+        SELECT SUM(amount) as paid
+        from stockpayments
+        where SID = $id;  
+        ");
+        return $query->result();
+     }
+
+    public function AddCreditEntery($stock)
+    {
+        return $this->db->insert('stockpayments',$stock);
+    }
+
+    public function DeleteCreditEntery($id)
+    {
+        $this->db->where("id",$id);
+        $this->db->delete("stockpayments");
+    }
+
+     public function deleteStockName($uname)
+    {
+        $this->db->where('name',$uname);
+        $query = $this->db->get('stocksname');
+        if ($query->num_rows() < 0){
+            return false;
+        }
+        else{
+            $this->db->where('name',$uname);
+            $this->db->delete('stocksname');
+            return true;
+        }
+        
+    }
 }

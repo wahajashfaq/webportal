@@ -33,11 +33,13 @@
                     <tr >
                       <th>Completed On</th>
                       <th>Product Name</th>
-                      <th>Produced(KG)</th>
-                      <th>Issued(KG)</th>
-                      <th>CostPer(KG)</th>
+                      <th>Unit</th>
+                      <th>Produced</th>
+                      <th>Issued</th>
+                      <th>CostPer(Unit)</th>
                       <th>Edit</th>
                       <th>Delete</th>
+                      <th>View</th>
                     </tr>
                   </thead>
 
@@ -48,6 +50,7 @@
                       <tr>
                        <td style="width:15%"><?=date("Y-m-d", strtotime($p->date));?></td>
                       <td><?=$p->pName?></td>
+                      <td><?=$p->unit?></td>
                       <td><?=$p->QP?></td>
                       <td><?=$p->Qissue?></td>
                       <td><?=$p->Price?></td>
@@ -56,8 +59,15 @@
                       if (isset($p->DontDelete) && $p->DontDelete ==1) {
                         $Isdisabled='disabled';
                       }?>
-                     <td><a href="<?php echo base_url()?>Products/editProduct?DataID=<?php echo $p->pid?>" data-placement="top" data-toggle="tooltip" title="Edit"style="color:White" class="btn btn-sm btn-primary"><i class="fa fa-pencil-square-o"></i> Edit</a></td>
+                     <td>
+                      <?php if(isset($p->DontDelete) && $p->DontDelete ==1){ ?>
+                      <a href="#" data-placement="top" data-toggle="tooltip" title="Edit"style="color:White;background-color: #007BC4;" class="btn btn-sm btn-primary"><i class="fa fa-pencil-square-o"></i> Edit</a>
+                      <?php }else { ?>
+                        <a href="<?php echo base_url('Products/editProduct?DataID='.$p->pid); ?>" data-placement="top" data-toggle="tooltip" title="Edit"style="color:White" class="btn btn-sm btn-primary"><i class="fa fa-pencil-square-o"></i> Edit</a>
+                      <?php }?>
+                      </td>
                       <td><button <?php echo $Isdisabled?> data-placement="top" data-toggle="tooltip" id="<?php echo $p->pid?>" title="Delete" style="color:White" class="ProductDelete btn btn-sm btn-danger"><i class="fa fa-trash"></i> Delete</button></td>
+                      <td><a href="<?php echo base_url('Products/Productdetails?DataID='.$p->pid); ?>">View Details</a></td>
 
                     </tr>
                           <?php

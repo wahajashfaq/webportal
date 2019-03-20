@@ -27,7 +27,7 @@
                     <div class="row p-1">   <!--Ref https://www.w3schools.com/php/func_date_date_format.asp-->
                         <div class="col-md-6"> <!--dS gives 11th M gives month name and Y gives year-->
                            <h3><p class="font-weight-bold mb-1">Order#<?= $Order->oid?></p></h3>
-                            <p class="text-muted">Due to: <?=date("dS M,Y", strtotime($Order->dDate));?></p>
+                            <p class="text-muted">Due on: <?=date("dS M,Y", strtotime($Order->dDate));?></p>
                         </div>
                         <div class="col-md-6" >
                          <?php 
@@ -90,7 +90,7 @@
                             <p class="font-weight-bold mb-4">Order Details</p>
                             <p class="mb-1"><span class="text-muted"><b>Order ID: </b></span><?= $Order->oid?></p>
                             <p class="mb-1"><span class="text-muted"><b>REFERENCE: </b></span> <?= $Order->ref?></p>
-                            <p class="mb-1"><span class="text-muted"><b>Payment Type: </b></span> Root</p>
+                            <p class="mb-1"><span class="text-muted"><b>Payment Type: </b></span> Cash</p>
                             <p class="mb-1"><span class="text-muted"><b>DATE: </b></span><?=date("jS M,Y", strtotime($Order->oDate));?></p>
                         </div>
                     </div>
@@ -105,6 +105,7 @@
                                   <th class="border-0 text-uppercase small font-weight-bold">Quantity</th>
                                   <th class="border-0 text-uppercase small font-weight-bold">Unit Cost</th>
                                   <th class="border-0 text-uppercase small font-weight-bold">Unit Price</th>
+                                  <th class="border-0 text-uppercase small font-weight-bold">Unit</th>
                                   <th class="border-0 text-uppercase small font-weight-bold">Total</th>
                                  </tr>
                               </thead>
@@ -121,6 +122,7 @@
                                         <td><?=$p->amount?></td>
                                         <td><?=$p->cost?></td>
                                         <td><?=$p->PerKg?></td>
+                                        <td><?=$p->unit[0]->unit?></td>
                                         <td><?=$p->SubTotal?></td>
                                     </tr>
                                     <?php

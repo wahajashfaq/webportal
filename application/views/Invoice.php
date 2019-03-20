@@ -19,7 +19,7 @@ $pdf->setPrintFooter(false);
 $pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
 
 // set margins
-$pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
+$pdf->SetMargins(10, PDF_MARGIN_TOP,10);
 
 // set auto page breaks
 $pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
@@ -161,7 +161,7 @@ if ($products)
       $pdf->Cell(10 ,5,$key +1,1,0,'C');
       $pdf->Cell(50 ,5,$p->Name,1,0,'C');
       $pdf->Cell(20 ,5,$p->amount,1,0,'C');
-      $pdf->Cell(20 ,5,'Liter',1,0,'C');
+      $pdf->Cell(20 ,5,$p->unit[0]->unit,1,0,'C');
       $pdf->Cell(20 ,5,$p->PerKg,1,0,'C');
       $pdf->Cell(25,5,$p->SubTotal, 1,0, 'C' );
       $pdf->Cell(25,5,($p->SubTotal * 0.17), 1,0, 'C');
@@ -174,7 +174,7 @@ else
 }
 
 $pdf->Cell(10 ,10,'',1,0,'C');
-$pdf->Cell(50 ,10,'Total==>',1,0,'C');
+$pdf->Cell(50 ,10,'Total',1,0,'C');
 $pdf->Cell(20 ,10,'',1,0,'C');
 $pdf->Cell(20 ,10,'',1,0,'C');
 $pdf->Cell(20 ,10,'',1,0,'C');

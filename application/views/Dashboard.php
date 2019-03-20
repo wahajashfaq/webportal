@@ -27,7 +27,7 @@
                   <div class="card-body-icon">
                     <i class="fas fa-fw fa fa-truck"></i>
                   </div>
-                  <div class="mr-5"><?= $Data->Scount?> Supliers!</div>
+                  <div class="mr-5"><?= $Data->Scount?> Suppliers!</div>
                 </div>
                 <a class="card-footer text-white clearfix small z-1" href="<?php echo base_url()?>Suppliers">
                   <span class="float-left">View Details</span>
@@ -43,7 +43,7 @@
                   <div class="card-body-icon">
                     <i class="fas fa-fw fa fa-user"></i>
                   </div>
-                  <div class="mr-5"><?=  $Data->Ccount?> Customer!</div>
+                  <div class="mr-5"><?=  $Data->Ccount?> Customers!</div>
                 </div>
                 <a class="card-footer text-white clearfix small z-1" href="<?php echo base_url()?>Customers">
                   <span class="float-left">View Details</span>
@@ -60,7 +60,7 @@
                   <div class="card-body-icon">
                     <i class="fas fa-fw fa-shopping-cart"></i>
                   </div>
-                  <div class="mr-5"><?=$Data->Ocount?> New Orders!</div>
+                  <div class="mr-5"><?=$Data->Ocount?> Orders!</div>
                 </div>
                 <a class="card-footer text-white clearfix small z-1" href="<?php echo base_url()?>Orders">
                   <span class="float-left">View Details</span>

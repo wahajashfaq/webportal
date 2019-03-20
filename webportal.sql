@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Mar 12, 2019 at 11:02 AM
+-- Generation Time: Mar 20, 2019 at 09:54 AM
 -- Server version: 5.7.21
 -- PHP Version: 5.6.35
 
@@ -55,7 +55,6 @@ INSERT INTO `member` (`ID`, `Name`, `Lname`, `Email`, `Utype`, `uaddress`, `Entr
 (45, 'Werad', 'Ashfaq', 'Werad@gmail.com', 'Supplier', 'Canal Bank', '2018-11-23 00:00:00', 'Husnain is one of our best supplier since begginging. Husnain is one of our best supplier since begginging. Husnain is one of our best supplier since begginging. Husnain is one of our best supplier since begginging     '),
 (48, 'Khawar', 'Hussain', 'Khawar@gmail.com', 'Customer', 'Canal Bank', '2018-11-23 00:00:00', 'Husnain is one of our best supplier since begginging. Husnain is one of our best supplier since begginging. Husnain is one of our best supplier since begginging. Husnain is one of our best supplier since begginging'),
 (50, 'Mudasar', 'Zaman', 'Mudasar@gmail.com', 'Supplier', 'Canal Bank', '2018-11-23 00:00:00', 'Husnain is one of our best supplier since begginging. Husnain is one of our best supplier since begginging. Husnain is one of our best supplier since begginging. Husnain is one of our best supplier since begginging'),
-(51, 'Nomi', 'Shah', 'nomi@gmail.com', 'Supplier', 'Canal Bank', '2018-11-23 00:00:00', 'Husnain is one of our best supplier since begginging. Husnain is one of our best supplier since begginging. Husnain is one of our best supplier since begginging. Husnain is one of our best supplier since begginging'),
 (56, 'ArhamG', 'boss', 'Arham@gmail.com', 'Customer', 'Canal Bank', '2018-11-23 00:00:00', 'Husnain is one of our best supplier since begginging. Husnain is one of our best supplier since begginging. Husnain is one of our best supplier since begginging. Husnain is one of our best supplier since begginging'),
 (57, 'shayan', 'Bhutta', 'shayan.Bhutta@gmail.com', 'Supplier', 'bahria town B Block Near Eiffel tower and Bilawal house', '2019-02-05 00:00:00', 'No comments                         ');
 
@@ -101,6 +100,36 @@ CREATE TABLE IF NOT EXISTS `orderdetails` (
   `price` float DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `orderdetails`
+--
+
+INSERT INTO `orderdetails` (`oid`, `pid`, `Name`, `NetWeight`, `NetValue`, `price`) VALUES
+(1, 11, 'product1', 100, 10000, 100);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `orderpayments`
+--
+
+DROP TABLE IF EXISTS `orderpayments`;
+CREATE TABLE IF NOT EXISTS `orderpayments` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `amount` int(11) NOT NULL,
+  `OID` int(11) DEFAULT NULL,
+  `date` date DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK_PaymentOrder` (`OID`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `orderpayments`
+--
+
+INSERT INTO `orderpayments` (`id`, `amount`, `OID`, `date`) VALUES
+(3, 1000, 1, '2019-03-29');
+
 -- --------------------------------------------------------
 
 --
@@ -119,7 +148,14 @@ CREATE TABLE IF NOT EXISTS `orders` (
   `Due_Payment` float NOT NULL,
   `comments` varchar(600) DEFAULT NULL,
   PRIMARY KEY (`OrderID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`OrderID`, `Reference`, `CustomerID`, `OrderDate`, `DeliverDate`, `Discount`, `GrandTotal`, `Due_Payment`, `comments`) VALUES
+(1, '1', 32, '2019-03-20 00:00:00', '2019-03-28 00:00:00', 0, 10000, 10000, 'No Comments');
 
 -- --------------------------------------------------------
 
@@ -143,7 +179,10 @@ CREATE TABLE IF NOT EXISTS `productdetails` (
 --
 
 INSERT INTO `productdetails` (`pid`, `sid`, `name`, `issued`, `available`, `NetWeight`, `NetValue`) VALUES
-(5, 2, 'Stock 1', 10, 90, 10, 100);
+(11, 8, 'Stock 1', 100, 0, 100, 100000),
+(11, 11, 'Stock 1', 400, 600, 400, 4000),
+(11, 9, 'Stock 2', 100, 9900, 100, 10000),
+(13, 9, 'Stock 2', 200, 9800, 100, 10000);
 
 -- --------------------------------------------------------
 
@@ -161,15 +200,17 @@ CREATE TABLE IF NOT EXISTS `products` (
   `PriceperKG` float DEFAULT '0',
   `ProductDate` datetime DEFAULT CURRENT_TIMESTAMP,
   `comments` varchar(500) DEFAULT 'No Comments',
+  `unit` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`ProductID`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`ProductID`, `ProductName`, `QuantityProduced`, `QuantityIssued`, `QuantityAvailable`, `PriceperKG`, `ProductDate`, `comments`) VALUES
-(5, 'product1', 100, 0, 100, 1, '2019-03-08 00:00:00', 'No Comments');
+INSERT INTO `products` (`ProductID`, `ProductName`, `QuantityProduced`, `QuantityIssued`, `QuantityAvailable`, `PriceperKG`, `ProductDate`, `comments`, `unit`) VALUES
+(11, 'product1', 600, 100, 500, 190, '2019-03-20 00:00:00', 'No Comments', 'kg'),
+(13, 'product2', 100, 0, 100, 100, '2019-03-20 00:00:00', 'No Comments', 'kg');
 
 -- --------------------------------------------------------
 
@@ -194,6 +235,30 @@ INSERT INTO `productsname` (`name`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `stockpayments`
+--
+
+DROP TABLE IF EXISTS `stockpayments`;
+CREATE TABLE IF NOT EXISTS `stockpayments` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `amount` int(11) NOT NULL,
+  `SID` int(11) DEFAULT NULL,
+  `date` date DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK_PaymentStock` (`SID`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `stockpayments`
+--
+
+INSERT INTO `stockpayments` (`id`, `amount`, `SID`, `date`) VALUES
+(1, 20000, 6, '2019-03-20'),
+(2, 30000, 6, '2019-03-21');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `stocks`
 --
 
@@ -210,16 +275,18 @@ CREATE TABLE IF NOT EXISTS `stocks` (
   `owe` int(11) DEFAULT NULL,
   `StockDate` datetime DEFAULT CURRENT_TIMESTAMP,
   `comments` varchar(500) DEFAULT NULL,
+  `unit` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`StockID`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `stocks`
 --
 
-INSERT INTO `stocks` (`StockID`, `SupplierID`, `StockName`, `QuantityPurchased`, `QuantityIssued`, `QuantityAvailable`, `PriceperKG`, `TotalPrice`, `owe`, `StockDate`, `comments`) VALUES
-(2, 13, 'Stock 1', 100, 10, 90, 10, 1000, 1000, '2019-03-09 00:00:00', 'stock 1'),
-(3, 35, 'Stock 2', 100, 0, 100, 10, 1000, 1000, '2019-03-09 00:00:00', 'stock 2');
+INSERT INTO `stocks` (`StockID`, `SupplierID`, `StockName`, `QuantityPurchased`, `QuantityIssued`, `QuantityAvailable`, `PriceperKG`, `TotalPrice`, `owe`, `StockDate`, `comments`, `unit`) VALUES
+(8, 13, 'Stock 1', 100, 100, 0, 1000, 100000, 100000, '2019-03-20 00:00:00', 'No Comments      ', 'kg'),
+(9, 36, 'Stock 2', 10000, 200, 9800, 100, 1000000, 1000000, '2019-03-20 00:00:00', 'No Comments      ', 'kg'),
+(11, 35, 'Stock 1', 1000, 400, 600, 10, 10000, 10000, '2019-03-20 00:00:00', 'No Comments', 'kg');
 
 -- --------------------------------------------------------
 
@@ -258,6 +325,7 @@ CREATE TABLE IF NOT EXISTS `units` (
 --
 
 INSERT INTO `units` (`name`) VALUES
+('bag'),
 ('kg');
 
 -- --------------------------------------------------------

@@ -51,7 +51,7 @@ class User_model extends CI_Model
    public function getDashboardData()
     {
         $query = $this->db->query(" SELECT 
-                                   (SELECT count(*) FROM member where Utype = 'Supplier') as Scount,
+                                   (SELECT count(*) FROM member where Utype = 'Supplier' and Name != 'Default') as Scount,
                                    (SELECT count(*) FROM member where Utype = 'Customer') as Ccount,
                                    (SELECT count(*) FROM orders) as Ocount,
                                    (SELECT count(*) FROM products) as Pcount");
