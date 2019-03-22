@@ -87,7 +87,7 @@ var option=[];
 	    	var pathArray = window.location.pathname.split('/'); // to split all string after domain
 	    	var host = pathArray[1]; //This will return the host or root in Url part
 	    	var base_url = domain +'/'+ host + '/'; //Combinng all to get base_url same as codeigniter
-	    	var id = $(this).attr("name");//Getiing the ID to Delete on server side
+	    	var id = $(this).attr("id");//Getiing the ID to Delete on server side
 
 	        $.ajax({
 	            url:  base_url+ 'User/deleteUser',
